@@ -19,7 +19,6 @@ body{
 
 .split_top{
     width: 100%;
-    height: 400px;
     top: 80px;
     overflow: hidden;
     background-color: #39CCCC;
@@ -58,14 +57,4 @@ body{
     margin-right: 20px;
     white-space: normal;
     color: white;
-}
-
-.split_top{
-    width: 100%;
-    height: 400px;
-    top: 80px;
-    overflow: hidden;
-    background-color: #39CCCC;
-    display: inline-block;
-    right: 0px;
 }
