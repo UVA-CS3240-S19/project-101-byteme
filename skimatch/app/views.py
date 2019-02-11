@@ -22,3 +22,8 @@ def sign_up(request):
 def profile(request):
     context = {}
     return render(request, 'app/profile.html', context)
+
+
+def login(request):
+    context = {}
+    return render(request, 'app/login_page.html', context)
