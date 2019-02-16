@@ -17,4 +17,3 @@ def profile(request):
     context = {}
     return render(request, 'app/profile.html', context)
 
-
