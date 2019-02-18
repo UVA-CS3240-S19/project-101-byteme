@@ -1,18 +1,51 @@
 {% load static %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <link href="{% static 'style.css' %}" type="text/css" rel="stylesheet">
-        <title> Your Profile </title>
-    </head>
-    <header> </header>
-    <body class = "container">
-        <div class = "split_top">
-            <div top = 0>
-                <h1 class = "title" align = "center"> Profile </h1>
-            </div>
-        </div>
-    </body>
-    <footer>
-    </footer>
-</html>
+
+<h1>{{ "Create Your Profile:" }}</h1>
+
+<form action="{% url 'app:profile' %}" method="post">
+    {% csrf_token %}
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name">
+
+    <label for="year">Year:</label>
+    <input type="text" id="year" name="year">
+
+    <label for="major">Major:</label>
+    <input type="text" id="major" name="major">
+
+    <label for="bio">Bio:</label>
+    <textarea type="text" id="bio" name="bio"></textarea>
+
+    <label for="skills">Skills:</label>
+    <input type="text" id="skills" name="skills">
+
+    <label for="courses">Courses:</label>
+    <input type="text" id="courses" name="courses">
+
+    <label for="organizations">Organizations:</label>
+    <input type="text" id="organizations" name="organizations">
+
+    <label for="interests">Interests:</label>
+    <input type="text" id="interests" name="interests">
+
+    <input type="submit" value="Publish">
+</form>
+
+
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+    <!--<head>-->
+        <!--<link href="{% static 'style.css' %}" type="text/css" rel="stylesheet">-->
+        <!--<title> Your Profile </title>-->
+    <!--</head>-->
+    <!--<header> </header>-->
+    <!--<body class = "container">-->
+        <!--<div class = "split_top">-->
+            <!--<div top = 0>-->
+                <!--<h1 class = "title" align = "center"> Profile </h1>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</body>-->
+    <!--<footer>-->
+    <!--</footer>-->
+<!--</html>-->

@@ -1,0 +1,19 @@
+
+<h1>{{ "User Profile" }}</h1>
+
+{% if profile_attributes %}
+
+    <ul>
+        {% for attribute in profile_attributes %}
+            <li>Year: {{ attribute.year }}</li>
+            <li>Major: {{ attribute.major }}</li>
+            <li>Bio: {{ attribute.bio }}</li>
+            <li>Skills: {{ attribute.skills }}</li>
+            <li>Courses: {{ attribute.courses }}</li>
+            <li>Organizations: {{ attribute.organizations }}</li>
+            <li>Interests: {{ attribute.interests }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>There is currently no user data.</p>
+{% endif %}
