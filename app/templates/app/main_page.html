@@ -24,6 +24,8 @@
         {% else %}
         <p>You are not logged in</p>
         <a href="{% url 'login' %}">login</a>
+        <p> Log in with google </p>
+        <a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a><br>
         {% endif %}
         {% endblock %}
     </body>

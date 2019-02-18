@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from app import views
 from django.contrib.auth import views as auth_views
+from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,4 +25,5 @@ urlpatterns = [
     path('', views.home, name = 'main_page'),
     path('sign_up/', views.sign_up, name = 'sign_up'),
     path('profile/', views.profile, name = 'profile'),
+    url(r'^auth/', include('social_django.urls', namespace='social')),  # <- Here
 ]
