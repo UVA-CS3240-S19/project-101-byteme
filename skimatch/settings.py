@@ -124,10 +124,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Where to redirect the user after a successful login.
-LOGIN_REDIRECT_URL = 'main_page'
-LOGOUT_REDIRECT_URL = 'main_page'
-
 AUTHENTICATION_BACKENDS = (
  'social_core.backends.open_id.OpenIdAuth',  # for Google authentication
  'social_core.backends.google.GoogleOpenId',  # for Google authentication
@@ -139,9 +135,9 @@ AUTHENTICATION_BACKENDS = (
 )
 
 LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'home'
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '116473098917-ba61gta7recuqe20navc94hkb7ncuifs.apps.googleusercontent.com'  #Paste CLient Key
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'KaHjOFs4NY1Xuha0438Kr9-w' #Paste Secret Key
 
 LOGIN_REDIRECT_URL = '/app/profile/'
+LOGOUT_REDIRECT_URL = 'main_page'
