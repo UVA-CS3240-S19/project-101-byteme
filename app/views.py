@@ -30,7 +30,9 @@ def create_profile(request):
     else:
         return render(request, 'app/profile.html', {'form': ProfileModel()})
 
+def news_feed(request):
 
+    return render(request, 'app/news_feed.html')
 
 # def home(request):
 #     context = {
