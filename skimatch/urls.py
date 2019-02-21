@@ -26,4 +26,5 @@ urlpatterns = [
     path('sign_up/', views.sign_up, name = 'sign_up'),
     path('profile/', views.profile, name = 'profile'),
     url(r'^auth/', include('social_django.urls', namespace='social')),  # <- Here
+    path('login/', views.login, name = 'login'),
 ]
