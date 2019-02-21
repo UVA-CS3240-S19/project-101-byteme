@@ -1,11 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 
 def home(request):
     context = {
         
     }
-    return render(request, 'app/main_page.html', context)
+    if not request.user.is_authenticated:
+        return redirect('login') 
+    else:
+        return render(request, 'app/main_page.html', context)
 
 
 def sign_up(request):
@@ -15,5 +18,12 @@ def sign_up(request):
 
 def profile(request):
     context = {}
-    return render(request, 'app/profile.html', context)
+    if not request.user.is_authenticated:
+        return redirect('login') 
+    else:
+        return render(request, 'app/profile.html', context)
+
+def login(request):
+    context = {}
+    return render(request, 'app/login_page.html', context)
 
