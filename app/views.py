@@ -9,9 +9,9 @@ from django.urls import reverse
 from .models import Profile, ProfileModel
 
 # published profile view
-class ProfileView(generic.ListView):
+class ProfileView(generic.DetailView):
     template_name = 'app/published_profile.html'
-    context_object_name = 'profile_attributes'
+    context_object_name = 'profile'
 
     def get_queryset(self):
         return Profile.objects.all()
@@ -22,8 +22,8 @@ def create_profile(request):
     if request.method == "POST":
         form = ProfileModel(request.POST)
         if (form.is_valid()):
-            form.save()
-            return HttpResponseRedirect(reverse('app:published_profile'))
+            profile = form.save()
+            return HttpResponseRedirect(reverse('app:published_profile', args=(profile.id,)))
         else:
             return render(request, 'app/profile.html', {'form': ProfileModel()})
 

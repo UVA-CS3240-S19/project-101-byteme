@@ -3,24 +3,22 @@
     User Profile
 {% endblock content1 %}
 {% block content2 %}
-    {% if profile_attributes %}
-    <ul>
-            {% for attribute in profile_attributes %}
-            <h2>{{attribute.name}}</h2>
-            <div id = "main_info">
-                    <li>Year: {{ attribute.year }}</li>
-                    <li>Major: {{ attribute.major }}</li>
+{% if profile %}
+<ul>
+        <h2>{{profile.name}}</h2>
+        <div id = "main_info">
+                <li>Year: {{ profile.year }}</li>
+                <li>Major: {{ profile.major }}</li>
+        </div>
+            <div>
+                <li>Bio: {{ profile.bio }}</li>
             </div>
-                <div>
-                    <li>Bio: {{ attribute.bio }}</li>
-                </div>
-                <li>Skills: {{ attribute.skills }}</li>
-                <li>Courses: {{ attribute.courses }}</li>
-                <li>Organizations: {{ attribute.organizations }}</li>
-                <li>Interests: {{ attribute.interests }}</li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>There is currently no user data.</p>
-    {% endif %}
+            <li>Skills: {{ profile.skills }}</li>
+            <li>Courses: {{ profile.courses }}</li>
+            <li>Organizations: {{ profile.organizations }}</li>
+            <li>Interests: {{ profile.interests }}</li>
+    </ul>
+{% else %}
+    <p>There is currently no user data.</p>
+{% endif %}
 {% endblock content2 %}
