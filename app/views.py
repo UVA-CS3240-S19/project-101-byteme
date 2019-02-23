@@ -30,7 +30,33 @@ def create_profile(request):
     else:
         return render(request, 'app/profile.html', {'form': ProfileModel()})
 
+posts = [
+    {
+        'author': 'Student',
+        'title': 'Post 1',
+        'content': 'First post',
+        'date_posted': 'February 20, 2019'
+    }
+]
 
+def news_feed(request):
+    context = {
+        'posts': posts
+    }
+
+    return render(request, 'app/news_feed.html', context)
+
+def messaging(request):
+    return render(request, 'app/messaging.html')
+
+def notifications(request):
+    return render(request, 'app/notifications.html')
+
+def friends(request):
+    return render(request, 'app/friends.html')
+
+def settings(request):
+    return render(request, 'app/settings.html')
 
 # def home(request):
 #     context = {
