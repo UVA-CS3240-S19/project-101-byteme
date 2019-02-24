@@ -9,6 +9,7 @@ h2{
 
 body{
     background-color: white;
+    margin: auto; 
 }
 
 .image{
@@ -58,9 +59,3 @@ body{
     white-space: normal;
     color: white;
 }
-
-/*div {
-    width: 50px;
-    height: 50px;
-    border: solid black 2px;
-    }*/
