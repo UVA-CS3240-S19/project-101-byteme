@@ -24,7 +24,10 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')), 
     path('', views.home, name = 'main_page'),
     path('sign_up/', views.sign_up, name = 'sign_up'),
-    path('profile/', views.profile, name = 'profile'),
+    path('profile/', views.create_profile, name='profile'),
+    path('notifications/', views.notifications, name='notifications'),
+    path('settings/', views.settings, name='settings'),
     url(r'^auth/', include('social_django.urls', namespace='social')),  # <- Here
     path('login/', views.login, name = 'login'),
+    path('app/', include('app.urls')),
 ]
