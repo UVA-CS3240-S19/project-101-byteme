@@ -1,24 +1,23 @@
-<!-- Compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-
-<!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-
 {% load static %}
-
-
-<link href="{% static 'style_login.css' %}" type="text/css" rel="stylesheet">
-<body>
-    <div class="login-page">
-        <div class="login-div">
-            <form class="login-form">
-                <div class="login-title"> Login Page </div>
-                <div class="google-button">
-                    <a href="{% url 'social:begin' 'google-oauth2' %}?next=/">
-                        <img id="signInButton" src="http://www.setyourowntests.com/_/rsrc/1468869481521/help/accounts/btn_google_signin_dark_normal_web%402x.png" onclick="document.getElementById('signInButton').src='http://www.setyourowntests.com/_/rsrc/1468869481521/help/accounts/btn_google_signin_dark_normal_web%402x.png'">
-                    </a>
-                </div>
-            </form>
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="{% static 'style.css' %}" type="text/css" rel="stylesheet">
+        <title> byteMe </title>
+    </head>
+    <header> </header>
+    <body class = "container">
+        <div class = "top_links" align = "right">
+            <a class = "l" id = "profile" href="profile"  style="text-decoration: none"> Profile </a>
+            <a class = "l" id = "Messages"  href = "#messages" style="text-decoration: none"> Messages </a>
         </div>
-    </div>
-</body>
+
+        <div class = "split_top">
+            <div top = 0>
+                <h1 class = "title" align = "center"> Login Page </h1>
+            </div>
+        </div>
+    </body>
+    <footer>
+    </footer>
+</html>
