@@ -12,6 +12,7 @@ class Profile(models.Model):
     courses = models.CharField(max_length=200)      # eventually drop down menu? hashtags?
     organizations = models.CharField(max_length=200)
     interests = models.CharField(max_length=100)
+    image = models.ImageField(default='default-avatar.jpg', upload_to='profile_pics')
     # picture = models.ImageField()
 
 
@@ -28,3 +29,4 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
