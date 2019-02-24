@@ -18,6 +18,7 @@ def news_feed(request):
     context = {
         'posts': Post.objects.all()
     }
+    return render(request, 'app/news_feed.html', context)
 
 # published profile view
 class ProfileView(generic.DetailView):
