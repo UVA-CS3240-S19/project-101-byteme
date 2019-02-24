@@ -1,5 +1,6 @@
 from django.db import models
 from django.forms import ModelForm
+from django.utils import timezone
 
 class Profile(models.Model):
     name = models.CharField(max_length=200)
@@ -17,4 +18,3 @@ class ProfileModel(ModelForm):
     model = Profile
     fields = ['name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests']
     # waiting to add picture for now
-
