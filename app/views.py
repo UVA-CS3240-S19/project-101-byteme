@@ -6,7 +6,7 @@ from django.forms import modelform_factory
 from django.views import generic
 from django.urls import reverse
 
-from .models import Profile, ProfileModel
+from .models import Profile, ProfileModel, Post
 
 # published profile view
 class ProfileView(generic.DetailView):
@@ -30,18 +30,9 @@ def create_profile(request):
     else:
         return render(request, 'app/profile.html', {'form': ProfileModel()})
 
-posts = [
-    {
-        'author': 'Student',
-        'title': 'Post 1',
-        'content': 'First post',
-        'date_posted': 'February 20, 2019'
-    }
-]
-
 def news_feed(request):
     context = {
-        'posts': posts
+        'posts': Post.objects.all()
     }
 
     return render(request, 'app/news_feed.html', context)
