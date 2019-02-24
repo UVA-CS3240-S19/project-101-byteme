@@ -3,20 +3,28 @@
 <html>
     <head>
         <link href="{% static 'style.css' %}" type="text/css" rel="stylesheet">
-        <title> byteMe </title>
     </head>
     <header> </header>
     <body class = "container">
-        <div class = "top_links" align = "right">
+        <div class = "top_links">
             <a class = "l" id = "profile" href="/profile"  style="text-decoration: none"> Profile </a>
             <a class = "l" id = "Messages"  href = "#messages" style="text-decoration: none"> Messages </a>
         </div>
 
         <div class = "split_top">
             <div top = 0>
-                <h1 class = "title" align = "center"> ByteMe </h1>
+                <h1 class = "title"> ByteMe </h1>
             </div>
         </div>
+
+        {% block content %}
+        {% if user.is_authenticated %}
+        Hi {{ user.username }}!
+        <p><a href="{% url 'logout' %}">logout</a></p>
+        {% else %}
+        <a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a><br>
+        {% endif %}
+        {% endblock %}
     </body>
     <footer>
     </footer>
