@@ -43,7 +43,7 @@ def create_profile(request):
         if request.method == "POST":
             form = ProfileModel(request.POST)
             if (form.is_valid()):
-                profile = form.save()
+                profile = form.save(commit=False)
                 profile.id=request.user.id
                 profile.save()
                 return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': profile.id}))#'computing_id':computing_id}))
