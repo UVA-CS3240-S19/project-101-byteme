@@ -1,11 +1,10 @@
 language: python
 python:
-  - 3.4
-  - 3.5
-  - 3.6 #Python 3.6
-# command to install dependencies
+- 3.4
+- 3.5
+- 3.6
 install:
-  - pip install -r requirements.txt
-# # command to run tests
-# script:
-#   - pytest
+- pip install -r requirements.txt
+deploy:
+  api_key:
+    secure: vTzAyzaWBa/vPwuSDokZ8fmxDocEVZghMO4vuchZWWpKTQfGsgwyK+DWVur7a+WCDnhO2UcgX+qXlW/S6RMsx8fjY3OaLTsoibZ/VKRDk2zTlhPUOHBAGwtWzTL/aiRedf2YMXhvZAGCpCOgNzeF6mM5WuDOu/JHbLgi0n9N4e7pLuxHVEskmc+xB4FOWVEDoYXZcGfmoZnttdWPYZ0oc6PYPIM/IwxyGd6WC41HqEyfVOd6/YjoHrfs+RjHag7dIYME5dI9YtgQ4a7BOZmM7a6OHnaeSPtyh/VzMbZC4b7EIMGkxxcg+medNuHrchikaFH/pWYVW9fLuN98g/NkByPPeUAtDNxq0bmaSjQspfiyDYRMi/ijM24krgSniAXhplK7lrcb+Q/HwE4F2jXUXL1XOUTjtgxalCrHdjgIG7t5qVMkrII8Hlycs19bHQ3tRw59WvjSc+2hgeZws64zHl4eQy91mxwvrC3UbW8MJ2/29TjwMuLIO35/zve2mfOCOyNpBoIXOMYn5YWFVMy0+jQCC5f+6YwDhwhukTFXO8aC3+Nl3wZ2uipvTZHP5RmNOLG6y1VUf0u2hMsx2puYUJxZSa3M2WTOZMEt+u4SIeE5Qv4PpbY0i3yQCNnZFmcK1ynX7CjlDCZyF1YMaydfAR3ShheXlrkjxr/taGJ2hvM=
