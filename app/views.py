@@ -6,12 +6,12 @@ from django.forms import modelform_factory
 from django.views import generic
 from django.urls import reverse
 
-from .models import Profile, ProfileModel
+from .models import Profile, ProfileModel, Post
 
 # published profile view
-class ProfileView(generic.ListView):
+class ProfileView(generic.DetailView):
     template_name = 'app/published_profile.html'
-    context_object_name = 'profile_attributes'
+    context_object_name = 'profile'
 
     def get_queryset(self):
         return Profile.objects.all()
@@ -22,15 +22,32 @@ def create_profile(request):
     if request.method == "POST":
         form = ProfileModel(request.POST)
         if (form.is_valid()):
-            form.save()
-            return HttpResponseRedirect(reverse('app:published_profile'))
+            profile = form.save()
+            return HttpResponseRedirect(reverse('app:published_profile', args=(profile.id,)))
         else:
             return render(request, 'app/profile.html', {'form': ProfileModel()})
 
     else:
         return render(request, 'app/profile.html', {'form': ProfileModel()})
 
+def news_feed(request):
+    context = {
+        'posts': Post.objects.all()
+    }
 
+    return render(request, 'app/news_feed.html', context)
+
+def messaging(request):
+    return render(request, 'app/messaging.html')
+
+def notifications(request):
+    return render(request, 'app/notifications.html')
+
+def friends(request):
+    return render(request, 'app/friends.html')
+
+def settings(request):
+    return render(request, 'app/settings.html')
 
 # def home(request):
 #     context = {
