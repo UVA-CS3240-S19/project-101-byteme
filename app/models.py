@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 class Profile(models.Model):
+    user_id = models.CharField(max_length =8)
     name = models.CharField(max_length=200)
     year = models.CharField(max_length=5)
     major = models.CharField(max_length=200)
@@ -18,7 +19,7 @@ class Profile(models.Model):
 
 class ProfileModel(ModelForm):
     model = Profile
-    fields = ['name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests']
+    fields = ['user_id', 'name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests']
     # waiting to add picture for now
 
 class Post(models.Model):
