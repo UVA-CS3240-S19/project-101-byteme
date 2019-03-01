@@ -9,6 +9,7 @@ from django.contrib.auth.forms import UserChangeForm
 class Profile(models.Model):
     model = User
     user = models.OneToOneField(User, on_delete=models.CASCADE, default="10")
+    user_id = models.CharField(max_length =8)
     name = models.CharField(max_length=200)
     year = models.CharField(max_length=5)
     major = models.CharField(max_length=200)
@@ -40,7 +41,6 @@ class UpdateProfileForm(ModelForm):
         model = Profile
         fields = ['name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests']
         # waiting to add picture for now
-
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
