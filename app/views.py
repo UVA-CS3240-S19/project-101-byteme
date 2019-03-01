@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.http import Http404
 from django.http import HttpResponseRedirect
@@ -6,7 +6,7 @@ from django.forms import modelform_factory
 from django.views import generic
 from django.urls import reverse
 
-from .models import Profile, ProfileModel, Post
+from .models import Profile, ProfileModel, Post, UpdateProfileForm
 
 # published profile view
 class ProfileView(generic.DetailView):
@@ -16,19 +16,70 @@ class ProfileView(generic.DetailView):
     def get_queryset(self):
         return Profile.objects.all()
 
+
 # form to create profile
 def create_profile(request):
-    ProfileModel = modelform_factory(Profile, fields=('name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests'))
-    if request.method == "POST":
-        form = ProfileModel(request.POST)
-        if (form.is_valid()):
-            profile = form.save()
-            return HttpResponseRedirect(reverse('app:published_profile', args=(profile.id,)))
+    if not request.user.is_authenticated:
+        return redirect('login')
+    else:
+        computing_id = request.user.email
+        ind = computing_id.index('@')
+        computing_id = computing_id[0:ind]
+        ProfileModel = modelform_factory(Profile, fields=('name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests'))
+        if request.method == "POST":
+            form = ProfileModel(request.POST)
+            if (form.is_valid()):
+                profile = form.save(commit=False)
+                profile.id=request.user.id
+                profile.save()
+                return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': profile.id}))
+            else:
+                return render(request, 'app/profile.html', {'form': ProfileModel()})
+
         else:
             return render(request, 'app/profile.html', {'form': ProfileModel()})
 
+        # if request.method == "POST":
+        #     profile = ProfileForm(request.POST)
+        #     if profile.is_valid():
+        #         profile.save()
+        #         profile.id = request.user.id
+        #         profile.save()
+        #         return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': profile.id}))
+        #     else:
+        #         return render(request, 'app/profile.html', {'form': ProfileForm()})
+        # else:
+        #     return render(request, 'app/profile.html', {'form': ProfileForm()})
+
+
+def update_profile(request, pk):
+
+    if not request.user.is_authenticated:
+        return redirect('login')
     else:
-        return render(request, 'app/profile.html', {'form': ProfileModel()})
+        ProfileModel = modelform_factory(Profile, fields=('name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests'))
+        if request.method == "POST":
+            profile = ProfileModel(request.POST, instance=request.user)
+            if (profile.is_valid()):
+                profile.save()
+                return HttpResponseRedirect(reverse('app:update_profile', kwargs={'pk': pk}))
+            else:
+                return render(request, 'app/published_profile.html', {'form': ProfileModel()})
+        else:
+            profile = ProfileModel()
+            return render(request, 'app/published_profile.html', {'form': profile})
+
+        #     if request.method == "POST":
+        #         profile = UpdateProfileForm(request.POST, request.FILES, instance=request.user)
+        #
+        #         if profile.is_valid():
+        #             profile.save()
+        #
+        #         return HttpResponseRedirect(reverse('app:update_profile', kwargs={'pk': pk}))
+        #     else:
+        #         profile = UpdateProfileForm(instance=request.user)
+        #         return render(request, 'app/published_profile.html', {'form': profile})
+
 
 def news_feed(request):
     context = {
@@ -49,23 +100,23 @@ def friends(request):
 def settings(request):
     return render(request, 'app/settings.html')
 
-# def home(request):
-#     context = {
-#
-#     }
-#     return render(request, 'app/main_page.html', context)
-#
-#
-# def sign_up(request):
-#     context = {}
-#     return render(request, 'app/sign_up.html', context)
-#
-#
-# def profile(request):
-#     context = {}
-#     return render(request, 'app/profile.html', context)
-#
-#
-# def login(request):
-#     context = {}
-#     return render(request, 'app/login_page.html', context)
+def home(request):
+    context = {
+
+    }
+    return render(request, 'app/main_page.html', context)
+
+
+def sign_up(request):
+    context = {}
+    return render(request, 'app/sign_up.html', context)
+
+
+def profile(request):
+    context = {}
+    return render(request, 'app/profile.html', context)
+
+
+def login(request):
+    context = {}
+    return render(request, 'app/login_page.html', context)
