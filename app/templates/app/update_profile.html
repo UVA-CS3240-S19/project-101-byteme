@@ -1,0 +1,80 @@
+{% load static %}
+<!--<head>-->
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>-->
+    <!--</head>-->
+{% extends "app/base.html" %}
+{% block content1 %}
+    User Profile
+{% endblock content1 %}
+<!--<h1>{{ "Update Your Profile:" }}</h1>-->
+
+{% block content2 %}
+s{% if profile %}
+<form action="{% url 'app:update_profile' %}" method="post">
+    {% csrf_token %}
+    <ul>
+        <h2><label for="name">Name: {{ u_form.name }}</label>
+        <input type="text" id="name" name="name"></h2>
+        <!--<div id = "main_info">-->
+            <li><label for="year">Year: {{ u_form.year }}</label><input type="text" id="year" name="year"></li>
+            <li><label for="major">Major: {{ u_form.major }}</label><input type="text" id="major" name="major"></li>
+        <!--</div>-->
+            <div>
+                <li><label for="bio">Bio: {{ u_form.bio }}</label><textarea type="text" id="bio" name="bio" rows="3"></textarea></li>
+            </div>
+            <li>label for="skills">Skills: {{ u_form.skills }}</label><input type="text" id="skills" name="skills"></li>
+            <li><label for="courses">Courses: {{ u_form.courses }}</label><input type="text" id="courses" name="courses"></li>
+            <li><label for="organizations">Organizations: {{ u_form.organizations }}</label><input type="text" id="organizations" name="organizations"></li>
+            <li><label for="interests">Interests: {{ u_form.interests }}</label><input type="text" id="interests" name="interests"></li>
+        <div class = "form-group">
+            <input type="submit" value="Update">
+        </div>
+    </ul>
+</form>
+{% else %}
+    <p>There is currently no user data.</p>
+{% endif %}
+{% endblock content2 %}
+
+
+
+    <!--<div class = "form-group">-->
+        <!--<label for="name">Name: {{ update_profile.name }}</label>-->
+        <!--<input type="text" id="name" name="name">-->
+    <!--</div>-->
+    <!--<div class = "form-group">-->
+        <!--<label for="year">Year: {{ update_profile.year }}</label>-->
+        <!--<input type="text" id="year" name="year">-->
+    <!--</div>-->
+    <!--<div class = "form-group">-->
+        <!--<label for="major">Major: {{ update_profile.major }}</label>-->
+        <!--<input type="text" id="major" name="major">-->
+    <!--</div>-->
+    <!--<div class = "form-group">-->
+        <!--<label for="bio">Bio: {{ update_profile.bio }}</label>-->
+        <!--<textarea type="text" id="bio" name="bio" rows="3"></textarea>-->
+    <!--</div>-->
+    <!--<div class = "form-group">-->
+        <!--<label for="skills">Skills: {{ profile.skills }}</label>-->
+        <!--<input type="text" id="skills" name="skills">-->
+    <!--</div>-->
+    <!--<div class = "form-group">-->
+        <!--<label for="courses">Courses: {{ update_profile.courses }}</label>-->
+        <!--<input type="text" id="courses" name="courses">-->
+    <!--</div>-->
+    <!--<div class = "form-group">-->
+        <!--<label for="organizations">Organizations: {{ update_profile.organizations }}</label>-->
+        <!--<input type="text" id="organizations" name="organizations">-->
+    <!--</div>-->
+    <!--<div class = "form-group">-->
+        <!--<label for="interests">Interests: {{ update_profile.interests }}</label>-->
+        <!--<input type="text" id="interests" name="interests">-->
+    <!--</div>-->
+    <!--<div class = "form-group">-->
+        <!--<input type="submit" value="Update">-->
+    <!--</div>-->
+<!--</form>-->
