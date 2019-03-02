@@ -37,22 +37,19 @@ def create_profile(request):
         computing_id = request.user.email
         ind = computing_id.index('@')
         computing_id = computing_id[0:ind]
-        ProfileModel = modelform_factory(Profile, fields=(
-        'name', 'year', 'major', 'bio', 'skills', 'courses', 'organizations', 'interests'))
-
-        if request.method == "POST" or Profile.objects.filter(user_id=computing_id):
+        ProfileModel = modelform_factory(Profile, fields=('name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests'))
+        if request.method == "POST":
             form = ProfileModel(request.POST)
             if (form.is_valid()):
                 profile = form.save(commit=False)
-                profile.user_id = computing_id
-                profile.id = request.user.id
+                profile.id=request.user.id
                 profile.save()
-                print("saved")
-                return HttpResponseRedirect(
-                    reverse('app:published_profile', kwargs={'pk': profile.id}))  # 'computing_id':computing_id}))
+                return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': profile.id}))#'computing_id':computing_id}))
             else:
-                return render(request, 'app/published_profile.html',
-                              context={'profile': Profile.objects.filter(user_id=computing_id).first()})
+                return render(request, 'app/profile.html', {'form': ProfileModel()})
+
+        else:
+            return render(request, 'app/profile.html', {'form': ProfileModel()})
 
 
         # if request.method == "POST":

@@ -7,8 +7,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import UserChangeForm
 
 class Profile(models.Model):
-    model = User
-    user = models.OneToOneField(User, on_delete=models.CASCADE, default="10")
+    # model = User
+    # user = models.OneToOneField(User, on_delete=models.CASCADE, default="10")
     user_id = models.CharField(max_length =8)
     name = models.CharField(max_length=200)
     year = models.CharField(max_length=5)
