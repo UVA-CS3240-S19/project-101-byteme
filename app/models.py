@@ -12,11 +12,11 @@ class Profile(models.Model):
     name = models.CharField(max_length=200)
     year = models.CharField(max_length=100)
     major = models.CharField(max_length=200)
-    bio = models.TextField(max_length=600)
-    skills = models.CharField(max_length=100)
-    courses = models.CharField(max_length=200)      # eventually drop down menu? hashtags?
-    organizations = models.CharField(max_length=200)
-    interests = models.CharField(max_length=100)
+    bio = models.TextField(max_length=600, blank = True)
+    skills = models.CharField(max_length=100, blank = True)
+    courses = models.CharField(max_length=200, blank = True)      # eventually drop down menu? hashtags?
+    organizations = models.CharField(max_length=200, blank = True)
+    interests = models.CharField(max_length=100, blank = True)
     image = models.ImageField(default='default-avatar.jpg', upload_to='profile_pics')
     # picture = models.ImageField()
 
