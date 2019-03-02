@@ -1,22 +1,6 @@
-Skip to content
- 
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- @jelenaliu Sign out
-5
-0 0 UVA-CS3240-S19/project-101-byteme Private
- Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights  Settings
-project-101-byteme/.gitignore
-@Michael1009 Michael1009 Adding .gitignore
-13f1894  6 days ago
-116 lines (94 sloc)  1.31 KB
-    
 # Byte-compiled / optimized / DLL files
 __pycache__/
+**/__pycache__/
 *.py[cod]
 *$py.class
 
@@ -131,15 +115,3 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-© 2019 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
