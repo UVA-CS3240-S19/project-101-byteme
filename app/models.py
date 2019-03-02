@@ -1,11 +1,16 @@
 from django.db import models
+from django import forms
 from django.forms import ModelForm
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserChangeForm
 
 class Profile(models.Model):
+    # model = User
+    # user = models.OneToOneField(User, on_delete=models.CASCADE, default="10")
     name = models.CharField(max_length=200)
-    year = models.CharField(max_length=5)
+    year = models.CharField(max_length=100)
     major = models.CharField(max_length=200)
     bio = models.TextField(max_length=600)
     skills = models.CharField(max_length=100)
@@ -17,9 +22,24 @@ class Profile(models.Model):
 
 
 class ProfileModel(ModelForm):
-    model = Profile
-    fields = ['name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests']
-    # waiting to add picture for now
+    class Meta:
+        model = Profile
+        fields = ['name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests']
+        # waiting to add picture for now
+
+        # def save(self, commit=True):
+        #     user = super(ProfileModel, self).save(commit=False)
+        #
+        #     if commit:
+        #         user.save()
+        #
+        #     return user
+
+class UpdateProfileForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests']
+        # waiting to add picture for now
 
 class Post(models.Model):
     title = models.CharField(max_length=100)

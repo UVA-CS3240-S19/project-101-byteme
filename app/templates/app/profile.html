@@ -5,44 +5,44 @@
     <form action="{% url 'profile' %}" method="post" class="needs-validation">
         {% csrf_token %}
         <div class = "form-group">
-            <label for="name">Name:</label>
-            <input class="form-control" type="text" id="name" name="name" required="true">
+            <label name="name">Name:</label>
+            <input class="form-control" type="text" id="name" name="name" >
         </div>
         <div class = "form-group">
-            <label for="year">Year:</label>
-            <select class="form-control" id="exampleFormControlSelect1" required="true">
+            <label name="year">Year:</label>
+            <select id = "year" name = "year" class="form-control">
                     <option value = "" disabled selected hidden>Select...</option>
-                    <option>2019</option>
-                    <option>2020</option>
-                    <option>2021</option>
-                    <option>2022</option>
-                    <option>Graduate Student</option>
-                    <option>Faculty</option>
-                    <option>Other</option>
+                    <option value = "2019">2019</option>
+                    <option value = "2020">2020</option>
+                    <option value = "2021">2021</option>
+                    <option value = "2022">2022</option>
+                    <option value = "Graduate Student">Graduate Student</option>
+                    <option value = "Faculty">Faculty</option>
+                    <option value = "Other">Other</option>
                   </select>
         </div>
         <div class = "form-group">
-            <label for="major">Major:</label>
-            <input class="form-control" type="text" id="major" name="major" required="true">
+            <label name="major">Major:</label>
+            <input class="form-control" type="text" id="major" name="major">
         </div>
         <div class = "form-group">
-            <label for="bio">Bio:</label>
+            <label name="bio">Bio:</label>
             <textarea class="form-control" type="text" id="bio" name="bio" rows="4"></textarea>
         </div>
         <div class = "form-group">
-            <label for="skills">Skills:</label>
+            <label name="skills">Skills:</label>
             <input class="form-control" type="text" id="skills" name="skills">
         </div>
         <div class = "form-group">
-            <label for="courses">Courses:</label>
+            <label name="courses">Courses:</label>
             <input class="form-control" type="text" id="courses" name="courses">
         </div>
         <div class = "form-group">
-            <label for="organizations">Organizations:</label>
+            <label name="organizations">Organizations:</label>
             <input class="form-control" type="text" id="organizations" name="organizations">
         </div>
         <div class = "form-group">
-            <label for="interests">Interests:</label>
+            <label name="interests">Interests:</label>
             <input class="form-control" type="text" id="interests" name="interests">
         </div>
         <div class = "form-group">
