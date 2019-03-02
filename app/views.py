@@ -46,7 +46,7 @@ def create_profile(request):
                 profile.save()
                 return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': profile.id}))#'computing_id':computing_id}))
             else:
-                return render(request, 'app/profile.html', {'form': ProfileModel()})
+                return render(request, 'app/profile.html', {'form': form})
 
         else:
             return render(request, 'app/profile.html', {'form': ProfileModel()})
