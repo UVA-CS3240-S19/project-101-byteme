@@ -12,7 +12,7 @@ def home(request):
     if not request.user.is_authenticated:
         return redirect('login') 
     else:
-        return render(request, 'app/main_page.html', context)
+        return create_profile(request)
 
 def news_feed(request):
     context = {
@@ -28,7 +28,6 @@ class ProfileView(generic.DetailView):
     def get_queryset(self):
         return Profile.objects.all()
 
-
 # form to create profile
 def create_profile(request):
     if not request.user.is_authenticated:
@@ -38,15 +37,16 @@ def create_profile(request):
         ind = computing_id.index('@')
         computing_id = computing_id[0:ind]
         ProfileModel = modelform_factory(Profile, fields=('name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests'))
-        if request.method == "POST":
+        if request.method == "POST" or Profile.objects.filter(user_id = computing_id):
             form = ProfileModel(request.POST)
             if (form.is_valid()):
                 profile = form.save(commit=False)
+                profile.user_id = computing_id
                 profile.id=request.user.id
                 profile.save()
                 return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': profile.id}))#'computing_id':computing_id}))
             else:
-                return render(request, 'app/profile.html', {'form': ProfileModel()})
+                return render(request, 'app/published_profile.html', context={'profile': Profile.objects.filter(user_id=computing_id).first()})
 
         else:
             return render(request, 'app/profile.html', {'form': ProfileModel()})
