@@ -16,11 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from app import views
+from django.contrib.auth import views as auth_views
+from django.conf.urls import url
 
 urlpatterns = [
+    path('app/', include('app.urls')),
     path('admin/', admin.site.urls),
+    #path('accounts/', include('django.contrib.auth.urls')), 
     path('', views.home, name = 'main_page'),
-    path('sign_up/', views.sign_up, name = 'sign_up'),
-    path('profile/', views.profile, name = 'profile'),
+    #path('sign_up/', views.sign_up, name = 'sign_up'),
+    path('profile/', views.create_profile, name='profile'),
+    #path('notifications/', views.notifications, name='notifications'),
+    #path('settings/', views.settings, name='settings'),
+    url(r'^auth/', include('social_django.urls', namespace='social')),  # <- Here
     path('login/', views.login, name = 'login'),
+    path('logout/', views.logout_view, name = 'logout'),
 ]

@@ -1,18 +1,52 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <link href="{% static 'style.css' %}" type="text/css" rel="stylesheet">
-        <title> Your Profile </title>
-    </head>
-    <header> </header>
-    <body class = "container">
-        <div class = "split_top">
-            <div top = 0>
-                <h1 class = "title" align = "center"> Profile </h1>
-            </div>
+{% extends "app/base.html" %}
+{% block title %}{% endblock %}
+{% block content2 %}
+    <h1>{{ "Create Your Profile:" }}</h1>
+    <form action="{% url 'profile' %}" method="post" class="needs-validation">
+        {% csrf_token %}
+        <div class = "form-group">
+            <label name="name">Name:</label>
+            <input class="form-control" type="text" id="name" name="name" required>
         </div>
-    </body>
-    <footer>
-    </footer>
-</html>
+        <div class = "form-group">
+            <label name="year">Year:</label>
+            <select id = "year" name = "year" class="form-control">
+                    <option value = "" disabled selected hidden>Select...</option>
+                    <option value = "2019">2019</option>
+                    <option value = "2020">2020</option>
+                    <option value = "2021">2021</option>
+                    <option value = "2022">2022</option>
+                    <option value = "Graduate Student">Graduate Student</option>
+                    <option value = "Faculty">Faculty</option>
+                    <option value = "Other">Other</option>
+                  </select>
+        </div>
+        <div class = "form-group">
+            <label name="major">Major:</label>
+            <input class="form-control" type="text" id="major" name="major" required>
+        </div>
+        <div class = "form-group">
+            <label name="bio">Bio:</label>
+            <textarea class="form-control" type="text" id="bio" name="bio" rows="4"></textarea>
+        </div>
+        <div class = "form-group">
+            <label name="skills">Skills:</label>
+            <input class="form-control" type="text" id="skills" name="skills">
+        </div>
+        <div class = "form-group">
+            <label name="courses">Courses:</label>
+            <input class="form-control" type="text" id="courses" name="courses">
+        </div>
+        <div class = "form-group">
+            <label name="organizations">Organizations:</label>
+            <input class="form-control" type="text" id="organizations" name="organizations">
+        </div>
+        <div class = "form-group">
+            <label name="interests">Interests:</label>
+            <input class="form-control" type="text" id="interests" name="interests">
+        </div>
+        <div class = "form-group">
+            <input class="form-control" type="submit" value="Publish">
+        </div>
+    </form>
+{% endblock %}
