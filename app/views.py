@@ -46,7 +46,7 @@ def create_profile(request):
                 profile.save()
                 return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': profile.id}))#'computing_id':computing_id}))
             else:
-                return render(request, 'app/published_profile.html', context={'profile': Profile.objects.filter(user_id=computing_id).first()})
+                return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': request.user.id}))
 
         else:
             return render(request, 'app/profile.html', {'form': ProfileModel()})
@@ -114,8 +114,5 @@ def friends(request):
 def settings(request):
     return render(request, 'app/settings.html')
 
-def profile(request):
-    context = {}
-    return render(request, 'app/profile.html', context)
 
 
