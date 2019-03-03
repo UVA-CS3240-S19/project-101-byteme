@@ -5,11 +5,12 @@ from django.urls import reverse
 from django.test.client import RequestFactory
 from app.views import create_profile
 from app.models import Profile, ProfileModel
+import sys
 # Create your tests here.
 
 c = Client()
 c.login(username="test", password = "password")
-admin = User.objects.create_superuser('myuser', 'myemail@test.com', 'password')
+admin = User.objects.create_superuser('myuser', 'ab1cde@virginia.edu', 'password')
 
 class ProfileTest(TestCase):
     def setUp(self):
