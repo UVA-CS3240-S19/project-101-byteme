@@ -12,7 +12,7 @@ def home(request):
     if not request.user.is_authenticated:
         return redirect('login') 
     else:
-        return render(request, 'app/main_page.html', context)
+        return redirect('profile')
 
 def news_feed(request):
     context = {
@@ -28,7 +28,6 @@ class ProfileView(generic.DetailView):
     def get_queryset(self):
         return Profile.objects.all()
 
-
 # form to create profile
 def create_profile(request):
     if not request.user.is_authenticated:
@@ -38,15 +37,16 @@ def create_profile(request):
         ind = computing_id.index('@')
         computing_id = computing_id[0:ind]
         ProfileModel = modelform_factory(Profile, fields=('name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests'))
-        if request.method == "POST":
+        if request.method == "POST" or Profile.objects.filter(user_id = computing_id):
             form = ProfileModel(request.POST)
             if (form.is_valid()):
                 profile = form.save(commit=False)
+                profile.user_id = computing_id
                 profile.id=request.user.id
                 profile.save()
                 return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': profile.id}))#'computing_id':computing_id}))
             else:
-                return render(request, 'app/profile.html', {'form': ProfileModel()})
+                return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': request.user.id}))
 
         else:
             return render(request, 'app/profile.html', {'form': ProfileModel()})
@@ -64,7 +64,7 @@ def create_profile(request):
         # else:
         #     return render(request, 'app/profile.html', {'form': ProfileForm()})
 
-
+'''
 def update_profile(request, pk):
 
     if not request.user.is_authenticated:
@@ -92,16 +92,12 @@ def update_profile(request, pk):
         #     else:
         #         profile = UpdateProfileForm(instance=request.user)
         #         return render(request, 'app/published_profile.html', {'form': profile})
-
-
-def sign_up(request):
-    context = {}
-    return render(request, 'app/sign_up.html', context)
+'''
 
 def login(request):
     context = {}
     return render(request, 'app/login_page.html', context)
-
+'''
 def messaging(request):
     return render(request, 'app/messaging.html')
 
@@ -113,9 +109,9 @@ def friends(request):
 
 def settings(request):
     return render(request, 'app/settings.html')
+'''
+from django.contrib.auth import logout
 
-def profile(request):
-    context = {}
-    return render(request, 'app/profile.html', context)
-
-
+def logout_view(request):
+    logout(request)
+    return render(request, 'app/login_page.html')
