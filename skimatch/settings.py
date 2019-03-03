@@ -138,6 +138,7 @@ AUTHENTICATION_BACKENDS = (
  'social_core.backends.facebook.FacebookOAuth2',  # for Facebook authentication
  
  'django.contrib.auth.backends.ModelBackend',
+ 
 )
 
 LOGIN_URL = 'login'
