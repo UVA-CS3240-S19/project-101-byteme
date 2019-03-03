@@ -11,7 +11,7 @@ class Profile(models.Model):
     # user = models.OneToOneField(User, on_delete=models.CASCADE, default="10")
     user_id = models.CharField(max_length =8)
     name = models.CharField(max_length=200)
-    year = models.CharField(max_length=5)
+    year = models.CharField(max_length=100)
     major = models.CharField(max_length=200)
     bio = models.TextField(max_length=600)
     skills = models.CharField(max_length=100)
