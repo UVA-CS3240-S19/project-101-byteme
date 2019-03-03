@@ -35,13 +35,13 @@ class ProfileModel(ModelForm):
         #         user.save()
         #
         #     return user
-'''
+
 class UpdateProfileForm(ModelForm):
     class Meta:
         model = Profile
         fields = ['name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests']
         # waiting to add picture for now
-'''
+
 class Post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
