@@ -12,7 +12,7 @@ def home(request):
     if not request.user.is_authenticated:
         return redirect('login') 
     else:
-        return create_profile(request)
+        return redirect('profile')
 
 def news_feed(request):
     context = {
