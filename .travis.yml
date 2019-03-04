@@ -7,7 +7,7 @@ install:
 
 # command to run tests
 script:
-  - python3 manage.py test app
+  - python3 manage.py test
   
   # safelist
 branches:
