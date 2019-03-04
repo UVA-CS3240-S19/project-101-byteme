@@ -64,22 +64,26 @@ def create_profile(request):
         # else:
         #     return render(request, 'app/profile.html', {'form': ProfileForm()})
 
-'''
+
 def update_profile(request, pk):
 
     if not request.user.is_authenticated:
         return redirect('login')
     else:
-        ProfileModel = modelform_factory(Profile, fields=('name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests'))
-        if request.method == "POST":
-            profile = ProfileModel(request.POST, instance=request.user)
+        computing_id = request.user.email
+        ind = computing_id.index('@')
+        computing_id = computing_id[0:ind]
+        UpdateProfileForm = modelform_factory(Profile, fields=('name', 'year', 'major', 'bio', 'skills', 'courses', 'organizations', 'interests'))
+        #UpdateProfileForm = modelform_factory(Profile, fields=('name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests'))
+        if request.method == "POST" or Profile.objects.filter(user_id = computing_id):
+            profile = UpdateProfileForm(request.POST, instance=request.user)
             if (profile.is_valid()):
                 profile.save()
                 return HttpResponseRedirect(reverse('app:update_profile', kwargs={'pk': pk}))
             else:
                 return render(request, 'app/published_profile.html', {'form': ProfileModel()})
         else:
-            profile = ProfileModel()
+            profile = UpdateProfileForm()
             return render(request, 'app/published_profile.html', {'form': profile})
 
         #     if request.method == "POST":
@@ -92,12 +96,12 @@ def update_profile(request, pk):
         #     else:
         #         profile = UpdateProfileForm(instance=request.user)
         #         return render(request, 'app/published_profile.html', {'form': profile})
-'''
+
 
 def login(request):
     context = {}
     return render(request, 'app/login_page.html', context)
-'''
+
 def messaging(request):
     return render(request, 'app/messaging.html')
 
@@ -109,7 +113,7 @@ def friends(request):
 
 def settings(request):
     return render(request, 'app/settings.html')
-'''
+
 from django.contrib.auth import logout
 
 def logout_view(request):
