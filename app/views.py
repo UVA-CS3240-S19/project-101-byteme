@@ -28,6 +28,17 @@ class ProfileView(generic.DetailView):
     def get_queryset(self):
         return Profile.objects.all()
 
+class UpdateView(generic.DetailView):
+    template_name = 'app/update_profile.html'
+    context_object_name = 'profile'
+
+    def get_queryset(self):
+        return Profile.objects.all()
+
+def update_profile(request, pk):
+    return render(request, 'app/update_profile.html')
+    #HttpResponseRedirect(reverse('update_profile', kwargs={"pk": request.user.id}))
+
 # form to create profile
 def create_profile(request):
     if not request.user.is_authenticated:
@@ -50,47 +61,6 @@ def create_profile(request):
 
         else:
             return render(request, 'app/profile.html', {'form': ProfileModel()})
-
-
-        # if request.method == "POST":
-        #     profile = ProfileForm(request.POST)
-        #     if profile.is_valid():
-        #         profile.save()
-        #         profile.id = request.user.id
-        #         profile.save()
-        #         return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': profile.id}))
-        #     else:
-        #         return render(request, 'app/profile.html', {'form': ProfileForm()})
-        # else:
-        #     return render(request, 'app/profile.html', {'form': ProfileForm()})
-
-def update_profile(request, pk):
-
-    if not request.user.is_authenticated:
-        return redirect('login')
-    else:
-        ProfileModel = modelform_factory(Profile, fields=('name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests'))
-        if request.method == "POST":
-            profile = ProfileModel(request.POST, instance=request.user)
-            if (profile.is_valid()):
-                profile.save()
-                return HttpResponseRedirect(reverse('app:update_profile', kwargs={'pk': pk}))
-            else:
-                return render(request, 'app/published_profile.html', {'form': ProfileModel()})
-        else:
-            profile = ProfileModel()
-            return render(request, 'app/published_profile.html', {'form': profile})
-
-        #     if request.method == "POST":
-        #         profile = UpdateProfileForm(request.POST, request.FILES, instance=request.user)
-        #
-        #         if profile.is_valid():
-        #             profile.save()
-        #
-        #         return HttpResponseRedirect(reverse('app:update_profile', kwargs={'pk': pk}))
-        #     else:
-        #         profile = UpdateProfileForm(instance=request.user)
-        #         return render(request, 'app/published_profile.html', {'form': profile})
 
 def login(request):
     context = {}
