@@ -17,6 +17,11 @@
             <li>Courses: {{ profile.courses }}</li>
             <li>Organizations: {{ profile.organizations }}</li>
             <li>Interests: {{ profile.interests }}</li>
+            <li> Tags:
+            {% for tag in profile.tags.all %}
+                <a href="#">#{{ tag }}</a>
+            {% endfor %}
+            {% comment %} <li>Tags: {{ pjoin:", "  }}</li> {% endcomment %}
     </ul>
 {% else %}
     <p>There is currently no user data.</p>
