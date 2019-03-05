@@ -1,0 +1,17 @@
+{% extends "app/base.html" %}
+{% block content1 %}
+    Search Results
+{% endblock content1 %}
+{% block content2 %}
+{% if results %}
+    <ul>
+        <li> Results:
+        {% for profile in results %}
+        {% comment %} TODO route this to search {% endcomment %}
+            <a href="#">#{{ profile.name }}</a>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>There is currently no user data.</p>
+{% endif %}
+{% endblock content2 %}

@@ -33,6 +33,20 @@ class ProfileView(generic.DetailView):
     def get_queryset(self):
         return Profile.objects.all()
 
+
+def search(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    else:
+        search_value = request.POST['search_field']
+        results = []
+        for profile in Profile.objects.all():
+            print(profile.name + " 1")
+            for tags in profile.tags.all():
+                if str(search_value).lower() == str(tags).lower():
+                    results.append(profile)
+        return render(request, 'app/search_results.html', {'results': results})
+
 # form to create profile
 
 
@@ -96,7 +110,8 @@ def update_profile(request, pk):
     if not request.user.is_authenticated:
         return redirect('login')
     else:
-        ProfileModel = modelform_factory(Profile, fields=('name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests'))
+        ProfileModel = modelform_factory(Profile, fields=(
+            'name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests'))
         if request.method == "POST":
             profile = ProfileModel(request.POST, instance=request.user)
             if (profile.is_valid()):

@@ -19,9 +19,9 @@
             <li>Interests: {{ profile.interests }}</li>
             <li> Tags:
             {% for tag in profile.tags.all %}
+            {% comment %} TODO route this to search {% endcomment %}
                 <a href="#">#{{ tag }}</a>
             {% endfor %}
-            {% comment %} <li>Tags: {{ pjoin:", "  }}</li> {% endcomment %}
     </ul>
 {% else %}
     <p>There is currently no user data.</p>
