@@ -4,13 +4,15 @@
 {% endblock content1 %}
 {% block content2 %}
 {% if results %}
-    <ul>
-        <li> Results:
-        {% for profile in results %}
-        {% comment %} TODO route this to search {% endcomment %}
-            <a href="#">#{{ profile.name }}</a>
-        {% endfor %}
-    </ul>
+    Search Results for "{{search_value}}":
+    {% for profile in results %}
+        <div> <a href="{% url 'app:published_profile' profile.id%}">{{ profile.name }}</a> </div> 
+        <ul>
+            <li> Email: <a href="#">{{profile.user_id}}@virginia.edu </a>
+            <li> Major: {{profile.major}}
+            <li> Year: {{profile.year}}
+        </ul>
+    {% endfor %}
 {% else %}
     <p>There is currently no user data.</p>
 {% endif %}

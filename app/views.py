@@ -45,7 +45,7 @@ def search(request):
             for tags in profile.tags.all():
                 if str(search_value).lower() == str(tags).lower():
                     results.append(profile)
-        return render(request, 'app/search_results.html', {'results': results})
+        return render(request, 'app/search_results.html', {'search_value': search_value, 'results': results})
 
 # form to create profile
 
