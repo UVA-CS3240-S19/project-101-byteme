@@ -66,24 +66,20 @@ def create_profile(request):
                 profile.user_id = computing_id
                 profile.id = request.user.id
 
+                tags_to_add = set()
+
                 skills_list = profile.skills.split(",")
                 for i in skills_list:
-                    profile.tags.add(i.strip())
-
-                course_list = profile.courses.split(",")
-                for i in course_list:
-                    profile.tags.add(i.strip())
-
-                org_list = profile.organizations.split(",")
-                for i in org_list:
-                    profile.tags.add(i.strip())
+                    tags_to_add.add(i.strip())
 
                 interests_list = profile.interests.split(",")
                 for i in interests_list:
-                    profile.tags.add(i.strip())
+                    tags_to_add.add(i.strip())
+
+                for i in tags_to_add:
+                    profile.tags.add(i)
 
                 profile.save()
-                # 'computing_id':computing_id}))
                 return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': profile.id}))
             else:
                 return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': request.user.id}))
