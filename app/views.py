@@ -39,18 +39,18 @@ def search(request):
         return redirect('login')
     else:
         search_value = request.POST['search_field']
-        results = []
+        search_value = str(search_value).lower().strip()
+        results = set()
         for profile in Profile.objects.all():
             print(profile.name + " 1")
 
-            profile_name = profile.name.split(" ")
-            for n in profile_name:
-                if str(n).lower() == str(search_value).lower():
-                    results.append(profile)
+            profile_name = profile.name.lower().split(" ")
+            if search_value == profile.name.lower() or search_value == profile_name[0] or search_value == profile_name[1]:
+                results.add(profile)
 
             for tags in profile.tags.all():
-                if str(search_value).lower() == str(tags).lower():
-                    results.append(profile)
+                if search_value == str(tags).lower():
+                    results.add(profile)
         return render(request, 'app/search_results.html', {'search_value': search_value, 'results': results})
 
 # form to create profile
