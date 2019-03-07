@@ -42,6 +42,12 @@ def search(request):
         results = []
         for profile in Profile.objects.all():
             print(profile.name + " 1")
+
+            profile_name = profile.name.split(" ")
+            for n in profile_name:
+                if str(n).lower() == str(search_value).lower():
+                    results.append(profile)
+
             for tags in profile.tags.all():
                 if str(search_value).lower() == str(tags).lower():
                     results.append(profile)

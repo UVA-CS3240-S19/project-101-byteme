@@ -1,19 +1,34 @@
 {% extends "app/base.html" %}
+
+{% load static %}
+
 {% block content1 %}
     Search Results
 {% endblock content1 %}
 {% block content2 %}
+<link href="{% static 'search_results.css' %}" type="text/css" rel="stylesheet">
+
 {% if results %}
-    Search Results for "{{search_value}}":
-    {% for profile in results %}
-        <div> <a href="{% url 'app:published_profile' profile.id%}">{{ profile.name }}</a> </div> 
-        <ul>
-            <li> Email: <a href="#">{{profile.user_id}}@virginia.edu </a>
-            <li> Major: {{profile.major}}
-            <li> Year: {{profile.year}}
-        </ul>
-    {% endfor %}
+    <div class="result-container">
+        Search Results for "{{search_value}}":
+        {% for profile in results %}
+        <div class="search-item">
+            <div class="search-item-image"> 
+                <img src="{% static 'default-avatar.jpg' %}" height="42" width="42">
+            </div>
+            <div class="search-item-text">
+                <div class="item-name"> 
+                    <a href="{% url 'app:published_profile' profile.id%}">{{ profile.name }}</a> 
+                </div> 
+                <div class="item-details">
+                    <div> {{profile.major}} Major, Class of {{profile.year}}</div>
+                </div>
+            </div>
+            <div class="separator"> </div>
+        </div>
+        {% endfor %}
+    </div>
 {% else %}
-    <p>There is currently no user data.</p>
+    <p>There are no search results.</p>
 {% endif %}
 {% endblock content2 %}

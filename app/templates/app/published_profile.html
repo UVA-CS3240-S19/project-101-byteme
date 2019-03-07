@@ -23,10 +23,12 @@
             <li>Organizations: {{ profile.organizations }}</li>
             <li>Interests: {{ profile.interests }}</li>
     </ul>
-    {% for tag in profile.tags.all %}
-    {% comment %} TODO this needs to be endorsed when clicked {% endcomment %}
-        <button class="tag">{{ tag }}</button>
-    {% endfor %}
+    <div class="tag-section">
+        {% for tag in profile.tags.all %}
+        {% comment %} TODO this needs to be endorsed when clicked {% endcomment %}
+            <button class="tag">0 | {{ tag }}</button>
+        {% endfor %}
+    </div>
 {% else %}
     <p>There is currently no user data.</p>
 {% endif %}
