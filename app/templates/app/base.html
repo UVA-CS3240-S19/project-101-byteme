@@ -19,25 +19,25 @@
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
-          <a class="navbar-brand mr-4" href="/app/news_feed">Skills Match</a>
+          <a class="navbar-brand mr-4">Skills Match</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="/app/news_feed">News Feed</a>
-              <a class="nav-item nav-link" href="/app/messaging">Messaging</a>
-              <a class="nav-item nav-link" href="/app/friends">Friends</a>
-              <a class="nav-item nav-link" href="/app/notifications">Notifications</a>
+              <a class="nav-item nav-link" >News Feed</a>
+              <a class="nav-item nav-link" >Messaging</a>
+              <a class="nav-item nav-link" >Friends</a>
+              <a class="nav-item nav-link" >Notifications</a>
              <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   {{user.get_full_name}}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href= "{% url 'app:published_profile' user.id %}"" >Profile</a>
-                  <a class="dropdown-item" href="/app/settings">Settings</a>
+                  <a class="dropdown-item" >Settings</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="{% url 'logout' %}>Log Out</a>
+                  <a class="dropdown-item" href="{% url 'logout' %}"">Log Out</a>
                 </div>
               </li>
             </div>
