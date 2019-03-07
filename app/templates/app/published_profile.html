@@ -1,10 +1,15 @@
 {% extends "app/base.html" %}
+
+{% load static %}
+
 {% block content1 %}
     User Profile
 {% endblock content1 %}
 {% block content2 %}
+<link href="{% static 'published_profile.css' %}" type="text/css" rel="stylesheet">
+
 {% if profile %}
-<ul>
+    <ul>
         <h2>{{profile.name}}</h2>
         <div id = "main_info">
                 <li>Year: {{ profile.year }}</li>
@@ -18,6 +23,12 @@
             <li>Organizations: {{ profile.organizations }}</li>
             <li>Interests: {{ profile.interests }}</li>
     </ul>
+    <div class="tag-section">
+        {% for tag in profile.tags.all %}
+        {% comment %} TODO this needs to be endorsed when clicked {% endcomment %}
+            <button class="tag">0 | {{ tag }}</button>
+        {% endfor %}
+    </div>
 {% else %}
     <p>There is currently no user data.</p>
 {% endif %}

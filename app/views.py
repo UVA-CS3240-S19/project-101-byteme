@@ -1,3 +1,4 @@
+from django.contrib.auth import logout
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.http import Http404
@@ -7,12 +8,14 @@ from django.views import generic
 from django.urls import reverse
 from .models import Profile, ProfileModel, Post, UpdateProfileForm
 
+
 def home(request):
     context = {}
     if not request.user.is_authenticated:
-        return redirect('login') 
+        return redirect('login')
     else:
         return redirect('profile')
+
 
 def news_feed(request):
     context = {
@@ -21,6 +24,8 @@ def news_feed(request):
     return render(request, 'app/news_feed.html', context)
 
 # published profile view
+
+
 class ProfileView(generic.DetailView):
     template_name = 'app/published_profile.html'
     context_object_name = 'profile'
@@ -28,7 +33,29 @@ class ProfileView(generic.DetailView):
     def get_queryset(self):
         return Profile.objects.all()
 
+
+def search(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    else:
+        search_value = request.POST['search_field']
+        search_value = str(search_value).lower().strip()
+        results = set()
+        for profile in Profile.objects.all():
+            print(profile.name + " 1")
+
+            profile_name = profile.name.lower().split(" ")
+            if search_value == profile.name.lower() or search_value == profile_name[0] or search_value == profile_name[1]:
+                results.add(profile)
+
+            for tags in profile.tags.all():
+                if search_value == str(tags).lower():
+                    results.add(profile)
+        return render(request, 'app/search_results.html', {'search_value': search_value, 'results': results})
+
 # form to create profile
+
+
 def create_profile(request):
     if not request.user.is_authenticated:
         return redirect('login')
@@ -36,21 +63,35 @@ def create_profile(request):
         computing_id = request.user.email
         ind = computing_id.index('@')
         computing_id = computing_id[0:ind]
-        ProfileModel = modelform_factory(Profile, fields=('name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests'))
-        if request.method == "POST" or Profile.objects.filter(user_id = computing_id):
+        ProfileModel = modelform_factory(Profile, fields=(
+            'name', 'year', 'major', 'bio', 'skills', 'courses', 'organizations', 'interests'))
+        if request.method == "POST" or Profile.objects.filter(user_id=computing_id):
             form = ProfileModel(request.POST)
             if (form.is_valid()):
                 profile = form.save(commit=False)
                 profile.user_id = computing_id
-                profile.id=request.user.id
+                profile.id = request.user.id
+
+                tags_to_add = set()
+
+                skills_list = profile.skills.split(",")
+                for i in skills_list:
+                    tags_to_add.add(i.strip())
+
+                interests_list = profile.interests.split(",")
+                for i in interests_list:
+                    tags_to_add.add(i.strip())
+
+                for i in tags_to_add:
+                    profile.tags.add(i)
+
                 profile.save()
-                return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': profile.id}))#'computing_id':computing_id}))
+                return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': profile.id}))
             else:
                 return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': request.user.id}))
 
         else:
             return render(request, 'app/profile.html', {'form': ProfileModel()})
-
 
         # if request.method == "POST":
         #     profile = ProfileForm(request.POST)
@@ -64,13 +105,15 @@ def create_profile(request):
         # else:
         #     return render(request, 'app/profile.html', {'form': ProfileForm()})
 
+
 '''
 def update_profile(request, pk):
 
     if not request.user.is_authenticated:
         return redirect('login')
     else:
-        ProfileModel = modelform_factory(Profile, fields=('name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests'))
+        ProfileModel = modelform_factory(Profile, fields=(
+            'name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests'))
         if request.method == "POST":
             profile = ProfileModel(request.POST, instance=request.user)
             if (profile.is_valid()):
@@ -94,9 +137,12 @@ def update_profile(request, pk):
         #         return render(request, 'app/published_profile.html', {'form': profile})
 '''
 
+
 def login(request):
     context = {}
     return render(request, 'app/login_page.html', context)
+
+
 '''
 def messaging(request):
     return render(request, 'app/messaging.html')
@@ -110,7 +156,7 @@ def friends(request):
 def settings(request):
     return render(request, 'app/settings.html')
 '''
-from django.contrib.auth import logout
+
 
 def logout_view(request):
     logout(request)
