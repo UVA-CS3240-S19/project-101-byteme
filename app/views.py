@@ -35,9 +35,12 @@ class ProfileView(generic.DetailView):
 
 
 def search(request):
+    print("body", request.body)
     if not request.user.is_authenticated:
         return redirect('login')
     else:
+        if request.POST['search_field'] == "":
+            return render(request, 'app/search_results.html', {'search_value': "", 'results': Profile.objects.all()})
         search_value = request.POST['search_field']
         search_value = str(search_value).lower().strip()
         results = set()
