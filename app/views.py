@@ -28,6 +28,17 @@ class ProfileView(generic.DetailView):
     def get_queryset(self):
         return Profile.objects.all()
 
+class UpdateView(generic.DetailView):
+    template_name = 'app/update_profile.html'
+    context_object_name = 'profile'
+
+    def get_queryset(self):
+        return Profile.objects.all()
+
+def update_profile(request, pk):
+    return render(request, 'app/update_profile.html')
+    #HttpResponseRedirect(reverse('update_profile', kwargs={"pk": request.user.id}))
+
 # form to create profile
 def create_profile(request):
     if not request.user.is_authenticated:
@@ -50,6 +61,7 @@ def create_profile(request):
 
         else:
             return render(request, 'app/profile.html', {'form': ProfileModel()})
+
 
 
         # if request.method == "POST":

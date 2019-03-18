@@ -35,6 +35,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href= "{% url 'app:published_profile' user.id %}"" >Profile</a>
+                  <a class="dropdown-item" href= "{% url 'app:update_profile' user.id %}"" >Update Profile</a>
                   <a class="dropdown-item" href="/app/settings">Settings</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="{% url 'logout' %}"">Log Out</a>
