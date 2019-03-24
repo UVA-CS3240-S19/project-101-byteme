@@ -48,20 +48,19 @@
 
 
 body {
-    margin: 90px 200px;
-    background:#eee;
+    background:#eeee;
 }
 
-.container {
+/*.container {
     width: 400 px;
     padding: 0 50px;
-}
+
 .main-info {
     padding-top: 10px;
     background-color: #c2c52c;
     position: relative;
     display: inline-block;
-}
+}*/
 
 img {
     border-radius: 50%;
