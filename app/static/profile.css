@@ -1,6 +1,14 @@
 
+/*.top-middle {
+    margin: auto;
+    background-color: gray;
+}
 
-/****** Searchable container */
+.basic-info {
+    color: red;
+}*/
+
+
 
 .title{
  margin-left:20px
@@ -38,8 +46,6 @@
 }
 
 
-
-/*   */
 
 body {
     margin-top: 100px;
@@ -84,16 +90,14 @@ form .form-group {
     padding: 10px;
 }
 
-/**** resume ****/
 
-    /* uses font awesome for social icons */
 @import url(http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
 
 .page-header {
   text-align: center;
 }
 
-/*social buttons*/
+
 .btn-social {
   color: white;
   opacity:0.9;
@@ -126,7 +130,7 @@ form .form-group {
   opacity:0.9;
 }
 
-/* resume stuff */
+
 
 .bs-callout {
     -moz-border-bottom-colors: none;
@@ -161,7 +165,7 @@ form .form-group {
   border-radius:0;
 }
 
-/*makes an anchor inactive(not clickable)*/
+
 .inactive-link {
    pointer-events: none;
    cursor: default;
@@ -183,7 +187,7 @@ form .form-group {
 }
 
 
-/* skill meter in resume. copy pasted from http://bootsnipp.com/snippets/featured/progress-bar-meter */
+
 
 .progress-bar {
     text-align: left;
@@ -240,3 +244,4 @@ form .form-group {
 .progress-meter > .meter.meter-right > .meter-text {
 	text-align: right;
 }
+
