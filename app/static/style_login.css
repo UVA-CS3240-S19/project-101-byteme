@@ -1,32 +1,22 @@
 body {
-    width: 50%;
-    background-color: #edf0f2;
+    width: 100%;
+    background-color: #79BDBF;
 }
 
-.login-page {
-    width: 500px;
-    height: 200px;
-    margin: auto;
-    background-color: white;
-    color: black;
-    text-align: left;
-
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
-    position: absolute;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+.container{
+    margin:15%;
 }
 
-.login-title {
-    font-size: 32px;
-    padding-top: 32px;
-    padding-bottom: 8px;
-    padding-left: 32px;
-    background: #34a2fe;
-    color: #f3f6f8;
+.jumbotron{
+    padding: 10px 20px;
+}
+
+.btn{
+    background-color:#79BDBF;
+}
+
+#title{
+    margin:10px;
 }
 
 .google-button {
