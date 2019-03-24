@@ -65,6 +65,10 @@ body {
 
 img {
     border-radius: 50%;
+
+.row{
+    margin-bottom: 50px;
+
 }
 
 .btn-danger {
