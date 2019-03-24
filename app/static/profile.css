@@ -9,7 +9,7 @@
 }*/
 
 
-
+/*
 .title{
  margin-left:20px
 }
@@ -44,12 +44,27 @@
     background-color:#5bc0de;
     color:#FFF
 }
-
+*/
 
 
 body {
-    margin-top: 100px;
+    margin: 90px 200px;
     background:#eee;
+}
+
+.container {
+    width: 400 px;
+    padding: 0 50px;
+}
+.main-info {
+    padding-top: 10px;
+    background-color: #c2c52c;
+    position: relative;
+    display: inline-block;
+}
+
+img {
+    border-radius: 50%;
 }
 
 .btn-danger {
