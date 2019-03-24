@@ -62,6 +62,54 @@ def create_profile(request):
         else:
             return render(request, 'app/profile.html', {'form': ProfileModel()})
 
+
+
+        # if request.method == "POST":
+        #     profile = ProfileForm(request.POST)
+        #     if profile.is_valid():
+        #         profile.save()
+        #         profile.id = request.user.id
+        #         profile.save()
+        #         return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': profile.id}))
+        #     else:
+        #         return render(request, 'app/profile.html', {'form': ProfileForm()})
+        # else:
+        #     return render(request, 'app/profile.html', {'form': ProfileForm()})
+
+
+def update_profile(request, pk):
+
+    if not request.user.is_authenticated:
+        return redirect('login')
+    else:
+        computing_id = request.user.email
+        ind = computing_id.index('@')
+        computing_id = computing_id[0:ind]
+        UpdateProfileForm = modelform_factory(Profile, fields=('name', 'year', 'major', 'bio', 'skills', 'courses', 'organizations', 'interests'))
+        #UpdateProfileForm = modelform_factory(Profile, fields=('name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests'))
+        if request.method == "POST" or Profile.objects.filter(user_id = computing_id):
+            profile = UpdateProfileForm(request.POST, instance=request.user)
+            if (profile.is_valid()):
+                profile.save()
+                return HttpResponseRedirect(reverse('app:update_profile', kwargs={'pk': pk}))
+            else:
+                return render(request, 'app/published_profile.html', {'form': ProfileModel()})
+        else:
+            profile = UpdateProfileForm()
+            return render(request, 'app/published_profile.html', {'form': profile})
+
+        #     if request.method == "POST":
+        #         profile = UpdateProfileForm(request.POST, request.FILES, instance=request.user)
+        #
+        #         if profile.is_valid():
+        #             profile.save()
+        #
+        #         return HttpResponseRedirect(reverse('app:update_profile', kwargs={'pk': pk}))
+        #     else:
+        #         profile = UpdateProfileForm(instance=request.user)
+        #         return render(request, 'app/published_profile.html', {'form': profile})
+
+
 def login(request):
     context = {}
     return render(request, 'app/login_page.html', context)
