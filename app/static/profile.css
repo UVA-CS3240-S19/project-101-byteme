@@ -45,17 +45,8 @@
     color:#FFF
 }
 */
-
-
-body {
-    margin: 90px 200px;
-    background:#eee;
-}
-
-.container {
-    width: 400 px;
-    padding: 0 50px;
-}
+/*<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static 'profile.css' %}">*/
 .main-info {
     padding-top: 10px;
     background-color: #c2c52c;
