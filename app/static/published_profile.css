@@ -1,0 +1,38 @@
+.tag {
+    display: inline-block;
+    border: 1px solid rgb(157, 152, 177);
+    padding-right: 5px;
+    padding-left: 5px;
+    display: inline-block;
+    padding-top: 0px;
+    margin: 2px;
+    color: white;
+    background-color: rgb(157, 152, 177);
+    box-shadow: 2px 2px 2px 0px #ccc;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.tag-section {
+    margin: 16px;
+}
+
+button:active {
+    box-shadow: 0px 0px 0px 0px #ccc;
+    border-color: rgb(114, 110, 130);
+    background-color: rgb(114, 110, 130);
+}
+
+button:focus {
+    outline: 0;
+}
+
+button:hover {
+    /* transform: scale(1.05, 1.05); */
+    background-color: rgb(114, 110, 130);
+    border-color: rgb(114, 110, 130);
+}
+
+.button:hover::after {
+    opacity: 1;
+}

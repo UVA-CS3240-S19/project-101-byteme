@@ -46,9 +46,12 @@
             </div>
           </div>
           <div>
-              <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" style="background-color:#e7e7e7; border-color: #e7e7e7; color:black" type="submit">Search</button>
+              <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" method="post">
+                {% csrf_token %}
+                <div class = "form-group">
+                  <input class="form-control" id="search_field" name="search_field" type="search" placeholder="Search" aria-label="Search">
+                </div>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="background-color:#e7e7e7; border-color: #e7e7e7; color:black">Search</button>
               </form>
           </div>
         </div>

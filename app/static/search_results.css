@@ -1,0 +1,42 @@
+.search-item {
+    margin: 16px;
+}
+
+.separator {
+    padding-top: 24px;
+    border-bottom: 1px solid #a5a5a5;
+    width: 95%;
+    margin: auto;
+}
+
+.search-item-image {
+    display: inline-block;
+    vertical-align: top;
+    margin: auto;
+    margin-right: 16px;
+}
+
+img {
+    border-radius: 50%;
+}
+
+.search-item-text {
+    display: inline-block;
+    width: 80%;
+}
+
+.item-name {
+    font-size: 20px;
+}
+
+.item-details {
+    font-size: 12px;
+}
+
+.result-container {
+    background-color: white;
+    box-shadow: 0px 2px 2px 1px #ccc;
+    padding: 16px;
+
+
+}

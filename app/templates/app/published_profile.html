@@ -8,10 +8,13 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 
+
 {% block content1 %}
     User Profile
 {% endblock content1 %}
 {% block content2 %}
+<link href="{% static 'published_profile.css' %}" type="text/css" rel="stylesheet">
+
 {% if profile %}
 
 
