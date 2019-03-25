@@ -105,5 +105,5 @@ class SignUpTest(TestCase):
     '''
 
 
-c.logout()
-User.objects.filter(username=admin.username).delete()
+# c.logout()
+# User.objects.filter(username=admin.username).delete()
