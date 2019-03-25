@@ -10,6 +10,7 @@ Django==2.1.5
 django-bootstrap4==0.0.7
 django-crispy-forms==1.7.2
 django-heroku==0.3.1
+django-taggit==0.23.0
 gunicorn==19.9.0
 idna==2.8
 ipython==7.2.0
