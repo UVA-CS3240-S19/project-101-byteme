@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-import django_heroku 
+import django_heroku
 import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -33,15 +33,16 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'taggit',
     'app.apps.MainPageConfig',
-    #'blog.app.BlogConfig'
+    # 'blog.app.BlogConfig'
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'social_django' # <- Here,
+    'social_django'  # <- Here,
 ]
 
 MIDDLEWARE = [
@@ -68,7 +69,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'social_django.context_processors.backends',  # <- Here
-                'social_django.context_processors.login_redirect', # <- Here
+                'social_django.context_processors.login_redirect',  # <- Here
             ],
         },
     },
@@ -138,19 +139,20 @@ MEDIA_URL = '/media/'
 django_heroku.settings(locals(), test_runner=False)
 
 AUTHENTICATION_BACKENDS = (
- 'social_core.backends.open_id.OpenIdAuth',  # for Google authentication
- 'social_core.backends.google.GoogleOpenId',  # for Google authentication
- 'social_core.backends.google.GoogleOAuth2',  # for Google authentication
- 'social_core.backends.github.GithubOAuth2',  # for Github authentication
- 'social_core.backends.facebook.FacebookOAuth2',  # for Facebook authentication
- 
- 'django.contrib.auth.backends.ModelBackend',
- 
+    'social_core.backends.open_id.OpenIdAuth',  # for Google authentication
+    'social_core.backends.google.GoogleOpenId',  # for Google authentication
+    'social_core.backends.google.GoogleOAuth2',  # for Google authentication
+    'social_core.backends.github.GithubOAuth2',  # for Github authentication
+    'social_core.backends.facebook.FacebookOAuth2',  # for Facebook authentication
+
+    'django.contrib.auth.backends.ModelBackend',
+
 )
 
 LOGIN_URL = 'login'
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '116473098917-ba61gta7recuqe20navc94hkb7ncuifs.apps.googleusercontent.com'  #Paste CLient Key
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'KaHjOFs4NY1Xuha0438Kr9-w' #Paste Secret Key
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '116473098917-ba61gta7recuqe20navc94hkb7ncuifs.apps.googleusercontent.com'  # Paste CLient Key
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'KaHjOFs4NY1Xuha0438Kr9-w'  # Paste Secret Key
 
 LOGIN_REDIRECT_URL = 'profile'
 LOGOUT_REDIRECT_URL = 'login'
