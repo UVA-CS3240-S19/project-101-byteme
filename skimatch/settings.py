@@ -148,7 +148,6 @@ AUTHENTICATION_BACKENDS = (
 )
 
 LOGIN_URL = 'login'
-
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '116473098917-ba61gta7recuqe20navc94hkb7ncuifs.apps.googleusercontent.com'  #Paste CLient Key
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'KaHjOFs4NY1Xuha0438Kr9-w' #Paste Secret Key
 
