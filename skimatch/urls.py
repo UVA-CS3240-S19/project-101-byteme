@@ -20,7 +20,7 @@ from django.contrib.auth import views as auth_views
 from django.conf.urls import url
 
 urlpatterns = [
-    path('app/', include('app.urls')),
+    path('app/', include('app.urls', namespace='app')),
     path('admin/', admin.site.urls),
     #path('accounts/', include('django.contrib.auth.urls')), 
     path('', views.home, name = 'main_page'),

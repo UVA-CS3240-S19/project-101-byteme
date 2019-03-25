@@ -1,23 +1,32 @@
 <!-- Compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 
 {% load static %}
 
 
 <link href="{% static 'style_login.css' %}" type="text/css" rel="stylesheet">
 <body>
-    <div class="login-page">
+    <div class="container">
+        <div class="jumbotron">
+                <h1 id = "title">SkiMatch</h1>
+                <p class="lead">Sign up and find potential study buddies or tutors!</p>
+                <hr class="my-4">
+                <p> SkiMatch lets you connect with people who have taken or are taking similar classes as well as people who share other interests. </p>
+                <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+                <div class="google-button">
+                        <a href="{% url 'social:begin' 'google-oauth2' %}?next=/">
+                            <img id="signInButton" src= '/app/media/btn_google_signin_light_normal_web.png' onclick="document.getElementById('signInButton').src='/app/media/btn_google_signin_light_normal_web.png'">
+                        </a>
+                    </div>
+        </div>
         <div class="login-div">
             <form class="login-form">
-                <div class="login-title"> Login Page </div>
-                <div class="google-button">
-                    <a href="{% url 'social:begin' 'google-oauth2' %}?next=/">
-                        <img id="signInButton" src="http://www.setyourowntests.com/_/rsrc/1468869481521/help/accounts/btn_google_signin_dark_normal_web%402x.png" onclick="document.getElementById('signInButton').src='http://www.setyourowntests.com/_/rsrc/1468869481521/help/accounts/btn_google_signin_dark_normal_web%402x.png'">
-                    </a>
-                </div>
             </form>
         </div>
     </div>

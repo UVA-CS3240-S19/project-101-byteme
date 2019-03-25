@@ -104,5 +104,6 @@ class SignUpTest(TestCase):
         self.assertRedirects(response, 'app/published_profile/10')
     '''
 
-# c.logout()
-# User.objects.filter(username=admin.username).delete()
+
+c.logout()
+User.objects.filter(username=admin.username).delete()
