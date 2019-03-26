@@ -8,40 +8,50 @@ from app.models import Profile, ProfileModel
 import sys
 # Create your tests here.
 
-c = Client()
-c.login(username="test", password = "password")
-admin = User.objects.create_superuser('myuser', 'ab1cde@virginia.edu', 'password')
+# c = Client()
+# c.login(username="test", password = "password")
+# admin = User.objects.create_superuser('myuser', 'ab1cde@virginia.edu', 'password')
+
 
 class ProfileTest(TestCase):
     def setUp(self):
         self.client = Client()
+
     def test_entries_access(self):
-        response = self.client.post(('/profile'), {'name': "Test", 'year': "2020", "major": "CS", "bio": "Test data", 'skills': "Test data", 'courses': "Test data", 'organizations': "Test data", 'interests': "Test data"})
+        response = self.client.post(('/profile'), {'name': "Test", 'year': "2020", "major": "CS", "bio": "Test data",
+                                                   'skills': "Test data", 'courses': "Test data", 'organizations': "Test data", 'interests': "Test data"})
         self.assertEqual(response.status_code, 301)
+
 
 class ProfileComponentsTest(TestCase):
     def setUp(self):
-        self.user = User.objects.create(username='testuser', password='12345', is_active=True, is_staff=True, is_superuser=True)
-        self.user.save() 
+        self.user = User.objects.create(
+            username='testuser', password='12345', is_active=True, is_staff=True, is_superuser=True)
+        self.user.save()
         #Profile.objects.create(user_id = "ab1cde", name = "Test")
+
     def test_empty_form(self):
         form = ProfileModel()
         self.assertFalse(form.is_valid())
+
     def test_only_name_component(self):
         form = ProfileModel({
             'name': "Test",
         })
         self.assertFalse(form.is_valid())
+
     def test_only_year_component(self):
         form = ProfileModel({
             'year': "2020",
         })
         self.assertFalse(form.is_valid())
+
     def test_only_major_component(self):
         form = ProfileModel({
             'major': "CS",
         })
         self.assertFalse(form.is_valid())
+
     def test_all_three_components(self):
         form = ProfileModel({
             'name': "Test",
@@ -49,6 +59,7 @@ class ProfileComponentsTest(TestCase):
             'major': "CS",
         })
         self.assertTrue(form.is_valid())
+
     def test_all_components(self):
         form = ProfileModel({
             'name': "Test",
@@ -62,11 +73,14 @@ class ProfileComponentsTest(TestCase):
         })
         self.assertTrue(form.is_valid())
 
+
 class SignUpTest(TestCase):
     def setUp(self):
         self.client = Client()
-        self.user = User.objects.create(username='testuser', password='12345', is_active=True, is_staff=True, is_superuser=True)
-        self.user.save() 
+        self.user = User.objects.create(
+            username='testuser', password='12345', is_active=True, is_staff=True, is_superuser=True)
+        self.user.save()
+
     def test_first_time_login(self):
         response = self.client.get('/profile')
         self.assertEqual(response.status_code, 301)
@@ -89,6 +103,6 @@ class SignUpTest(TestCase):
         #response = self.client.get('profile/')
         self.assertRedirects(response, 'app/published_profile/10')
     '''
-    
-c.logout()
-User.objects.filter(username=admin.username).delete()
+
+# c.logout()
+# User.objects.filter(username=admin.username).delete()
