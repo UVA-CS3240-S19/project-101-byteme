@@ -78,6 +78,7 @@
 
                             </div>
                         </div>
+
                         <div class="col-xs-12 col-sm-8">
                            <ul class="list-group" style="position: absolute; left: 410px; width: 400px; top: 150px;">
                                <!--<li class="list-group-item"><strong>Name: </strong>{{profile.name}}</li>-->
@@ -88,9 +89,84 @@
                         </div>
                      </div>
                 </div>
-                  </div>
-               </div>
-               <div class="bs-callout bs-callout-danger" style="position: absolute; width:1000px; height: 200px; left: 65px; top: 500px;">
+            </div>
+            <div class="row" style="position: absolute; left:50px; width: 1030px; top: 500px">
+              <div class="col-md-12">
+
+                <ul class="nav md-pills nav-justified pills-info">
+                  <li class="nav-item" style="background-color: #F8F8F8">
+                    <a class="nav-link" data-toggle="tab" href="#bio" role="tab">Bio</a>
+                  </li>
+                  <li class="nav-item" style="background-color: #F8F8F8">
+                    <a class="nav-link" data-toggle="tab" href="#skills" role="tab">Skills</a>
+                  </li>
+                  <li class="nav-item" style="background-color: #F8F8F8">
+                    <a class="nav-link" data-toggle="tab" href="#courses" role="tab">Courses</a>
+                  </li>
+                  <li class="nav-item" style="background-color: #F8F8F8">
+                    <a class="nav-link" data-toggle="tab" href="#organizations" role="tab">Organizations</a>
+                  </li>
+                  <li class="nav-item" style="background-color: #F8F8F8">
+                    <a class="nav-link" data-toggle="tab" href="#interests" role="tab">Interests</a>
+                  </li>
+                </ul>
+
+              </div>
+              <div class="tab-content">
+                <div id="bio" class="container tab-pane fade"><br>
+                  <h3>
+                    Bio
+                  </h3>
+                  <p>
+                    {{profile.bio}}
+                  </p>
+                </div>
+                <div id="skills" class="container tab-pane fade"><br>
+                  <h3>
+                    Skills
+                  </h3>
+                  <p>
+                    {{profile.skills}}
+                  </p>
+                </div>
+                <div id="courses" class="container tab-pane fade"><br>
+                  <h3>
+                    Courses
+                  </h3>
+                  <p>
+                    {{profile.courses}}
+                  </p>
+                </div>
+                <div id="organizations" class="container tab-pane fade"><br>
+                  <h3>
+                    Organizations
+                  </h3>
+                  <p>
+                    {{profile.organizations}}
+                  </p>
+                </div>
+                <div id="interests" class="container tab-pane fade"><br>
+                  <h3>
+                    Interests
+                  </h3>
+                  <p>
+                    {{profile.interests}}
+                  </p>
+                </div>
+              </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+               <!--<div class="bs-callout bs-callout-danger" style="position: absolute; width:1000px; height: 200px; left: 65px; top: 500px;">
                   <h4>Bio </h4>
                   <p>
                      {{profile.bio}}
@@ -119,9 +195,8 @@
                    <p>
                      {{profile.interests}}
                    </p>
-            </div>
-         </div>
-    </div>
+               </div>-->
+
 </body>
 
 
