@@ -4,8 +4,10 @@ from django.http import Http404
 from django.http import HttpResponseRedirect
 from django.forms import modelform_factory
 from django.views import generic
+from django.views.generic import TemplateView
 from django.urls import reverse
-from .models import Profile, ProfileModel, Post, UpdateProfileForm
+from django.contrib.auth.models import User
+from .models import Profile, ProfileModel, Post, UpdateProfileForm, Friend
 
 def home(request):
     context = {}
@@ -121,7 +123,7 @@ def notifications(request):
     return render(request, 'app/notifications.html')
 
 def friends(request):
-    return render(request, 'app/friends.html')
+   return render(request, 'app/friends.html')
 
 def settings(request):
     return render(request, 'app/settings.html')
@@ -131,3 +133,26 @@ from django.contrib.auth import logout
 def logout_view(request):
     logout(request)
     return render(request, 'app/login_page.html')
+
+
+class Friend(generic.DetailView):
+    template_name = 'app/friends.html'
+
+    def get(self, request):
+        form = ProfileModel()
+        users = User.objects.exclude(id=request.user.id)
+        friend = Friend.objects.get(current_user=request.user)
+        friends = friend.users.all()
+
+        args = {'form': form, 'users': users, 'friends': friends}
+        return render(request, self.template_name, args)
+
+
+def change_friends(request, operation, pk):
+    new_friend = User.objects.get(pk=pk)
+    if operation == 'add':
+        Friend.make_friend(request.user, friend)
+    elif operation == 'remove':
+        Friend.lose_friend(request.user, friend)
+    return redirect('app:friends')
+

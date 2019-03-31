@@ -90,73 +90,118 @@
                      </div>
                 </div>
             </div>
-            <div class="row" style="position: absolute; left:50px; width: 1030px; top: 500px">
-              <div class="col-md-12">
+           <!-- <div class="row" style="position: absolute; left:50px; width: 1030px; top: 500px;">
+              <div class="col-md-12" style="margin-bottom: 20px" >
 
-                <ul class="nav md-pills nav-justified pills-info">
-                  <li class="nav-item" style="background-color: #F8F8F8">
-                    <a class="nav-link" data-toggle="tab" href="#bio" role="tab">Bio</a>
+                <ul class="nav nav-pills nav-justified pills-info">
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#bio" role="tab" style="color:black; background-color:#F8F8F8; margin-left:10px; margin-right:10px;">Bio</a>
                   </li>
-                  <li class="nav-item" style="background-color: #F8F8F8">
-                    <a class="nav-link" data-toggle="tab" href="#skills" role="tab">Skills</a>
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#skills" role="tab" style="color:black; background-color:#F8F8F8; margin-left:10px; margin-right:10px;">Skills</a>
                   </li>
-                  <li class="nav-item" style="background-color: #F8F8F8">
-                    <a class="nav-link" data-toggle="tab" href="#courses" role="tab">Courses</a>
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#courses" role="tab" style="color:black; background-color:#F8F8F8; margin-left:10px; margin-right:10px;">Courses</a>
                   </li>
-                  <li class="nav-item" style="background-color: #F8F8F8">
-                    <a class="nav-link" data-toggle="tab" href="#organizations" role="tab">Organizations</a>
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#organizations" role="tab" style="color:black; background-color:#F8F8F8; margin-left:10px; margin-right:10px;">Organizations</a>
                   </li>
-                  <li class="nav-item" style="background-color: #F8F8F8">
-                    <a class="nav-link" data-toggle="tab" href="#interests" role="tab">Interests</a>
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#interests" role="tab" style="color:black; background-color:#F8F8F8; margin-left:10px; margin-right:10px;">Interests</a>
                   </li>
                 </ul>
 
               </div>
               <div class="tab-content">
                 <div id="bio" class="container tab-pane fade"><br>
-                  <h3>
+                  <h1 style="font-size: 20px; margin-bottom: 20px">
                     Bio
-                  </h3>
-                  <p>
+                  </h1>
+                  <p style="position: absolute; width: 1000px; height: 200px;">
                     {{profile.bio}}
                   </p>
                 </div>
                 <div id="skills" class="container tab-pane fade"><br>
-                  <h3>
+                  <h1 style="font-size: 20px">
                     Skills
-                  </h3>
-                  <p>
+                  </h1>
+                  <p style="position: absolute; width: 1000px; height: 200px;">
                     {{profile.skills}}
                   </p>
                 </div>
                 <div id="courses" class="container tab-pane fade"><br>
-                  <h3>
+                  <h1 style="font-size: 20px">
                     Courses
-                  </h3>
-                  <p>
+                  </h1>
+                  <p style="position: absolute; width: 1000px; height: 200px;">
                     {{profile.courses}}
                   </p>
                 </div>
                 <div id="organizations" class="container tab-pane fade"><br>
-                  <h3>
+                  <h1 style="font-size: 20px">
                     Organizations
-                  </h3>
-                  <p>
+                  </h1>
+                  <p style="position: absolute; width: 1000px; height: 200px;">
                     {{profile.organizations}}
                   </p>
                 </div>
                 <div id="interests" class="container tab-pane fade"><br>
-                  <h3>
+                  <h1 style="font-size: 20px">
                     Interests
-                  </h3>
-                  <p>
+                  </h1>
+                  <p style="position: absolute; width: 1000px; height: 200px;">
                     {{profile.interests}}
                   </p>
                 </div>
               </div>
-
-
+                <div class="row" style="position: absolute; left:50px; top:300px">
+                    <form method="post">
+                        <input type="text">
+                        <button type="submit">Post</button>
+                    </form>
+                </div>-->
+            <p style="position: absolute; top: 500px; left: 75px; width:1000px">
+              <a class="btn btn-primary" data-toggle="collapse" href="#bio" role="button" aria-expanded="false" aria-controls="bio" style="width:100px; margin-left:20px; margin-right:20px">Bio</a>
+                <a class="btn btn-primary" data-toggle="collapse" href="#skills" role="button" aria-expanded="false" aria-controls="skills" style="width:150px; margin-left:20px; margin-right:20px">Skills</a>
+                <a class="btn btn-primary" data-toggle="collapse" href="#courses" role="button" aria-expanded="false" aria-controls="courses" style="width:150px; margin-left:20px; margin-right:20px">Courses</a>
+                <a class="btn btn-primary" data-toggle="collapse" href="#organizations" role="button" aria-expanded="false" aria-controls="organizations" style="width:200px; margin-left:20px; margin-right:20px">Organizations</a>
+                <a class="btn btn-primary" data-toggle="collapse" href="#interests" role="button" aria-expanded="false" aria-controls="interests" style="width:150px; margin-left:20px; margin-right:20px">Interests</a>
+            </p>
+            <div class="row">
+              <div class="col">
+                <div class="collapse multi-collapse" id="bio" style="position: absolute; left: 65px; top: 520px; width:1000px">
+                  <div class="card card-body">
+                       {{profile.bio}}
+                  </div>
+                </div>
+                  <div class="collapse multi-collapse" id="skills" style="position: absolute; left: 65px; top: 520px; width:1000px">
+                  <div class="card card-body">
+                       {{profile.skills}}
+                  </div>
+                </div>
+                  <div class="collapse multi-collapse" id="courses" style="position: absolute; left: 65px; top: 520px; width:1000px">
+                  <div class="card card-body">
+                       {{profile.courses}}
+                  </div>
+                </div>
+                  <div class="collapse multi-collapse" id="organizations" style="position: absolute; left: 65px; top: 520px; width:1000px">
+                  <div class="card card-body">
+                       {{profile.organizations}}
+                  </div>
+                </div>
+                  <div class="collapse multi-collapse" id="interests" style="position: absolute; left: 65px; top: 520px; width:1000px">
+                  <div class="card card-body">
+                       {{profile.interests}}
+                  </div>
+                </div>
+              </div>
             </div>
+             <div class="row" style="position:relative; width: 1000px; left:85px; top:570px;">
+                <form method="post">
+                    <input type="text" style="width: 800px; margin-right: 20px;">
+                    <button type="submit" style="width:100px">Post</button>
+                </form>
+             </div>
         </div>
     </div>
 </div>

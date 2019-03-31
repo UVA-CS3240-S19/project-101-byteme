@@ -1,7 +1,6 @@
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-
 from . import views
 
 app_name = 'app'
@@ -15,6 +14,7 @@ urlpatterns = [
     path('friends/', views.friends, name='friends'),
     path('notifications/', views.notifications, name='notifications'),
     path('settings/', views.settings, name='settings'),
+    #path(r'^connect/(?P<operation>.+)/(?P<pk>\d+)/$', views.change_friends, name='change_friends')
 ]
 
 if settings.DEBUG:
