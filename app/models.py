@@ -6,12 +6,22 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import UserChangeForm
 
+YEARS = (
+    ("2019", "2019"),
+    ("2020", "2020"),
+    ("2021", "2021"),
+    ("2022", "2022"),
+    ("Graduate Student", "Graduate Student"),
+    ("Faculty", "Faculty"),
+    ("Other", "Other")
+)
+
 class Profile(models.Model):
     # model = User
     # user = models.OneToOneField(User, on_delete=models.CASCADE, default="10")
     user_id = models.CharField(max_length=10)
     name = models.CharField(max_length=200)
-    year = models.CharField(max_length=100)
+    year = models.CharField(max_length=16, choices = YEARS)
     major = models.CharField(max_length=200)
     bio = models.TextField(max_length=600, blank = True)
     skills = models.CharField(max_length=100, blank = True)

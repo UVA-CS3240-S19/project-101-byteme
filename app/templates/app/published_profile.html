@@ -38,7 +38,7 @@
 <div class="container">
 <div class="row">
     <div class="panel panel-default">
-        <div class="panel-heading resume-heading"></div>
+        <div class="panel-heading resume-heading" id = "top-header"></div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="main-info" style="width: 1000px; height: 450px; margin: 30px 50px; padding: 30px 20px; position: absolute; background-color: #F8F8F8;">
@@ -87,7 +87,6 @@
                         </div>
                      </div>
                 </div>
-            </div>
            <!-- <div class="row" style="position: absolute; left:50px; width: 1030px; top: 500px;">
               <div class="col-md-12" style="margin-bottom: 20px" >
 
@@ -158,33 +157,89 @@
                         <button type="submit">Post</button>
                     </form>
                 </div>-->
-                <div style="position: absolute; top: 500px; left: 75px; width:1000px">
-                <nav>
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                      <a class="nav-item nav-link" id="nav-bio-tab" data-toggle="tab" href="#nav-bio" role="tab" aria-controls="nav-bio" aria-selected="false">Bio</a>
-                      <a class="nav-item nav-link" id="nav-skills-tab" data-toggle="tab" href="#nav-skills" role="tab" aria-controls="nav-skills" aria-selected="false">Skills</a>
-                      <a class="nav-item nav-link" id="nav-courses-tab" data-toggle="tab" href="#nav-courses" role="tab" aria-controls="nav-courses" aria-selected="false">Courses</a>
-                      <a class="nav-item nav-link" id="nav-orgs-tab" data-toggle="tab" href="#nav-organizations" role="tab" aria-controls="nav-organizations" aria-selected="false">Organizations</a>
-                      <a class="nav-item nav-link" id="nav-intr-tab" data-toggle="tab" href="#nav-intr" role="tab" aria-controls="nav-intr" aria-selected="false">Interests</a>
-                    </div>
-                  </nav>
-                  <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade card card-body" id="nav-bio" role="tabpanel" aria-labelledby="nav-bio-tab">
-                        {{profile.bio}}
-                    </div>
-                    <div class="tab-pane fade card card-body" id="nav-skills" role="tabpanel" aria-labelledby="nav-skills-tab">
-                        {{profile.skills}}
-                    </div>
-                    <div class="tab-pane fade card card-body" id="nav-courses" role="tabpanel" aria-labelledby="nav-courses-tab">
-                        {{profile.courses}}
-                    </div>
-                    <div class="tab-pane fade card card-body" id="nav-organizations" role="tabpanel" aria-labelledby="nav-orgs-tab">
-                        {{profile.organizations}}
-                    </div>
-                    <div class="tab-pane fade card card-body" id="nav-intr" role="tabpanel" aria-labelledby="nav-intr-tab">
-                        {{profile.interests}}
-                    </div>
-                  </div>
+                <div style="position: absolute; top: 500px; left: 50px; width:1000px">
+                        <div id="accordion">
+                                <div class="card">
+                                  <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                      <button class="btn btn-link" data-toggle="collapse" data-target="#bio" aria-expanded="false" aria-controls="collapseOne">
+                                        Bio
+                                      </button>
+                                    </h5>
+                                  </div>
+                              
+                                  <div id="bio" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="card-body"> 
+                                        {{profile.bio}}
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="card">
+                                  <div class="card-header" id="headingTwo">
+                                    <h5 class="mb-0">
+                                      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#skills" aria-expanded="false" aria-controls="collapseTwo">
+                                        Skills
+                                      </button>
+                                    </h5>
+                                  </div>
+                                  <div id="skills" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                    <div class="card-body">
+                                        {{profile.skills}}
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="card">
+                                  <div class="card-header" id="headingThree">
+                                    <h5 class="mb-0">
+                                      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#courses" aria-expanded="false" aria-controls="collapseThree">
+                                        Courses
+                                      </button>
+                                    </h5>
+                                  </div>
+                                  <div id="courses" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                    <div class="card-body">
+                                        {{profile.courses}}
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="card">
+                                        <div class="card-header" id="headingFour">
+                                          <h5 class="mb-0">
+                                            <button class="btn btn-link" data-toggle="collapse" data-target="#organizations" aria-expanded="false" aria-controls="collapseOne">
+                                              Organizations
+                                            </button>
+                                          </h5>
+                                        </div>
+                                    
+                                        <div id="organizations" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                                          <div class="card-body"> 
+                                              {{profile.organizations}}
+                                          </div>
+                                        </div>
+                                      </div>
+                                
+                                      <div class="card">
+                                            <div class="card-header" id="headingFive">
+                                              <h5 class="mb-0">
+                                                <button class="btn btn-link" data-toggle="collapse" data-target="#interests" aria-expanded="false" aria-controls="collapseOne">
+                                                  Interests
+                                                </button>
+                                              </h5>
+                                            </div>
+                                        
+                                            <div id="interests" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                                              <div class="card-body"> 
+                                                  {{profile.interests}}
+                                              </div>
+                                            </div>
+                                          </div>
+                                <div class="row" style="position:relative; width: 1000px;top: 10px; left: 20px;">
+                                    <form method="post">
+                                    <input type="text" style="width: 800px; margin-right: 20px;">
+                                    <button type="submit" style="width:100px">Post</button>
+                                </form>
+                            </div>
+                        </div>
                 </div>
 
 
@@ -224,14 +279,9 @@
                 </div>
               </div>
             </div> -->
-             <div class="row" style="position:relative; width: 1000px; left:85px; top:570px;">
-                <form method="post">
-                    <input type="text" style="width: 800px; margin-right: 20px;">
-                    <button type="submit" style="width:100px">Post</button>
-                </form>
-             </div>
         </div>
     </div>
+</div>
 </div>
 
 
