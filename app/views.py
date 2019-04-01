@@ -58,10 +58,10 @@ def search(request):
         search_value = str(search_value).lower().strip()
         results = set()
         for profile in Profile.objects.all():
-            print(profile.name + " 1")
 
             profile_name = profile.name.lower().split(" ")
-            if search_value == profile.name.lower() or search_value == profile_name[0] or search_value == profile_name[1]:
+            # or search_value == profile_name[1]:
+            if search_value == profile.name.lower() or search_value == profile_name[0]:
                 results.add(profile)
 
             for tags in profile.tags.all():

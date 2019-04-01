@@ -1,18 +1,19 @@
 language: python
 python:
-  - 3.6
-
+- 3.6
 install:
-  - pip install -r requirements.txt
-
-# command to run tests
+- pip install -r requirements.txt
 script:
-  - python3 manage.py makemigrations
-  - python3 manage.py migrate
-  - python3 manage.py test
+- python3 manage.py makemigrations
+- python3 manage.py migrate
+- python3 manage.py test
 branches:
   only:
-    - master
+  - master
 deploy:
+  provider: heroku
   api_key:
-    secure: exiNYrI5kJRCwIgJGklQX++U9ajBlsAz1Ufc1EM+WlDN0AMxHjFrql06bP+uy9MDA0XDJG/qeNCqlZp7BjK+i08b5h+S70WltDgG30sSqltbKwNRVA1yzjVkNN5FGG+dth2L9ni+QFRNd9JLFQxFJ36KCWdPJpQ2ZofWiCLNlJSa4jYdXdGfkBsUXKtDn15haXAfsSnGeAtMSmA2Ij1C79FCeoOznHlUD+yvj1qU8ewAKKS+Wr7AXRHfa2tymkdfIIpLs8rGMXn0cdN/pBjs6RO53dKSezJ1s16F44kMRYKZOS86PgMabcQbYYHZKvLDTU3Trgkxm/OQ4EbPJaUeDjLfmVPQA9DWrgKb13rkcwXGHJeTA+MMuyea2gLgLagx7nzrgJ0iXD4u6fKpD03M6tu+leU8WCKFsNEUMp7ipt0U4HHmb5H31XCv1uGfRK2ICj6+dCH+NrDd4WM9zWYHsGaVC6ItkvDroJNCluwvIND8pa5madGoAz5v2rvzJrNVlYYeVnoJFfzmUOIglj5MFtpnAOJuR8SAGR4qGwZvkhoVYRNcNZmaN33u6gDkkQKr7bvobn/LkZON38+5J1wyMP/zBKWlNrjizNG9u3n6IGojL/bGnWEyBU+S3O1vIyDGajMaG/ZF3UvpuTY+IEDA3qK60IHOJQ8GoBXe4laFgpI=
+    secure: Ydju8eWZ9FK19RISWD0cYyAktKMNOL8apONq3JVI4POcIN+K7w3lPwf6XCZxC7LT+3JZmC9aWQSTncAmGWvyUpCyamWT5Co+ZMYq4RvdQCR1p/AfNQcWaoW55bVUCuUF18JRznGBZwU1vuFhDEzJArCmRtIoXxREb+OZ2qWNA6l5AQ3QoCJ2SI3YwrTb6GgZlN8UF76MgLqUUPV1BrXXaDezqGBjFTn5qZgliISe90+58SaD5XvBo43jgNrCWp+VlJ2xt8Eo6ilg+VzF0l5LcGgLmdIuYJR742j+7xpd5/YqUIfpDeoA9dAhVtRvFgszZo/ruG+i67PCZF0Gp8SCj2RdXF5dWicAqkipXmzEm/QMFWUNIeeckbjcKdLJzj9VtTXXseo8oYJ05XWXVfz8i61cK2KiIQHbb88b6Z14+Cy9lyjgCHD98hDxCQ0hBR4JyXEelf4bABo07H41wp8Xi9ANKtWi4swp76VEYjBKtTNA6EHFE4zyfj1zgL+humcbJZsKrjpjccb7CBkZVhrXmrSiIu/awrQGHfKma39+RKN0bGc1V699YsA/Z/ft8/OVmpZiD9N2gtbAcxAXUOlz0jxwtlmRRiWoE899ORo9PuiVb7SxoRhGkqoZ0YqP5l6tPfSW+nUxf9kS+AoWBB0UgMv6ZfoJaTmHI1f4/Q/A9uE=
+  app: skillbuilder
+  on:
+    repo: UVA-CS3240-S19/project-101-byteme
