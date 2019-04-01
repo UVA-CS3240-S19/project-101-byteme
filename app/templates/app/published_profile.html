@@ -2,10 +2,11 @@
 {% load static %}
 <head>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link rel="stylesheet" type="text/css" href="{% static 'profile.css' %}">
 
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'profile.css' %}">
+    <link href="{% static 'published_profile.css' %}" type="text/css" rel="stylesheet">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 </head>
 
 
@@ -13,7 +14,6 @@
     User Profile
 {% endblock content1 %}
 {% block content2 %}
-<link href="{% static 'published_profile.css' %}" type="text/css" rel="stylesheet">
 
 {% if profile %}
 
@@ -83,7 +83,7 @@
                                <!--<li class="list-group-item"><strong>Name: </strong>{{profile.name}}</li>-->
                               <li class="list-group-item"><strong>Year: </strong>{{profile.year}}</li>
                               <li class="list-group-item"><strong>Major: </strong>{{profile.major}} </li>
-                              <li class="list-group-item"><i class="fa fa-envelope"></i> {{profile.computing_id}} @virginia.edu</li>
+                              <li class="list-group-item"><i class="fa fa-envelope"></i> {{profile.user_id}}@virginia.edu</li>
                            </ul>
                         </div>
                      </div>

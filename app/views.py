@@ -61,7 +61,11 @@ def search(request):
 
             profile_name = profile.name.lower().split(" ")
             # or search_value == profile_name[1]:
-            if search_value == profile.name.lower() or search_value == profile_name[0]:
+            found = False
+            for string in profile_name:
+                if search_value == string:
+                    found = True
+            if found:
                 results.add(profile)
 
             for tags in profile.tags.all():
