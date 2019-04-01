@@ -31,4 +31,5 @@ urlpatterns = [
     url(r'^auth/', include('social_django.urls', namespace='social')),  # <- Here
     path('login/', views.login, name = 'login'),
     path('logout/', views.logout_view, name = 'logout'),
+    path('search/', views.search, name='search'),
 ]

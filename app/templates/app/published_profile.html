@@ -1,11 +1,11 @@
 {% extends "app/base.html" %}
 {% load static %}
 <head>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" type="text/css" href="{% static 'profile.css' %}">
 
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 </head>
 
 {% block content1 %}
@@ -32,15 +32,13 @@
 
 
 <!--</body>-->
-
-
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{% static 'profile.css' %}">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
 <div class="container">
 <div class="row">
     <div class="panel panel-default">
-        <div class="panel-heading resume-heading">
+        <div class="panel-heading resume-heading"></div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="main-info" style="width: 1000px; height: 450px; margin: 30px 50px; padding: 30px 20px; position: absolute; background-color: #F8F8F8;">
@@ -160,7 +158,37 @@
                         <button type="submit">Post</button>
                     </form>
                 </div>-->
-            <p style="position: absolute; top: 500px; left: 75px; width:1000px">
+                <div style="position: absolute; top: 500px; left: 75px; width:1000px">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                      <a class="nav-item nav-link" id="nav-bio-tab" data-toggle="tab" href="#nav-bio" role="tab" aria-controls="nav-bio" aria-selected="false">Bio</a>
+                      <a class="nav-item nav-link" id="nav-skills-tab" data-toggle="tab" href="#nav-skills" role="tab" aria-controls="nav-skills" aria-selected="false">Skills</a>
+                      <a class="nav-item nav-link" id="nav-courses-tab" data-toggle="tab" href="#nav-courses" role="tab" aria-controls="nav-courses" aria-selected="false">Courses</a>
+                      <a class="nav-item nav-link" id="nav-orgs-tab" data-toggle="tab" href="#nav-organizations" role="tab" aria-controls="nav-organizations" aria-selected="false">Organizations</a>
+                      <a class="nav-item nav-link" id="nav-intr-tab" data-toggle="tab" href="#nav-intr" role="tab" aria-controls="nav-intr" aria-selected="false">Interests</a>
+                    </div>
+                  </nav>
+                  <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade card card-body" id="nav-bio" role="tabpanel" aria-labelledby="nav-bio-tab">
+                        {{profile.bio}}
+                    </div>
+                    <div class="tab-pane fade card card-body" id="nav-skills" role="tabpanel" aria-labelledby="nav-skills-tab">
+                        {{profile.skills}}
+                    </div>
+                    <div class="tab-pane fade card card-body" id="nav-courses" role="tabpanel" aria-labelledby="nav-courses-tab">
+                        {{profile.courses}}
+                    </div>
+                    <div class="tab-pane fade card card-body" id="nav-organizations" role="tabpanel" aria-labelledby="nav-orgs-tab">
+                        {{profile.organizations}}
+                    </div>
+                    <div class="tab-pane fade card card-body" id="nav-intr" role="tabpanel" aria-labelledby="nav-intr-tab">
+                        {{profile.interests}}
+                    </div>
+                  </div>
+                </div>
+
+
+            <!-- <p style="position: absolute; top: 500px; left: 75px; width:1000px">
               <a class="btn btn-primary" data-toggle="collapse" href="#bio" role="button" aria-expanded="false" aria-controls="bio" style="width:100px; margin-left:20px; margin-right:20px">Bio</a>
                 <a class="btn btn-primary" data-toggle="collapse" href="#skills" role="button" aria-expanded="false" aria-controls="skills" style="width:150px; margin-left:20px; margin-right:20px">Skills</a>
                 <a class="btn btn-primary" data-toggle="collapse" href="#courses" role="button" aria-expanded="false" aria-controls="courses" style="width:150px; margin-left:20px; margin-right:20px">Courses</a>
@@ -195,7 +223,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
              <div class="row" style="position:relative; width: 1000px; left:85px; top:570px;">
                 <form method="post">
                     <input type="text" style="width: 800px; margin-right: 20px;">

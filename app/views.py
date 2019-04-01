@@ -111,6 +111,28 @@ def update_profile(request, pk):
         #         profile = UpdateProfileForm(instance=request.user)
         #         return render(request, 'app/published_profile.html', {'form': profile})
 
+def search(request):
+    print("body", request.body)
+    if not request.user.is_authenticated:
+        return redirect('login')
+    else:
+        if request.POST['search_field'] == "":
+            return render(request, 'app/search_results.html', {'search_value': "", 'results': Profile.objects.all()})
+        search_value = request.POST['search_field']
+        search_value = str(search_value).lower().strip()
+        results = set()
+        for profile in Profile.objects.all():
+
+            profile_name = profile.name.lower().split(" ")
+            # or search_value == profile_name[1]:
+            found = False
+            for string in profile_name:
+                if search_value == string:
+                    found = True
+            if found:
+                results.add(profile)
+        return render(request, 'app/search_results.html', {'search_value': search_value, 'results': results})
+
 
 def login(request):
     context = {}
