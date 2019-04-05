@@ -28,6 +28,7 @@ class Profile(models.Model):
     courses = models.CharField(max_length=200, blank = True)      # eventually drop down menu? hashtags?
     organizations = models.CharField(max_length=200, blank = True)
     interests = models.CharField(max_length=100, blank = True)
+    status = models.CharField(max_length=100, blank = True)
     image = models.ImageField(default='default-avatar.jpg', upload_to='profile_pics')
     # picture = models.ImageField()
 
@@ -35,7 +36,7 @@ class Profile(models.Model):
 class ProfileModel(ModelForm):
     class Meta:
         model = Profile
-        fields = ['name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests']
+        fields = ['name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests', 'status']
         # waiting to add picture for now
 
         # def save(self, commit=True):
@@ -49,7 +50,7 @@ class ProfileModel(ModelForm):
 class UpdateProfileForm(ModelForm):
     class Meta:
         model = Profile
-        fields = ['name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests']
+        fields = ['name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests', 'status']
         # waiting to add picture for now
 
 class Post(models.Model):
