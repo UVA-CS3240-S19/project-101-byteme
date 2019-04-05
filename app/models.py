@@ -1,3 +1,4 @@
+from taggit.managers import TaggableManager
 from django.db import models
 from django import forms
 from django.forms import ModelForm
@@ -16,26 +17,32 @@ YEARS = (
     ("Other", "Other")
 )
 
+
 class Profile(models.Model):
     # model = User
     # user = models.OneToOneField(User, on_delete=models.CASCADE, default="10")
     user_id = models.CharField(max_length=10)
     name = models.CharField(max_length=200)
-    year = models.CharField(max_length=16, choices = YEARS)
+    year = models.CharField(max_length=16, choices=YEARS)
     major = models.CharField(max_length=200)
-    bio = models.TextField(max_length=600, blank = True)
-    skills = models.CharField(max_length=100, blank = True)
-    courses = models.CharField(max_length=200, blank = True)      # eventually drop down menu? hashtags?
-    organizations = models.CharField(max_length=200, blank = True)
-    interests = models.CharField(max_length=100, blank = True)
-    image = models.ImageField(default='default-avatar.jpg', upload_to='profile_pics')
+    bio = models.TextField(max_length=600, blank=True)
+    skills = models.CharField(max_length=100, blank=True)
+    # eventually drop down menu? hashtags?
+    courses = models.CharField(max_length=200, blank=True)
+    organizations = models.CharField(max_length=200, blank=True)
+    interests = models.CharField(max_length=100, blank=True)
+    image = models.ImageField(
+        default='default-avatar.jpg', upload_to='profile_pics')
+
+    tags = TaggableManager()
     # picture = models.ImageField()
 
 
 class ProfileModel(ModelForm):
     class Meta:
         model = Profile
-        fields = ['name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests']
+        fields = ['name', 'year', 'major', 'bio', 'skills',
+                  'courses', 'organizations', 'interests']
         # waiting to add picture for now
 
         # def save(self, commit=True):
@@ -46,11 +53,14 @@ class ProfileModel(ModelForm):
         #
         #     return user
 
+
 class UpdateProfileForm(ModelForm):
     class Meta:
         model = Profile
-        fields = ['name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests']
+        fields = ['name', 'year', 'major', 'bio', 'skills',
+                  'courses', 'organizations', 'interests']
         # waiting to add picture for now
+
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
@@ -61,10 +71,11 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+
 class Friend(models.Model):
     users = models.ManyToManyField(User)
-    current_user = models.ForeignKey(User, related_name='owner', null=True, on_delete=models.CASCADE)
-
+    current_user = models.ForeignKey(
+        User, related_name='owner', null=True, on_delete=models.CASCADE)
 
     @classmethod
     def make_friend(cls, current_user, new_friend):
@@ -79,4 +90,3 @@ class Friend(models.Model):
             current_user=current_user
         )
         friend.users.remove(new_friend)
-

@@ -1,17 +1,13 @@
 {% extends "app/base.html" %}
-{% load static %}
-<head>
-    <link rel="stylesheet" type="text/css" href="{% static 'profile.css' %}">
 
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-</head>
+{% load static %}
 
 {% block content1 %}
     User Profile
 {% endblock content1 %}
 {% block content2 %}
+<link href="{% static 'published_profile.css' %}" type="text/css" rel="stylesheet">
+
 {% if profile %}
 
 
