@@ -82,7 +82,7 @@ def create_profile(request):
         ind = computing_id.index('@')
         computing_id = computing_id[0:ind]
         ProfileModel = modelform_factory(Profile, fields=(
-            'name', 'year', 'major', 'bio', 'skills', 'courses', 'organizations', 'interests'))
+            'name', 'year', 'major', 'bio', 'skills', 'courses', 'organizations', 'interests', 'status'))
         if request.method == "POST" or Profile.objects.filter(user_id=computing_id):
             form = ProfileModel(request.POST)
             if (form.is_valid()):
@@ -130,10 +130,13 @@ def update_profile(request, pk):
     if not request.user.is_authenticated:
         return redirect('login')
     else:
-        ProfileModel = modelform_factory(Profile, fields=(
-            'name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests'))
-        if request.method == "POST":
-            profile = ProfileModel(request.POST, instance=request.user)
+        computing_id = request.user.email
+        ind = computing_id.index('@')
+        computing_id = computing_id[0:ind]
+        UpdateProfileForm = modelform_factory(Profile, fields=('name', 'year', 'major', 'bio', 'skills', 'courses', 'organizations', 'interests', 'status'))
+        #UpdateProfileForm = modelform_factory(Profile, fields=('name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests'))
+        if request.method == "POST" or Profile.objects.filter(user_id = computing_id):
+            profile = UpdateProfileForm(request.POST, instance=request.user)
             if (profile.is_valid()):
                 profile.save()
                 return HttpResponseRedirect(reverse('app:update_profile', kwargs={'pk': pk}))
@@ -223,7 +226,7 @@ def change_friends(request, operation, pk):
         Friend.make_friend(request.user, friend)
     elif operation == 'remove':
         Friend.lose_friend(request.user, friend)
-    return redirect('app:friends')
+    return redirect('app/friends.html')
 
 
 def logout_view(request):
