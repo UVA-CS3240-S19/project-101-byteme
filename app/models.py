@@ -35,6 +35,7 @@ class Profile(models.Model):
     image = models.ImageField(
         default='default-avatar.jpg', upload_to='profile_pics')
     # picture = models.ImageField()
+    tags = TaggableManager()
 
 
 class ProfileModel(ModelForm):

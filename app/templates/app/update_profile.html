@@ -1,33 +1,57 @@
 {% extends "app/base.html" %}
-{% block content1 %}
-    User Profile
-{% endblock content1 %}
-<!--<h1>{{ "Update Your Profile:" }}</h1>-->
-
+{% block title %}{% endblock %}
 {% block content2 %}
-s{% if profile %}
-<form action="{% url 'app:update_profile' %}" method="post">
-    {% csrf_token %}
-    <ul>
-        <h2><label for="name">Name:</label>
-        <input type="text" id="name" name="name"></h2>
-        <!--<div id = "main_info">-->
-            <li><label for="year">Year:</label><input type="text" id="year" name="year"></li>
-            <li><label for="major">Major:</label><input type="text" id="major" name="major"></li>
-        <!--</div>-->
-            <div>
-                <li><label for="bio">Bio:</label><textarea type="text" id="bio" name="bio" rows="3"></textarea></li>
-            </div>
-            <li>label for="skills">Skills:</label><input type="text" id="skills" name="skills"></li>
-            <li><label for="courses">Courses:</label><input type="text" id="courses" name="courses"></li>
-            <li><label for="organizations">Organizations:</label><input type="text" id="organizations" name="organizations"></li>
-            <li><label for="interests">Interests:</label><input type="text" id="interests" name="interests"></li>
+    <h1>{{ "Update Your Profile:" }}</h1>
+    <form action="{% url 'update_profile' %}" method="post" class="needs-validation">
+        {% csrf_token %}
         <div class = "form-group">
-            <input type="submit" value="Update">
+            <label name="name">Name:</label>
+            <input class="form-control" type="text" id="name" name="name" value="{{profile.name}}" required>
         </div>
-    </ul>
-</form>
-{% else %}
-    <p>There is currently no user data.</p>
-{% endif %}
-{% endblock content2 %}
+        <div class = "form-group">
+            <label name="year">Year:</label>
+            <select id = "year" name = "year" class="form-control" value="{{profile.year}}">
+                <option value = "2019">2019</option>
+                <option value = "2020">2020</option>
+                <option value = "2021">2021</option>
+                <option value = "2022">2022</option>
+                <option value = "Graduate Student">Graduate Student</option>
+                <option value = "Faculty">Faculty</option>
+                <option value = "Other">Other</option>
+            </select>
+        </div>
+        <div class = "form-group">
+            <label name="major">Major:</label>
+            <input class="form-control" type="text" id="major" name="major" value="{{profile.major}}" required>
+        </div>
+        <div class = "form-group">
+            <label name="bio">Bio:</label>
+            <textarea class="form-control" type="text" id="bio" name="bio" rows="4" >{{profile.bio}}</textarea>
+        </div>
+
+        <div> Please enter a comma separated list for the following. </div>
+
+        <div class = "form-group">
+            <label name="skills">Skills:</label>
+            <input class="form-control" type="text" id="skills" name="skills" value="{{profile.skills}}">
+        </div>
+
+        <div> Please enter a course code (ex. CS2150, CS4102) </div>
+
+        <div class = "form-group">
+            <label name="courses">Courses:</label>
+            <input class="form-control" type="text" id="courses" name="courses" value="{{profile.courses}}">
+        </div>
+        <div class = "form-group">
+            <label name="organizations">Organizations:</label>
+            <input class="form-control" type="text" id="organizations" name="organizations" value="{{profile.organizations}}">
+        </div>
+        <div class = "form-group">
+            <label name="interests">Interests:</label>
+            <input class="form-control" type="text" id="interests" name="interests" value="{{profile.interests}}">
+        </div>
+        <div class = "form-group">
+            <input class="form-control" type="submit" value="Publish">
+        </div>
+    </form>
+{% endblock %}
