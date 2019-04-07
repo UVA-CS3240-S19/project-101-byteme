@@ -6,6 +6,7 @@ from django.test.client import RequestFactory
 from app.views import create_profile
 from app.models import Profile, ProfileModel
 import sys
+from django.http import HttpResponsePermanentRedirect
 # Create your tests here.
 
 # c = Client()
@@ -73,20 +74,29 @@ class ProfileComponentsTest(TestCase):
         })
         self.assertTrue(form.is_valid())
 
+class UpdateTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create(
+            username='testuser', password='12345', is_active=True, is_staff=True, is_superuser=True)
+        self.user.save()
+    def test_update(self):
+        self.client.post(('/profile'), {'name': "Test", 'year': "2020", "major": "CS", "bio": "Test data", 'skills': "Test data", 'courses': "Test data", 'organizations': "Test data", 'interests': "Test data"})
+        response = self.client.post(('/update_profile'), {'name': "Tester"})
+        self.assertTrue(isinstance(response, HttpResponsePermanentRedirect))
+        self.assertEqual(response.status_code, 301)
+
 
 class SignUpTest(TestCase):
     def setUp(self):
         self.client = Client()
         self.user = User.objects.create(
-            username='testuser', password='12345', is_active=True, is_staff=True, is_superuser=True)
+            username='testuser', password='12345', email = "testuser@virginia.edu", is_active=True, is_staff=True, is_superuser=True)
         self.user.save()
-        logged_in = self.client.login(username='testuser', password='12345')
 
     def test_first_time_login(self):
         response = self.client.get('/profile')
         self.assertEqual(response.status_code, 301)
 
-    '''
     def test_existing_signin(self):
         self.user.id = 10
         response = self.client.post(('/profile/'), {
@@ -99,7 +109,6 @@ class SignUpTest(TestCase):
             'organizations': "Test data", 
             'interests': "Test data"})
         self.assertRedirects(response, 'app/published_profile/10')
-        '''
-        
+
 # c.logout()
 # User.objects.filter(username=admin.username).delete()

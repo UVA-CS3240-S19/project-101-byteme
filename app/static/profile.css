@@ -7,20 +7,20 @@ body {
 #top-header{
     margin: 0px 0px 0px 50px;
 }
-/*.container {
-    width: 400 px;
-    padding: 0 50px;
-
-.main-info {
-    padding-top: 10px;
-    background-color: #c2c52c;
+.pic-div {
+    width: 325px;
+    height: 325px;
     position: relative;
-    display: inline-block;
-}*/
-
-img {
+    overflow: hidden;
     border-radius: 50%;
 }
+
+#profile-pic {
+    margin: 0 auto;
+    margin-left: -25%;
+    height: 100%;
+    width: auto;
+  }
 
 .row{
     margin-bottom: 50px;
