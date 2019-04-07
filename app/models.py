@@ -32,8 +32,7 @@ class Profile(models.Model):
     organizations = models.CharField(max_length=200, blank=True)
     interests = models.CharField(max_length=100, blank=True)
     status = models.CharField(max_length=100, blank=True)
-    image = models.ImageField(
-        default='default-avatar.jpg', upload_to='profile_pics')
+    image = models.ImageField(default='default-avatar.jpg', upload_to='profile_pics')
     # picture = models.ImageField()
     tags = TaggableManager()
 
@@ -42,7 +41,7 @@ class ProfileModel(ModelForm):
     class Meta:
         model = Profile
         fields = ['name', 'year', 'major', 'bio', 'skills',
-                  'courses', 'organizations', 'interests', 'status']
+                  'courses', 'organizations', 'interests', 'status', 'image']
         # waiting to add picture for now
 
         # def save(self, commit=True):
@@ -58,7 +57,7 @@ class UpdateProfileForm(ModelForm):
     class Meta:
         model = Profile
         fields = ['name', 'year', 'major', 'bio', 'skills',
-                  'courses', 'organizations', 'interests', 'status']
+                  'courses', 'organizations', 'interests', 'status', 'image']
         # waiting to add picture for now
 
 
