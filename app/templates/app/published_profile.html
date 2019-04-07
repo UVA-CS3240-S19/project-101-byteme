@@ -53,10 +53,11 @@ User Profile
                      </div>
                   </div>
                   <div class="col-xs-12 col-sm-8">
-                     <ul class="list-group" style="position: absolute; left: 410px; width: 400px; top: 150px;">
+                     <ul class="list-group" style="position: absolute; left: 410px; width: 400px; top: 110px;">
                         <li class="list-group-item"><strong>Year: </strong>{{profile.year}}</li>
                         <li class="list-group-item"><strong>Major: </strong>{{profile.major}} </li>
                         <li class="list-group-item"><i class="fa fa-envelope"></i><a href="mailto:{{profile.user_id}}@virginia.edu?Subject=Hello">{{profile.user_id}}@virginia.edu</a></li>
+                        <li class="list-group-item"><strong>Status:</strong> {{profile.status}} </li>
                      </ul>
                   </div>
                </div>
@@ -130,20 +131,6 @@ User Profile
                      <div id="interests" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
                         <div class="card-body"> 
                            {{profile.interests}}
-                        </div>
-                     </div>
-                  </div>
-                  <div class="card">
-                     <div class="card-header" id="headingSix">
-                        <h5 class="mb-0">
-                           <button class="btn btn-link" data-toggle="collapse" data-target="#status" aria-expanded="false" aria-controls="collapseOne">
-                           Status
-                           </button>
-                        </h5>
-                     </div>
-                     <div id="status" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
-                        <div class="card-body">
-                           {{profile.status}}
                         </div>
                      </div>
                   </div>

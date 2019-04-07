@@ -88,7 +88,7 @@ def create_profile(request):
             if (form.is_valid()):
                 profile = form.save(commit=False)
                 if 'image' in request.FILES:
-                    profile.image =request.FILES['image']
+                    profile.image = request.FILES['image']
                 profile.user_id = computing_id
                 profile.id = request.user.id
 
@@ -122,13 +122,13 @@ def update_profile(request):
         ind = computing_id.index('@')
         computing_id = computing_id[0:ind]
         ProfileModel = modelform_factory(Profile, fields=(
-            'name', 'year', 'major', 'bio', 'skills', 'courses', 'organizations', 'interests', 'image',))
+            'name', 'year', 'major', 'bio', 'skills', 'courses', 'organizations', 'interests', 'status', 'image',))
         if request.method == "POST":
             form = ProfileModel(request.POST, request.FILES)
             if (form.is_valid()):
                 profile = form.save(commit=False)
                 if 'image' in request.FILES:
-                    profile.image =request.FILES['image']
+                    profile.image = request.FILES['image']
                 profile.user_id = computing_id
                 profile.id = request.user.id
 
