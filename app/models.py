@@ -32,8 +32,13 @@ class Profile(models.Model):
     organizations = models.CharField(max_length=200, blank=True)
     interests = models.CharField(max_length=100, blank=True)
     status = models.CharField(max_length=100, blank=True)
-    image = models.ImageField(default='default-avatar.jpg', upload_to='profile_pics')
-    # picture = models.ImageField()
+    image = models.ImageField(
+        default='default-avatar.jpg', upload_to='profile_pics')
+    facebook_url = models.URLField(max_length=200, blank=True)
+    twitter_url = models.URLField(max_length=200, blank=True)
+    linkedin_url = models.URLField(max_length=200, blank=True)
+    github_url = models.URLField(max_length=200, blank=True)
+
     tags = TaggableManager()
 
 

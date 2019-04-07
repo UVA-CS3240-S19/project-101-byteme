@@ -58,6 +58,26 @@
                 <label name="image">Upload Profile Picture:</label>
             <input id="image" class = "form-control" type="file" value="{{profile.image}}" name="image" accept="image/*" />
         </div>
+
+        <div> Please enter http:// or https:// before your URL </div>
+
+        <div class = "form-group">
+            <label name="facebook_url">Facebook URL:</label>
+            <input class="form-control" type="url" id="facebook_url" name="facebook_url" value="{{profile.facebook_url}}">
+        </div>
+        <div class = "form-group">
+            <label name="twitter_url">Twitter URL:</label>
+            <input class="form-control" type="url" id="twitter_url" name="twitter_url"value="{{profile.twitter_url}}">
+        </div>
+        <div class = "form-group">
+            <label name="linkedin_url">LinkedIn URL:</label>
+            <input class="form-control" type="url" id="linkedin_url" name="linkedin_url"value="{{profile.linkedin_url}}">
+        </div>
+        <div class = "form-group">
+            <label name="github_url">Github URL:</label>
+            <input class="form-control" type="url" id="github_url" name="github_url"value="{{profile.github_url}}">
+        </div>
+
         <div class = "form-group">
             <input class="form-control" type="submit" value="Publish">
         </div>

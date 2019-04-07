@@ -75,7 +75,7 @@ def create_profile(request):
     else:
         computing_id = request.user.username
         ProfileModel = modelform_factory(Profile, fields=(
-            'name', 'year', 'major', 'bio', 'skills', 'courses', 'organizations', 'interests', 'status', 'image'))
+            'name', 'year', 'major', 'bio', 'skills', 'courses', 'organizations', 'interests', 'status', 'image', 'facebook_url', 'twitter_url', 'linkedin_url', 'github_url'))
         if request.method == "POST" or Profile.objects.filter(user_id=computing_id):
             form = ProfileModel(request.POST)
             if (form.is_valid()):
@@ -128,6 +128,11 @@ def update_profile(request):
                 profile.organizations = request.POST['organizations']
                 profile.interests = request.POST['interests']
                 profile.status = request.POST['status']
+
+                profile.facebook_url = request.POST['facebook_url']
+                profile.twitter_url = request.POST['twitter_url']
+                profile.linkedin_url = request.POST['linkedin_url']
+                profile.github_url = request.POST['github_url']
 
                 if 'image' in request.FILES:
                     profile.image = request.FILES['image']
