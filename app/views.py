@@ -5,8 +5,10 @@ from django.http import Http404
 from django.http import HttpResponseRedirect
 from django.forms import modelform_factory
 from django.views import generic
+from django.views.generic import TemplateView
 from django.urls import reverse
-from .models import Profile, ProfileModel, Post, UpdateProfileForm
+from django.contrib.auth.models import User
+from .models import Profile, ProfileModel, Post, UpdateProfileForm, Friend
 
 
 def home(request):
@@ -28,6 +30,14 @@ def news_feed(request):
 
 class ProfileView(generic.DetailView):
     template_name = 'app/published_profile.html'
+    context_object_name = 'profile'
+
+    def get_queryset(self):
+        return Profile.objects.all()
+
+
+class UpdateView(generic.DetailView):
+    template_name = 'app/update_profile.html'
     context_object_name = 'profile'
 
     def get_queryset(self):
@@ -63,15 +73,15 @@ def create_profile(request):
     if not request.user.is_authenticated:
         return redirect('login')
     else:
-        computing_id = request.user.email
-        ind = computing_id.index('@')
-        computing_id = computing_id[0:ind]
+        computing_id = request.user.username
         ProfileModel = modelform_factory(Profile, fields=(
-            'name', 'year', 'major', 'bio', 'skills', 'courses', 'organizations', 'interests'))
+            'name', 'year', 'major', 'bio', 'skills', 'courses', 'organizations', 'interests', 'status', 'image', 'facebook_url', 'twitter_url', 'linkedin_url', 'github_url'))
         if request.method == "POST" or Profile.objects.filter(user_id=computing_id):
             form = ProfileModel(request.POST)
             if (form.is_valid()):
                 profile = form.save(commit=False)
+                if 'image' in request.FILES:
+                    profile.image = request.FILES['image']
                 profile.user_id = computing_id
                 profile.id = request.user.id
 
@@ -96,49 +106,80 @@ def create_profile(request):
         else:
             return render(request, 'app/profile.html', {'form': ProfileModel()})
 
-        # if request.method == "POST":
-        #     profile = ProfileForm(request.POST)
-        #     if profile.is_valid():
-        #         profile.save()
-        #         profile.id = request.user.id
-        #         profile.save()
-        #         return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': profile.id}))
-        #     else:
-        #         return render(request, 'app/profile.html', {'form': ProfileForm()})
-        # else:
-        #     return render(request, 'app/profile.html', {'form': ProfileForm()})
 
-
-'''
-def update_profile(request, pk):
-
+def update_profile(request):
     if not request.user.is_authenticated:
         return redirect('login')
     else:
+        computing_id = request.user.username
+        profile = Profile.objects.get(user_id=request.user.username)
         ProfileModel = modelform_factory(Profile, fields=(
-            'name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests'))
+            'name', 'year', 'major', 'bio', 'skills', 'courses', 'organizations', 'interests', 'status'))
         if request.method == "POST":
-            profile = ProfileModel(request.POST, instance=request.user)
-            if (profile.is_valid()):
-                profile.save()
-                return HttpResponseRedirect(reverse('app:update_profile', kwargs={'pk': pk}))
-            else:
-                return render(request, 'app/published_profile.html', {'form': ProfileModel()})
-        else:
-            profile = ProfileModel()
-            return render(request, 'app/published_profile.html', {'form': profile})
+            form = ProfileModel(request.POST, request.FILES)
+            if (form.is_valid()):
+                profile.user_id = computing_id
+                profile.id = request.user.id
+                profile.year = request.POST['year']
+                profile.major = request.POST['major']
+                profile.bio = request.POST['bio']
+                profile.skills = request.POST['skills']
+                profile.courses = request.POST['courses']
+                profile.organizations = request.POST['organizations']
+                profile.interests = request.POST['interests']
+                profile.status = request.POST['status']
 
-        #     if request.method == "POST":
-        #         profile = UpdateProfileForm(request.POST, request.FILES, instance=request.user)
-        #
-        #         if profile.is_valid():
-        #             profile.save()
-        #
-        #         return HttpResponseRedirect(reverse('app:update_profile', kwargs={'pk': pk}))
-        #     else:
-        #         profile = UpdateProfileForm(instance=request.user)
-        #         return render(request, 'app/published_profile.html', {'form': profile})
-'''
+                profile.facebook_url = request.POST['facebook_url']
+                profile.twitter_url = request.POST['twitter_url']
+                profile.linkedin_url = request.POST['linkedin_url']
+                profile.github_url = request.POST['github_url']
+
+                if 'image' in request.FILES:
+                    profile.image = request.FILES['image']
+
+                tags_to_add = set()
+
+                skills_list = profile.skills.split(",")
+                for i in skills_list:
+                    tags_to_add.add(i.strip())
+
+                interests_list = profile.interests.split(",")
+                for i in interests_list:
+                    tags_to_add.add(i.strip())
+
+                for i in tags_to_add:
+                    profile.tags.add(i)
+
+                profile.save()
+                return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': profile.id}))
+            else:
+                return render(request, 'app/update_profile.html', {'form': ProfileModel(), 'profile': Profile.objects.get(user_id=request.user.username)})
+
+        else:
+            return render(request, 'app/update_profile.html', {'form': ProfileModel(), 'profile': Profile.objects.get(user_id=request.user.username)})
+
+
+def search(request):
+    print("body", request.body)
+    if not request.user.is_authenticated:
+        return redirect('login')
+    else:
+        if request.POST['search_field'] == "":
+            return render(request, 'app/search_results.html', {'search_value': "", 'results': Profile.objects.all()})
+        search_value = request.POST['search_field']
+        search_value = str(search_value).lower().strip()
+        results = set()
+        for profile in Profile.objects.all():
+
+            profile_name = profile.name.lower().split(" ")
+            # or search_value == profile_name[1]:
+            found = False
+            for string in profile_name:
+                if search_value == string:
+                    found = True
+            if found:
+                results.add(profile)
+        return render(request, 'app/search_results.html', {'search_value': search_value, 'results': results})
 
 
 def login(request):
@@ -154,11 +195,38 @@ def notifications(request):
     return render(request, 'app/notifications.html')
 
 def friends(request):
-    return render(request, 'app/friends.html')
+   return render(request, 'app/friends.html')
 
 def settings(request):
     return render(request, 'app/settings.html')
 '''
+
+
+def logout_view(request):
+    logout(request)
+    return render(request, 'app/login_page.html')
+
+
+class Friend(generic.DetailView):
+    template_name = 'app/friends.html'
+
+    def get(self, request):
+        form = ProfileModel()
+        users = User.objects.exclude(id=request.user.id)
+        friend = Friend.objects.get(current_user=request.user)
+        friends = friend.users.all()
+
+        args = {'form': form, 'users': users, 'friends': friends}
+        return render(request, self.template_name, args)
+
+
+def change_friends(request, operation, pk):
+    new_friend = User.objects.get(pk=pk)
+    if operation == 'add':
+        Friend.make_friend(request.user, friend)
+    elif operation == 'remove':
+        Friend.lose_friend(request.user, friend)
+    return redirect('app/friends.html')
 
 
 def logout_view(request):

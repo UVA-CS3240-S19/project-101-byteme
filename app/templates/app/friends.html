@@ -1,0 +1,19 @@
+{% extends "app/base.html" %}
+{% block content1 %}
+    Friends
+{% endblock content1 %}
+{% block content2 %}
+
+<div class="container" style="top: 20px">
+    <div class="col-lg">
+        <h3>Friends</h3>
+        {% if profile %}
+            <a href="#">
+                 <h2>{{ profile.name }}</h2>
+            </a>
+        {% else %}
+            <p>There is currently no user data.</p>
+         {% endif %}
+      </div>
+</div>
+{% endblock content2 %}

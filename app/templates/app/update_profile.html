@@ -1,0 +1,85 @@
+{% extends "app/base.html" %}
+{% block title %}{% endblock %}
+{% block content2 %}
+    <h1>{{ "Update Your Profile:" }}</h1>
+    <form action="{% url 'update_profile' %}" method="post" class="needs-validation" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class = "form-group">
+            <label name="name">Name:</label>
+            <input class="form-control" type="text" id="name" name="name" value="{{profile.name}}" required>
+        </div>
+        <div class = "form-group">
+            <label name="year">Year:</label>
+            <select id = "year" name = "year" class="form-control" value="{{profile.year}}">
+                <option value = "2019">2019</option>
+                <option value = "2020">2020</option>
+                <option value = "2021">2021</option>
+                <option value = "2022">2022</option>
+                <option value = "Graduate Student">Graduate Student</option>
+                <option value = "Faculty">Faculty</option>
+                <option value = "Other">Other</option>
+            </select>
+        </div>
+        <div class = "form-group">
+            <label name="major">Major:</label>
+            <input class="form-control" type="text" id="major" name="major" value="{{profile.major}}" required>
+        </div>
+        <div class = "form-group">
+            <label name="bio">Bio:</label>
+            <textarea class="form-control" type="text" id="bio" name="bio" rows="4" >{{profile.bio}}</textarea>
+        </div>
+
+        <div> Please enter a comma separated list for the following. </div>
+
+        <div class = "form-group">
+            <label name="skills">Skills:</label>
+            <input class="form-control" type="text" id="skills" name="skills" value="{{profile.skills}}">
+        </div>
+
+        <div> Please enter a course code (ex. CS2150, CS4102) </div>
+
+        <div class = "form-group">
+            <label name="courses">Courses:</label>
+            <input class="form-control" type="text" id="courses" name="courses" value="{{profile.courses}}">
+        </div>
+        <div class = "form-group">
+            <label name="organizations">Organizations:</label>
+            <input class="form-control" type="text" id="organizations" name="organizations" value="{{profile.organizations}}">
+        </div>
+        <div class = "form-group">
+            <label name="interests">Interests:</label>
+            <input class="form-control" type="text" id="interests" name="interests" value="{{profile.interests}}">
+        </div>
+        <div class = "form-group">
+            <label name="status">Status:</label>
+            <input class="form-control" type="text" id="status" value="{{profile.status}}"name="status">
+        </div>
+        <div class = "form-group">
+                <label name="image">Upload Profile Picture:</label>
+            <input id="image" class = "form-control" type="file" value="{{profile.image}}" name="image" accept="image/*" />
+        </div>
+
+        <div> Please enter http:// or https:// before your URL </div>
+
+        <div class = "form-group">
+            <label name="facebook_url">Facebook URL:</label>
+            <input class="form-control" type="url" id="facebook_url" name="facebook_url" value="{{profile.facebook_url}}">
+        </div>
+        <div class = "form-group">
+            <label name="twitter_url">Twitter URL:</label>
+            <input class="form-control" type="url" id="twitter_url" name="twitter_url"value="{{profile.twitter_url}}">
+        </div>
+        <div class = "form-group">
+            <label name="linkedin_url">LinkedIn URL:</label>
+            <input class="form-control" type="url" id="linkedin_url" name="linkedin_url"value="{{profile.linkedin_url}}">
+        </div>
+        <div class = "form-group">
+            <label name="github_url">Github URL:</label>
+            <input class="form-control" type="url" id="github_url" name="github_url"value="{{profile.github_url}}">
+        </div>
+
+        <div class = "form-group">
+            <input class="form-control" type="submit" value="Publish">
+        </div>
+    </form>
+{% endblock %}

@@ -125,7 +125,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
@@ -149,3 +155,8 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '116473098917-ba61gta7recuqe20navc94hkb7ncuifs.a
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'KaHjOFs4NY1Xuha0438Kr9-w'  # Paste Secret Key
 
 LOGIN_REDIRECT_URL = 'profile'
+LOGOUT_REDIRECT_URL = 'login'
+ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
+
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'profile'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
