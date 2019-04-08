@@ -1,206 +1,206 @@
 {% extends "app/base.html" %}
 {% load static %}
 <head>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link rel="stylesheet" type="text/css" href="{% static 'profile.css' %}">
-
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="{% static 'profile.css' %}">
+   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 </head>
-
-
 {% block content1 %}
-    User Profile
+User Profile
 {% endblock content1 %}
 {% block content2 %}
-<link href="{% static 'published_profile.css' %}" type="text/css" rel="stylesheet">
-
 {% if profile %}
-
-
-<!--<body>-->
-<!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
-<!--<link rel="stylesheet" type="text/css" href="{% static 'profile.css' %}">-->
-
-    <!--<div class="top-middle">-->
-        <!--<div class="profile-picture">-->
-            <!--<img src="prof.jpg" width="500" height="600">-->
-        <!--</div>-->
-        <!--<div class="basic-info-box">-->
-            <!--<div class="basic-info">-->
-                <!--<h1>{{profile.name}}</h1>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-
-
-<!--</body>-->
-
-
-<body id = "profileinfo" >
-<div class="row">
-    <div class="panel panel-default">
-        <div class="panel-heading resume-heading">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="main-info" style="width: 1000px; height: 450px; margin: 30px 50px; padding: 30px 20px; position: absolute; background-color: #F8F8F8;">
-                    <div class="col-xs-12 col-sm-4" style="position: absolute;">
-                        <figure>
-                            <img class="img-circle img-responsive" alt="" src="http://placehold.it/300x300" style="border-radius: 50%; position: absolute; left: 40px;">
-                        </figure>
-                        <div class="col-xs-12 col-sm-4" style="position: absolute; left: 400px; top: 30px; display:inline">
-                            <h1>{{ profile.name }}</h1>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-xs-12 social-btns" style="display: inline-block; padding-left: 100px;">
-                                <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder" style="position: absolute; top: 340px;">
-                                    <a href="#" class="btn btn-social btn-block btn-google">
-                                    <i class="fa fa-google"></i> </a>
-                                </div>
-                                <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder" style="position: absolute; top: 340px; left: 130px;">
-                                    <a href="#" class="btn btn-social btn-block btn-facebook">
-                                    <i class="fa fa-facebook"></i> </a>
-                                </div>
-                                <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder" style="position: absolute; top: 340px; left: 160px;">
-                                    <a href="#" class="btn btn-social btn-block btn-twitter">
-                                    <i class="fa fa-twitter"></i> </a>
-                                </div>
-                                <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder" style="position: absolute; left: 190px; top: 340px;">
-                                    <a href="#" class="btn btn-social btn-block btn-linkedin">
-                                    <i class="fa fa-linkedin"></i> </a>
-                                </div>
-                                <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder" style="position: absolute; left: 220px; top:340px;">
-                                    <a href="#" class="btn btn-social btn-block btn-github">
-                                    <i class="fa fa-github"></i> </a>
-                                </div>
-                            </div>
-
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-8">
-                           <ul class="list-group" style="position: absolute; left: 410px; width: 400px; top: 150px;">
-                               <!--<li class="list-group-item"><strong>Name: </strong>{{profile.name}}</li>-->
-                              <li class="list-group-item"><strong>Year: </strong>{{profile.year}}</li>
-                              <li class="list-group-item"><strong>Major: </strong>{{profile.major}} </li>
-                              <li class="list-group-item"><i class="fa fa-envelope"></i> {{profile.computing_id}} @virginia.edu</li>
-                           </ul>
+<link rel="stylesheet" type="text/css" href="{% static 'profile.css' %}">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+   <div class="row">
+      <div class="panel panel-default">
+         <div class="panel-heading resume-heading" id = "top-header"></div>
+         <div class="row">
+            <div class="col-lg-12">
+               <div class="main-info" style="width: 1000px; height: 450px; margin: 30px 50px; padding: 30px 20px; position: absolute; background-color: #F8F8F8;">
+                  <div class="col-xs-12 col-sm-4" style="position: absolute;">
+                    <div class="pic-div">
+                    <!-- class="img-circle img-responsive" style="border-radius: 50%; position: absolute; left: 40px; width: 350px" -->
+                        <img id = "profile-pic" alt="" src="{{ profile.image.url }}">
+                    </div>
+                     <div class="col-xs-12 col-sm-4" style="position: absolute; left: 400px; top: 30px; display:inline;">
+                        <h1 style=" width: 500px;">{{ profile.name }}</h1>
+                     </div>
+                     <div class="row">
+                        <div class="col-xs-12 social-btns" style="display: inline-block; padding-left: 80px;">
+                           <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder" style="position: absolute; top: 340px;">
+                              <a href="{{profile.facebook_url}}" class="btn btn-social btn-block btn-facebook" style="width: 40px; height: 40px">
+                              <i class="fa fa-facebook"></i> </a>
+                           </div>
+                           <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder" style="position: absolute; top: 340px;margin-left:45px;">
+                              <a href="{{profile.twitter_url}}" class="btn btn-social btn-block btn-twitter"style="width: 40px; height: 40px">
+                              <i class="fa fa-twitter"></i> </a>
+                           </div>
+                           <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder" style="position: absolute; top: 340px;margin-left:90px; ">
+                              <a href="{{profile.linkedin_url}}" class="btn btn-social btn-block btn-linkedin"style="width: 40px; height: 40px">
+                              <i class="fa fa-linkedin"></i> </a>
+                           </div>
+                           <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder" style="position: absolute; top:340px; margin-left:135px;">
+                              <a href="{{profile.github_url}}" class="btn btn-social btn-block btn-github"style="width: 40px; height: 40px">
+                              <i class="fa fa-github"></i> </a>
+                           </div>
                         </div>
                      </div>
-                </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-8">
+                     <ul class="list-group" style="position: absolute; left: 410px; width: 400px; top: 110px;">
+                        <li class="list-group-item"><i class="fa fa-exclamation-circle" aria-hidden="true"></i><strong>Status: </strong>{{profile.status}} </li>
+                        <li class="list-group-item"><i class="fa fa-calendar" aria-hidden="true"></i><strong>Year: </strong>{{profile.year}}</li>
+                        <li class="list-group-item"><i class="fa fa-graduation-cap" aria-hidden="true"></i><strong>Major: </strong>{{profile.major}} </li>
+                        <li class="list-group-item"><i class="fa fa-envelope" aria-hidden="true"></i><strong>Email: </strong><a href="mailto:{{profile.user_id}}@virginia.edu?Subject=Hello">{{profile.user_id}}@virginia.edu</a></li>
+                     </ul>
                   </div>
                </div>
-               <div class="bs-callout bs-callout-danger" style="position: absolute; width:1000px; height: 200px; left: 65px; top: 500px;">
-                  <h4>Bio </h4>
-                  <p>
-                     {{profile.bio}}
-                  </p>
-               </div>
-               <div class="bs-callout bs-callout-danger" style="position: absolute; width:1000px; height: 100px; left: 65px; top: 650px;">
-                  <h4>Skills </h4>
-                  <p>
-                     {{profile.skills}}
-                  </p>
-               </div>
-               <div class="bs-callout bs-callout-danger" style="position: absolute; width:1000px; height: 100px; left: 65px; top: 745px;">
-                  <h4>Courses </h4>
-                   <p>
-                     {{profile.courses}}
-                  </p>
-               </div>
-               <div class="bs-callout bs-callout-danger" style="position: absolute; width:1000px; height: 100px; left: 65px; top: 840px;">
-                  <h4>Organizations</h4>
-                   <p>
-                       {{profile.organizations}}
-                   </p>
-               </div>
-               <div class="bs-callout bs-callout-danger" style="position: absolute; width:950px; height: 100px; left: 65px; top: 935px;">
-                  <h4>Interests</h4>
-                   <p>
-                     {{profile.interests}}
-                   </p>
             </div>
+            <div class="container" style="position: absolute; top: 500px; left: 50px; width:1000px" id="bottom">
+               <div class="row">
+                  <div class="col-sm">
+                     <div class="container">
+                        <div class="col-sm">
+                           <i class="fa fa-user fa-lg" aria-hidden="true"></i><h3 class="heading">Bio</h3>
+                        </div>
+                        <div class="col-sm">
+                           <div id="bio">
+                              {{profile.bio}}
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-sm">
+                     <div class="container">
+                        <div class="col-sm">
+                           <i class="fa fa-star" aria-hidden="true"></i><h3 class="heading">Skills</h3>
+                        </div>
+                        <div class="col-sm">
+                           <div class="text">
+                              {% for skill in profile.skills_as_list %}
+                                 <div class="tag-item">{{ skill }}</div>
+                              {% endfor %}
+                           </div>
+                        </div>
+                         <div class="col-sm">
+                           <i class="fa fa-book" aria-hidden="true"></i><h3 class="heading">Courses</h3>
+                        </div>
+                        <div class="col-sm">
+                           <div class="text">
+                              {% for course in profile.courses_as_list %}
+                                 <div class="tag-item">{{ course }}</div>
+                              {% endfor %}
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-sm">
+                     <div class="container">
+                        <div class="col-sm">
+                        <i class="fa fa-users fa-lg" aria-hidden="true"></i><h3 class="heading">Organizations</h3>
+                        </div>
+                        <div class="col-sm">
+                           <div class="text">
+                              {% for organization in profile.organizations_as_list %}
+                                 <div class="tag-item">{{ organization }}</div>
+                              {% endfor %}
+                           </div>
+                        </div>
+                        <div class="col-sm">
+                           <i class="fa fa-heart" aria-hidden="true"></i><h3 class="heading">Interests</h3>
+                        </div>
+                        <div class="col-sm">
+                           <div class="text">
+                              {% for interest in profile.interests_as_list %}
+                                 <div class="tag-item">{{ interest }}</div>
+                              {% endfor %}
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               {% comment %} <div id="accordion">
+                  <div class="card">
+                     <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                           <button class="btn btn-link" data-toggle="collapse" data-target="#bio" aria-expanded="false" aria-controls="collapseOne">
+                           Bio
+                           </button>
+                        </h5>
+                     </div>
+                     <div id="bio" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body"> 
+                           {{profile.bio}}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="card">
+                     <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                           <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#skills" aria-expanded="false" aria-controls="collapseTwo">
+                           Skills
+                           </button>
+                        </h5>
+                     </div>
+                     <div id="skills" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                           {{profile.skills}}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="card">
+                     <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                           <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#courses" aria-expanded="false" aria-controls="collapseThree">
+                           Courses
+                           </button>
+                        </h5>
+                     </div>
+                     <div id="courses" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card-body">
+                           {{profile.courses}}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="card">
+                     <div class="card-header" id="headingFour">
+                        <h5 class="mb-0">
+                           <button class="btn btn-link" data-toggle="collapse" data-target="#organizations" aria-expanded="false" aria-controls="collapseOne">
+                           Organizations
+                           </button>
+                        </h5>
+                     </div>
+                     <div id="organizations" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                        <div class="card-body"> 
+                           {{profile.organizations}}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="card">
+                     <div class="card-header" id="headingFive">
+                        <h5 class="mb-0">
+                           <button class="btn btn-link" data-toggle="collapse" data-target="#interests" aria-expanded="false" aria-controls="collapseOne">
+                           Interests
+                           </button>
+                        </h5>
+                     </div>
+                     <div id="interests" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                        <div class="card-body"> 
+                           {{profile.interests}}
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div> {% endcomment %}
          </div>
-    </div>
-</body>
-
-
-
-
-
-
-<!--<ul>-->
-<!--<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">-->
-<!--<div class="container">-->
-	<!--<div class="row">-->
-		<!--<div class="col-md-offset-8 col-md-12 col-lg-offset-6 col-lg-12">-->
-    	 <!--<div class="well profile">-->
-            <!--<div class="col-sm-16">-->
-                <!--<div class="col-xs-16 col-sm-10">-->
-                <!--<h2>{{profile.name}}</h2>-->
-                    <!--<div id = "main_info">-->
-                        <!--<p><strong>Year: </strong>{{ profile.year }}</p>-->
-                        <!--<p><strong>Major: </strong>{{ profile.major }}</p>-->
-                    <!--</div>-->
-                    <!--<div>-->
-                        <!--<p><strong>Bio:  </strong>{{ profile.bio }}</p>-->
-                    <!--</div>-->
-                <!--<p><strong>Skills: </strong>-->
-                    <!--<span class="tags">{{ profile.skills }}</span>-->
-                <!--</p>-->
-                <!--<p><strong>Courses:  </strong>{{ profile.courses }}</p>-->
-                <!--<p><strong>Organizations:  </strong>{{ profile.organizations }}</p>-->
-                <!--<p><strong>Interests:  </strong>{{ profile.interests }}</p>-->
-                <!--</div>-->
-            <!--</div>-->
-             <!--<div class="col-xs-12 col-sm-4 text-center">-->
-                    <!--<figure>-->
-                        <!--<img src="http://www.localcrimenews.com/wp-content/uploads/2013/07/default-user-icon-profile.png" alt="" class="img-circle img-responsive">-->
-                        <!--<figcaption class="ratings">-->
-                            <!--<p>Ratings-->
-                            <!--<a href="#">-->
-                                <!--<span class="fa fa-star"></span>-->
-                            <!--</a>-->
-                            <!--<a href="#">-->
-                                <!--<span class="fa fa-star"></span>-->
-                            <!--</a>-->
-                            <!--<a href="#">-->
-                                <!--<span class="fa fa-star"></span>-->
-                            <!--</a>-->
-                            <!--<a href="#">-->
-                                <!--<span class="fa fa-star"></span>-->
-                            <!--</a>-->
-                            <!--<a href="#">-->
-                                 <!--<span class="fa fa-star-o"></span>-->
-                            <!--</a>-->
-                            <!--</p>-->
-                        <!--</figcaption>-->
-                    <!--</figure>-->
-                <!--</div>-->
-             <!--<div class="col-xs-12 divider text-center">-->
-                <!--<div class="col-xs-12 col-sm-4 emphasis">-->
-                    <!--<div class="btn-group dropup btn-block">-->
-                      <!--<button type="button" class="btn btn-primary"><span class="fa fa-gear"></span> Connect </button>-->
-                      <!--<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">-->
-                        <!--<span class="caret"></span>-->
-                        <!--<span class="sr-only">Toggle Dropdown</span>-->
-                      <!--</button>-->
-                      <!--<ul class="dropdown-menu text-left" role="menu">-->
-                        <!--<li><a href="#"><span class="fa fa-envelope pull-right"></span> Message </a></li>-->
-                        <!--<li><a href="#"><span class="fa fa-list pull-right"></span> Block </a></li>-->
-                        <!--<li class="divider"></li>-->
-                        <!--<li><a href="#" class="btn disabled" role="button"> Unfollow </a></li>-->
-                      <!--</ul>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-    	 <!--</div>-->
-		<!--</div>-->
-	<!--</div>-->
-<!--</div>-->
-    <!--</ul>-->
-
+      </div>
+   </div>
+</div>
 {% else %}
-    <p>There is currently no user data.</p>
+<p>There is currently no user data.</p>
 {% endif %}
 {% endblock content2 %}
