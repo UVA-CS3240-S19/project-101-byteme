@@ -1,8 +1,9 @@
 {% extends "app/base.html" %}
 {% block title %}{% endblock %}
 {% block content2 %}
-    <h1>{{ "Create Your Profile:" }}</h1>
-    <form action="{% url 'profile' %}" method="post" class="needs-validation">
+<div style="margin-top:64px;">
+    <h2>{{ "Create Your Profile:" }}</h2>
+    <form action="{% url 'profile' %}" method="post" class="needs-validation" enctype="multipart/form-data">
         {% csrf_token %}
         <div class = "form-group">
             <label name="name">Name:</label>
@@ -19,7 +20,7 @@
                     <option value = "Graduate Student">Graduate Student</option>
                     <option value = "Faculty">Faculty</option>
                     <option value = "Other">Other</option>
-                  </select>
+            </select>
         </div>
         <div class = "form-group">
             <label name="major">Major:</label>
@@ -30,7 +31,7 @@
             <textarea class="form-control" type="text" id="bio" name="bio" rows="4"></textarea>
         </div>
 
-        <div> Please enter a comma separated list for the following. </div>
+        <h4> Please enter a comma separated list for the following. </h4>
 
         <div class = "form-group">
             <label name="skills">Skills:</label>
@@ -52,7 +53,33 @@
             <input class="form-control" type="text" id="interests" name="interests">
         </div>
         <div class = "form-group">
+            <label name="status">Status:</label>
+            <input class="form-control" type="text" id="status" name="status">
+        </div>
+        <div class = "form-group">
+                <label name="image">Upload Profile Picture:</label>
+            <input id="image" class = "form-control" type="file" value="{{profile.image}}" name="image" accept="image/*" />
+        </div>
+        <div class = "form-group">
+            <label name="facebook_url">Facebook URL:</label>
+            <input class="form-control" type="url" id="facebook_url" name="facebook_url">
+        </div>
+        <div class = "form-group">
+            <label name="twitter_url">Twitter URL:</label>
+            <input class="form-control" type="url" id="twitter_url" name="twitter_url">
+        </div>
+        <div class = "form-group">
+            <label name="linkedin_url">LinkedIn URL:</label>
+            <input class="form-control" type="url" id="linkedin_url" name="linkedin_url">
+        </div>
+        <div class = "form-group">
+            <label name="github_url">Github URL:</label>
+            <input class="form-control" type="url" id="github_url" name="github_url">
+        </div>
+        
+        <div class = "form-group">
             <input class="form-control" type="submit" value="Publish">
         </div>
     </form>
+</div>
 {% endblock %}

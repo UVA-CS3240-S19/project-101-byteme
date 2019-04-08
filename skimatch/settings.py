@@ -159,3 +159,4 @@ LOGOUT_REDIRECT_URL = 'login'
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
 
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'profile'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
