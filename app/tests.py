@@ -74,33 +74,20 @@ class ProfileComponentsTest(TestCase):
         })
         self.assertTrue(form.is_valid())
 
-<<<<<<< HEAD
-class UpdateTest(TestCase):
-=======
 
 class SignUpTest(TestCase):
->>>>>>> endorse
     def setUp(self):
         self.user = User.objects.create(
             username='testuser', password='12345', is_active=True, is_staff=True, is_superuser=True)
         self.user.save()
+
     def test_update(self):
-        self.client.post(('/profile'), {'name': "Test", 'year': "2020", "major": "CS", "bio": "Test data", 'skills': "Test data", 'courses': "Test data", 'organizations': "Test data", 'interests': "Test data"})
+        self.client.post(('/profile'), {'name': "Test", 'year': "2020", "major": "CS", "bio": "Test data",
+                                        'skills': "Test data", 'courses': "Test data", 'organizations': "Test data", 'interests': "Test data"})
         response = self.client.post(('/update_profile'), {'name': "Tester"})
         self.assertTrue(isinstance(response, HttpResponsePermanentRedirect))
         self.assertEqual(response.status_code, 301)
 
-
-<<<<<<< HEAD
-class SignUpTest(TestCase):
-    def setUp(self):
-        self.client = Client()
-        self.user = User.objects.create(
-            username='testuser', password='12345', email = "testuser@virginia.edu", is_active=True, is_staff=True, is_superuser=True)
-        self.user.save()
-
-=======
->>>>>>> endorse
     def test_first_time_login(self):
         response = self.client.get('/profile')
         self.assertEqual(response.status_code, 301)
@@ -110,18 +97,13 @@ class SignUpTest(TestCase):
         response = self.client.post(('/profile/'), {
             'name': "Test",
             'year': "2020",
-            'major': "CS", 
-            'bio': "Test data", 
-            'skills': "Test data", 
-            'courses': "Test data", 
-            'organizations': "Test data", 
+            'major': "CS",
+            'bio': "Test data",
+            'skills': "Test data",
+            'courses': "Test data",
+            'organizations': "Test data",
             'interests': "Test data"})
         self.assertRedirects(response, 'app/published_profile/10')
-<<<<<<< HEAD
-=======
-    '''
-
->>>>>>> endorse
 
 # c.logout()
 # User.objects.filter(username=admin.username).delete()
