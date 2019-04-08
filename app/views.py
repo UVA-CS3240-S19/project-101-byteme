@@ -60,6 +60,7 @@ def create_profile(request):
                 if 'image' in request.FILES:
                     profile.image = request.FILES['image']
                 profile.user_id = computing_id
+                profile.computing_id = computing_id
                 profile.id = request.user.id
                 # profile.save()
                 # 'computing_id':computing_id}))
@@ -171,6 +172,35 @@ def search(request):
                     results.add(profile)
         return render(request, 'app/search_results.html', {'search_value': search_value, 'results': results})
 
+        # if request.method == "POST":
+        #     profile = ProfileForm(request.POST)
+        #     if profile.is_valid():
+        #         profile.save()
+        #         profile.id = request.user.id
+        #         profile.save()
+        #         return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': profile.id}))
+        #     else:
+        #         return render(request, 'app/profile.html', {'form': ProfileForm()})
+        # else:
+        #     return render(request, 'app/profile.html', {'form': ProfileForm()})
+
+def endorse(request, pk):
+    profile = Profile.objects.filter(id = pk).first()
+    #if request.user.id not in profile.endorsements:
+    #exists = True if request.user.id in endorsements else False
+    computing_id = request.user.email
+    ind = computing_id.index('@')
+    computing_id = computing_id[0:ind]
+    ids = [x.strip() for x in profile.endorsements.split(',')]
+    found = False
+    for e in ids:
+        if e == computing_id:
+            found = True
+    if found == True and profile.user_id != computing_id:
+        profile.endorsements += (", "+str(computing_id))
+        profile.endorse+=1
+        profile.save()
+    return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': request.user.id}))
 
 def login(request):
     context = {}
@@ -197,29 +227,10 @@ def logout_view(request):
     logout(request)
     return render(request, 'app/login_page.html')
 
-
-class Friend(generic.DetailView):
-    template_name = 'app/friends.html'
-
-    def get(self, request):
-        form = ProfileModel()
-        users = User.objects.exclude(id=request.user.id)
-        friend = Friend.objects.get(current_user=request.user)
-        friends = friend.users.all()
-
-        args = {'form': form, 'users': users, 'friends': friends}
-        return render(request, self.template_name, args)
-
-
 def change_friends(request, operation, pk):
     new_friend = User.objects.get(pk=pk)
     if operation == 'add':
-        Friend.make_friend(request.user, friend)
+        Friend.make_friend(request.user, new_friend)
     elif operation == 'remove':
-        Friend.lose_friend(request.user, friend)
+        Friend.lose_friend(request.user, new_friend)
     return redirect('app/friends.html')
-
-
-def logout_view(request):
-    logout(request)
-    return render(request, 'app/login_page.html')

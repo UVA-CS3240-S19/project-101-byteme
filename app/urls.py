@@ -15,6 +15,13 @@ urlpatterns = [
     #path('notifications/', views.notifications, name='notifications'),
     #path('settings/', views.settings, name='settings'),
 
+    path('update_profile/<int:pk>', views.update_profile, name='update_profile'),
+    path('news_feed/', views.news_feed, name='news_feed'),
+    path('messaging/', views.messaging, name='messaging'),
+    path('friends/', views.friends, name='friends'),
+    path('notifications/', views.notifications, name='notifications'),
+    path('settings/', views.settings, name='settings'),
+    path('endorse/<int:pk>', views.endorse, name='endorse')
 ]
 
 if settings.DEBUG:
