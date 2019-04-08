@@ -6,8 +6,6 @@
    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 </head>
-
-
 {% block content1 %}
 User Profile
 {% endblock content1 %}
@@ -58,13 +56,13 @@ User Profile
                         <li class="list-group-item"><i class="fa fa-graduation-cap" aria-hidden="true"></i><strong>Major: </strong>{{profile.major}} </li>
                         <li class="list-group-item"><i class="fa fa-envelope" aria-hidden="true"></i><strong>Email: </strong><a href="mailto:{{profile.user_id}}@virginia.edu?Subject=Hello">{{profile.user_id}}@virginia.edu</a></li>
                         <li class="list-group-item">
-                            <strong>Endorsements: </strong>{{ profile.endorse}} 
-                            {% if request.user.id != profile.id %}
-                              <form action="{% url 'app:endorse' profile.id%}" method="POST">
-                                    <input type="submit" value="Endorse"/>
-                                    {% csrf_token %}  
-                              </form>
-                           {% endif %}
+                        <strong>Endorsements: </strong>{{ profile.endorse}} 
+                        {% if request.user.id != profile.id %}
+                           <form action="{% url 'app:endorse' profile.id%}" method="POST">
+                                 <input type="submit" value="Endorse"/>
+                                 {% csrf_token %}  
+                           </form>
+                        {% endif %}
                         </li>
                      </ul>
                   </div>

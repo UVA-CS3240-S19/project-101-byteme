@@ -75,7 +75,11 @@ class ProfileComponentsTest(TestCase):
         self.assertTrue(form.is_valid())
 
 
+<<<<<<< HEAD
 class SignUpTest(TestCase):
+=======
+class UpdateTest(TestCase):
+>>>>>>> master
     def setUp(self):
         self.user = User.objects.create(
             username='testuser', password='12345', is_active=True, is_staff=True, is_superuser=True)
@@ -88,6 +92,17 @@ class SignUpTest(TestCase):
         self.assertTrue(isinstance(response, HttpResponsePermanentRedirect))
         self.assertEqual(response.status_code, 301)
 
+<<<<<<< HEAD
+=======
+
+class SignUpTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.user = User.objects.create(
+            username='testuser', password='12345', email="testuser@virginia.edu", is_active=True, is_staff=True, is_superuser=True)
+        self.user.save()
+
+>>>>>>> master
     def test_first_time_login(self):
         response = self.client.get('/profile')
         self.assertEqual(response.status_code, 301)

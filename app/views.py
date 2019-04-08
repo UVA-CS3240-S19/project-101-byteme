@@ -43,29 +43,6 @@ class UpdateView(generic.DetailView):
     def get_queryset(self):
         return Profile.objects.all()
 
-
-def search(request):
-    print("body", request.body)
-    if not request.user.is_authenticated:
-        return redirect('login')
-    else:
-        if request.POST['search_field'] == "":
-            return render(request, 'app/search_results.html', {'search_value': "", 'results': Profile.objects.all()})
-        search_value = request.POST['search_field']
-        search_value = str(search_value).lower().strip()
-        results = set()
-        for profile in Profile.objects.all():
-
-            profile_name = profile.name.lower().split(" ")
-            # or search_value == profile_name[1]:
-            if search_value == profile.name.lower() or search_value == profile_name[0]:
-                results.add(profile)
-
-            for tags in profile.tags.all():
-                if search_value == str(tags).lower():
-                    results.add(profile)
-        return render(request, 'app/search_results.html', {'search_value': search_value, 'results': results})
-
 # form to create profile
 
 
@@ -113,25 +90,6 @@ def create_profile(request):
         else:
             return render(request, 'app/profile.html', {'form': ProfileModel()})
 
-
-def endorse(request, pk):
-    profile = Profile.objects.filter(id = pk).first()
-    #if request.user.id not in profile.endorsements:
-    #exists = True if request.user.id in endorsements else False
-    computing_id = request.user.email
-    ind = computing_id.index('@')
-    computing_id = computing_id[0:ind]
-    ids = [x.strip() for x in profile.endorsements.split(',')]
-    found = False
-    for e in ids:
-        if e == computing_id:
-            found = True
-    if found == True and profile.user_id != computing_id:
-        profile.endorsements += (", "+str(computing_id))
-        profile.endorse+=1
-        profile.save()
-        profile.objects.save()
-    return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': pk}))
 
 def update_profile(request):
     if not request.user.is_authenticated:
@@ -189,6 +147,63 @@ def update_profile(request):
             return render(request, 'app/update_profile.html', {'form': ProfileModel(), 'profile': Profile.objects.get(user_id=request.user.username)})
 
 
+def search(request):
+    print("body", request.body)
+    if not request.user.is_authenticated:
+        return redirect('login')
+    else:
+        if request.POST['search_field'] == "":
+            return render(request, 'app/search_results.html', {'search_value': "", 'results': Profile.objects.all()})
+        search_value = request.POST['search_field']
+        search_value = str(search_value).lower().strip()
+        results = set()
+        for profile in Profile.objects.all():
+            profile_name = profile.name.lower().split(" ")
+            # or search_value == profile_name[1]:
+            found = False
+            for string in profile_name:
+                if search_value == string:
+                    found = True
+            if found:
+                results.add(profile)
+
+            for tags in profile.tags.all():
+                if search_value.lower().strip() == str(tags).lower().strip():
+                    results.add(profile)
+        return render(request, 'app/search_results.html', {'search_value': search_value, 'results': results})
+
+        # if request.method == "POST":
+        #     profile = ProfileForm(request.POST)
+        #     if profile.is_valid():
+        #         profile.save()
+        #         profile.id = request.user.id
+        #         profile.save()
+        #         return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': profile.id}))
+        #     else:
+        #         return render(request, 'app/profile.html', {'form': ProfileForm()})
+        # else:
+        #     return render(request, 'app/profile.html', {'form': ProfileForm()})
+
+
+def endorse(request, pk):
+    profile = Profile.objects.filter(id=pk).first()
+    # if request.user.id not in profile.endorsements:
+    #exists = True if request.user.id in endorsements else False
+    computing_id = request.user.email
+    ind = computing_id.index('@')
+    computing_id = computing_id[0:ind]
+    ids = [x.strip() for x in profile.endorsements.split(',')]
+    found = False
+    for e in ids:
+        if e == computing_id:
+            found = True
+    if found == True and profile.user_id != computing_id:
+        profile.endorsements += (", "+str(computing_id))
+        profile.endorse += 1
+        profile.save()
+    return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': request.user.id}))
+
+
 def login(request):
     context = {}
     return render(request, 'app/login_page.html', context)
@@ -203,7 +218,7 @@ def notifications(request):
 
 
 def friends(request):
-   return render(request, 'app/friends.html')
+    return render(request, 'app/friends.html')
 
 
 def settings(request):
@@ -222,4 +237,3 @@ def change_friends(request, operation, pk):
     elif operation == 'remove':
         Friend.lose_friend(request.user, new_friend)
     return redirect('app/friends.html')
-
