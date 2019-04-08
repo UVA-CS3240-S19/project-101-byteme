@@ -6,17 +6,13 @@
    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 </head>
-<<<<<<< HEAD
-=======
 
 
->>>>>>> endorse
 {% block content1 %}
 User Profile
 {% endblock content1 %}
 {% block content2 %}
 {% if profile %}
-<<<<<<< HEAD
 <link rel="stylesheet" type="text/css" href="{% static 'profile.css' %}">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container">
@@ -78,42 +74,6 @@ User Profile
                      <div class="container">
                         <div class="col-sm">
                            <i class="fa fa-user fa-lg" aria-hidden="true"></i><h3 class="heading">Bio</h3>
-=======
-
-
-<!--<body>-->
-<!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
-<!--<link rel="stylesheet" type="text/css" href="{% static 'profile.css' %}">-->
-
-    <!--<div class="top-middle">-->
-        <!--<div class="profile-picture">-->
-            <!--<img src="prof.jpg" width="500" height="600">-->
-        <!--</div>-->
-        <!--<div class="basic-info-box">-->
-            <!--<div class="basic-info">-->
-                <!--<h1>{{profile.name}}</h1>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-
-
-<!--</body>-->
-
-
-<body id = "profileinfo" >
-<div class="row">
-    <div class="panel panel-default">
-        <div class="panel-heading resume-heading">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="main-info" style="width: 1000px; height: 450px; margin: 30px 50px; padding: 30px 20px; position: absolute; background-color: #F8F8F8;">
-                    <div class="col-xs-12 col-sm-4" style="position: absolute;">
-                        <figure>
-                            <img class="img-circle img-responsive" alt="" src="http://placehold.it/300x300" style="border-radius: 50%; position: absolute; left: 40px;">
-                        </figure>
-                        <div class="col-xs-12 col-sm-4" style="position: absolute; left: 400px; top: 30px; display:inline">
-                            <h1>{{ profile.name }}</h1>
->>>>>>> endorse
                         </div>
                         <div class="col-sm">
                            <div id="bio">
@@ -134,7 +94,6 @@ User Profile
                               {% endfor %}
                            </div>
                         </div>
-<<<<<<< HEAD
                          <div class="col-sm">
                            <i class="fa fa-book" aria-hidden="true"></i><h3 class="heading">Courses</h3>
                         </div>
@@ -168,22 +127,6 @@ User Profile
                                  <div class="tag-item">{{ interest }}</div>
                               {% endfor %}
                            </div>
-=======
-                        <div class="col-xs-12 col-sm-8">
-                           <ul class="list-group" style="position: absolute; left: 410px; width: 400px; top: 150px;">
-                               <!--<li class="list-group-item"><strong>Name: </strong>{{profile.name}}</li>-->
-                              <li class="list-group-item"><strong>Year: </strong>{{profile.year}}</li>
-                              <li class="list-group-item"><strong>Major: </strong>{{profile.major}} </li>
-                              <li class="list-group-item"><i class="fa fa-envelope"></i> {{profile.user_id}}@virginia.edu</li>
-                              <li class="list-group-item">
-                                  <strong>Endorsements: </strong>{{ profile.endorse}} 
-                                  <form action="{% url 'app:endorse' profile.id%}" method="POST">
-                                        <input type="submit" value="Endorse"/>
-                                        {% csrf_token %}  
-                                  </form>
-                            </li>
-                           </ul>
->>>>>>> endorse
                         </div>
                      </div>
                   </div>
@@ -263,91 +206,9 @@ User Profile
                </div>
             </div> {% endcomment %}
          </div>
-<<<<<<< HEAD
       </div>
    </div>
 </div>
-=======
-    </div>
-</body>
-
-
-
-
-
-
-<!--<ul>-->
-<!--<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">-->
-<!--<div class="container">-->
-	<!--<div class="row">-->
-		<!--<div class="col-md-offset-8 col-md-12 col-lg-offset-6 col-lg-12">-->
-    	 <!--<div class="well profile">-->
-            <!--<div class="col-sm-16">-->
-                <!--<div class="col-xs-16 col-sm-10">-->
-                <!--<h2>{{profile.name}}</h2>-->
-                    <!--<div id = "main_info">-->
-                        <!--<p><strong>Year: </strong>{{ profile.year }}</p>-->
-                        <!--<p><strong>Major: </strong>{{ profile.major }}</p>-->
-                    <!--</div>-->
-                    <!--<div>-->
-                        <!--<p><strong>Bio:  </strong>{{ profile.bio }}</p>-->
-                    <!--</div>-->
-                <!--<p><strong>Skills: </strong>-->
-                    <!--<span class="tags">{{ profile.skills }}</span>-->
-                <!--</p>-->
-                <!--<p><strong>Courses:  </strong>{{ profile.courses }}</p>-->
-                <!--<p><strong>Organizations:  </strong>{{ profile.organizations }}</p>-->
-                <!--<p><strong>Interests:  </strong>{{ profile.interests }}</p>-->
-                <!--</div>-->
-            <!--</div>-->
-             <!--<div class="col-xs-12 col-sm-4 text-center">-->
-                    <!--<figure>-->
-                        <!--<img src="http://www.localcrimenews.com/wp-content/uploads/2013/07/default-user-icon-profile.png" alt="" class="img-circle img-responsive">-->
-                        <!--<figcaption class="ratings">-->
-                            <!--<p>Ratings-->
-                            <!--<a href="#">-->
-                                <!--<span class="fa fa-star"></span>-->
-                            <!--</a>-->
-                            <!--<a href="#">-->
-                                <!--<span class="fa fa-star"></span>-->
-                            <!--</a>-->
-                            <!--<a href="#">-->
-                                <!--<span class="fa fa-star"></span>-->
-                            <!--</a>-->
-                            <!--<a href="#">-->
-                                <!--<span class="fa fa-star"></span>-->
-                            <!--</a>-->
-                            <!--<a href="#">-->
-                                 <!--<span class="fa fa-star-o"></span>-->
-                            <!--</a>-->
-                            <!--</p>-->
-                        <!--</figcaption>-->
-                    <!--</figure>-->
-                <!--</div>-->
-             <!--<div class="col-xs-12 divider text-center">-->
-                <!--<div class="col-xs-12 col-sm-4 emphasis">-->
-                    <!--<div class="btn-group dropup btn-block">-->
-                      <!--<button type="button" class="btn btn-primary"><span class="fa fa-gear"></span> Connect </button>-->
-                      <!--<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">-->
-                        <!--<span class="caret"></span>-->
-                        <!--<span class="sr-only">Toggle Dropdown</span>-->
-                      <!--</button>-->
-                      <!--<ul class="dropdown-menu text-left" role="menu">-->
-                        <!--<li><a href="#"><span class="fa fa-envelope pull-right"></span> Message </a></li>-->
-                        <!--<li><a href="#"><span class="fa fa-list pull-right"></span> Block </a></li>-->
-                        <!--<li class="divider"></li>-->
-                        <!--<li><a href="#" class="btn disabled" role="button"> Unfollow </a></li>-->
-                      <!--</ul>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-    	 <!--</div>-->
-		<!--</div>-->
-	<!--</div>-->
-<!--</div>-->
-    <!--</ul>-->
-
->>>>>>> endorse
 {% else %}
 <p>There is currently no user data.</p>
 {% endif %}

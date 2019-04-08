@@ -27,29 +27,10 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-<<<<<<< HEAD
               <a class="nav-item nav-link" href= "{% url 'app:published_profile' user.id %}" >Profile</a>
               <a class="nav-item nav-link" href= "{% url 'update_profile' %}" >Update Profile</a>
               {% comment %} <a class="nav-item nav-link" >Friends</a> {% endcomment %}
               <a class="nav-item nav-link" href="{% url 'logout' %}">Log Out</a>
-=======
-              <a class="nav-item nav-link" >News Feed</a>
-              <a class="nav-item nav-link" >Messaging</a>
-              <a class="nav-item nav-link" >Friends</a>
-              <a class="nav-item nav-link" >Notifications</a>
-             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  {{user.get_full_name}}
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href= "{% url 'app:published_profile' user.id %}" >Profile</a>
-                  <a class="dropdown-item" href= "{% url 'app:update_profile' user.id %}" >Update Profile</a>
-                  <a class="dropdown-item" href="/app/settings">Settings</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
-                </div>
-              </li>
->>>>>>> endorse
             </div>
           </div>
           <div>
