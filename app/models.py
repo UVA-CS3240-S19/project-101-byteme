@@ -41,6 +41,9 @@ class Profile(models.Model):
 
     tags = TaggableManager()
 
+    endorsements = JSONField(models.CharField(max_length=10), blank=True)
+    endorse = models.IntegerField(default=0)
+
 
 class ProfileModel(ModelForm):
     class Meta:
