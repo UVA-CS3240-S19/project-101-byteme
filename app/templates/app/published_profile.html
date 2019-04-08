@@ -66,6 +66,7 @@ User Profile
                         <div class="col-sm">
                            <i class="fa fa-user fa-lg" aria-hidden="true"></i><h3 class="heading">Bio</h3>
                         </div>
+<<<<<<< HEAD
                         <div class="col-sm">
                            <div id="bio">
                               {{profile.bio}}
@@ -118,6 +119,22 @@ User Profile
                                  <div class="tag-item">{{ interest }}</div>
                               {% endfor %}
                            </div>
+=======
+                        <div class="col-xs-12 col-sm-8">
+                           <ul class="list-group" style="position: absolute; left: 410px; width: 400px; top: 150px;">
+                               <!--<li class="list-group-item"><strong>Name: </strong>{{profile.name}}</li>-->
+                              <li class="list-group-item"><strong>Year: </strong>{{profile.year}}</li>
+                              <li class="list-group-item"><strong>Major: </strong>{{profile.major}} </li>
+                              <li class="list-group-item"><i class="fa fa-envelope"></i> {{profile.user_id}}@virginia.edu</li>
+                              <li class="list-group-item">
+                                  <strong>Endorsements: </strong>{{ profile.endorse}} 
+                                  <form action="{% url 'app:endorse' profile.id%}" method="POST">
+                                        <input type="submit" value="Endorse"/>
+                                        {% csrf_token %}  
+                                  </form>
+                            </li>
+                           </ul>
+>>>>>>> endorse
                         </div>
                      </div>
                   </div>

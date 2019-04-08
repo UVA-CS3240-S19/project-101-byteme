@@ -6,6 +6,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import UserChangeForm
+from jsonfield import JSONField
 
 YEARS = (
     ("2019", "2019"),
@@ -52,6 +53,9 @@ class Profile(models.Model):
         return self.interests.split(',')
 
     tags = TaggableManager()
+    endorsements = JSONField(models.CharField(max_length=10), blank=True)
+    endorse = models.IntegerField(default=0)
+    # picture = models.ImageField()
 
 
 class ProfileModel(ModelForm):
