@@ -86,6 +86,7 @@ def create_profile(request):
             if (form.is_valid()):
                 profile = form.save(commit=False)
                 profile.user_id = computing_id
+                profile.computing_id = computing_id
                 profile.id = request.user.id
                 # profile.save()
                 # 'computing_id':computing_id}))
@@ -123,42 +124,23 @@ def create_profile(request):
         # else:
         #     return render(request, 'app/profile.html', {'form': ProfileForm()})
 
-
-'''
-def update_profile(request, pk):
-
-    if not request.user.is_authenticated:
-        return redirect('login')
-    else:
-        computing_id = request.user.email
-        ind = computing_id.index('@')
-        computing_id = computing_id[0:ind]
-        UpdateProfileForm = modelform_factory(Profile, fields=(
-            'name', 'year', 'major', 'bio', 'skills', 'courses', 'organizations', 'interests'))
-        # UpdateProfileForm = modelform_factory(Profile, fields=('name', 'year', 'major', 'bio', 'skills', 'courses','organizations', 'interests'))
-        if request.method == "POST" or Profile.objects.filter(user_id = computing_id):
-            profile = UpdateProfileForm(request.POST, instance=request.user)
-            if (profile.is_valid()):
-                profile.save()
-                return HttpResponseRedirect(reverse('app:update_profile', kwargs={'pk': pk}))
-            else:
-                return render(request, 'app/published_profile.html', {'form': ProfileModel()})
-        else:
-            profile = UpdateProfileForm()
-            return render(request, 'app/published_profile.html', {'form': profile})
-
-        #     if request.method == "POST":
-        #         profile = UpdateProfileForm(request.POST, request.FILES, instance=request.user)
-        #
-        #         if profile.is_valid():
-        #             profile.save()
-        #
-        #         return HttpResponseRedirect(reverse('app:update_profile', kwargs={'pk': pk}))
-        #     else:
-        #         profile = UpdateProfileForm(instance=request.user)
-        #         return render(request, 'app/published_profile.html', {'form': profile})
-        '''
-
+def endorse(request, pk):
+    profile = Profile.objects.filter(id = pk).first()
+    #if request.user.id not in profile.endorsements:
+    #exists = True if request.user.id in endorsements else False
+    computing_id = request.user.email
+    ind = computing_id.index('@')
+    computing_id = computing_id[0:ind]
+    ids = [x.strip() for x in profile.endorsements.split(',')]
+    found = False
+    for e in ids:
+        if e == computing_id:
+            found = True
+    if found == True and profile.user_id != computing_id:
+        profile.endorsements += (", "+str(computing_id))
+        profile.endorse+=1
+        profile.save()
+    return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': request.user.id}))
 
 def login(request):
     context = {}

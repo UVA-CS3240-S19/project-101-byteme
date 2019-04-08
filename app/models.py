@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import UserChangeForm
+from jsonfield import JSONField
 
 from taggit.managers import TaggableManager
 
@@ -26,6 +27,8 @@ class Profile(models.Model):
         default='default-avatar.jpg', upload_to='profile_pics')
 
     tags = TaggableManager()
+    endorsements = JSONField(models.CharField(max_length=10), blank=True)
+    endorse = models.IntegerField(default=0)
     # picture = models.ImageField()
 
 
