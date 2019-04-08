@@ -56,6 +56,13 @@ class Profile(models.Model):
     endorsements = JSONField(models.CharField(max_length=10), blank=True)
     endorse = models.IntegerField(default=0)
     # picture = models.ImageField()
+    @classmethod
+    def add_endorse(cls):
+        cls.endorse += 1
+
+    @classmethod
+    def add_endorsement(cls, string):
+        cls.endorsements += ", " + str(string)
 
 
 class ProfileModel(ModelForm):
