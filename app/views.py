@@ -106,6 +106,23 @@ def create_profile(request):
         else:
             return render(request, 'app/profile.html', {'form': ProfileModel()})
 
+def endorse(request, pk):
+    profile = Profile.objects.filter(id = pk).first()
+    #if request.user.id not in profile.endorsements:
+    #exists = True if request.user.id in endorsements else False
+    computing_id = request.user.email
+    ind = computing_id.index('@')
+    computing_id = computing_id[0:ind]
+    ids = [x.strip() for x in profile.endorsements.split(',')]
+    found = False
+    for e in ids:
+        if e == computing_id:
+            found = True
+    if found == True and profile.user_id != computing_id:
+        profile.endorsements += (", "+str(computing_id))
+        profile.endorse+=1
+        profile.save()
+    return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': request.user.id}))
 
 def update_profile(request):
     if not request.user.is_authenticated:
