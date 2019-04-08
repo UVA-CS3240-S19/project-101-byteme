@@ -74,7 +74,12 @@ class ProfileComponentsTest(TestCase):
         })
         self.assertTrue(form.is_valid())
 
+<<<<<<< HEAD
 class UpdateTest(TestCase):
+=======
+
+class SignUpTest(TestCase):
+>>>>>>> endorse
     def setUp(self):
         self.user = User.objects.create(
             username='testuser', password='12345', is_active=True, is_staff=True, is_superuser=True)
@@ -86,6 +91,7 @@ class UpdateTest(TestCase):
         self.assertEqual(response.status_code, 301)
 
 
+<<<<<<< HEAD
 class SignUpTest(TestCase):
     def setUp(self):
         self.client = Client()
@@ -93,6 +99,8 @@ class SignUpTest(TestCase):
             username='testuser', password='12345', email = "testuser@virginia.edu", is_active=True, is_staff=True, is_superuser=True)
         self.user.save()
 
+=======
+>>>>>>> endorse
     def test_first_time_login(self):
         response = self.client.get('/profile')
         self.assertEqual(response.status_code, 301)
@@ -109,6 +117,11 @@ class SignUpTest(TestCase):
             'organizations': "Test data", 
             'interests': "Test data"})
         self.assertRedirects(response, 'app/published_profile/10')
+<<<<<<< HEAD
+=======
+    '''
+
+>>>>>>> endorse
 
 # c.logout()
 # User.objects.filter(username=admin.username).delete()

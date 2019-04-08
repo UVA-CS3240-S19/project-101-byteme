@@ -43,6 +43,29 @@ class UpdateView(generic.DetailView):
     def get_queryset(self):
         return Profile.objects.all()
 
+
+def search(request):
+    print("body", request.body)
+    if not request.user.is_authenticated:
+        return redirect('login')
+    else:
+        if request.POST['search_field'] == "":
+            return render(request, 'app/search_results.html', {'search_value': "", 'results': Profile.objects.all()})
+        search_value = request.POST['search_field']
+        search_value = str(search_value).lower().strip()
+        results = set()
+        for profile in Profile.objects.all():
+
+            profile_name = profile.name.lower().split(" ")
+            # or search_value == profile_name[1]:
+            if search_value == profile.name.lower() or search_value == profile_name[0]:
+                results.add(profile)
+
+            for tags in profile.tags.all():
+                if search_value == str(tags).lower():
+                    results.add(profile)
+        return render(request, 'app/search_results.html', {'search_value': search_value, 'results': results})
+
 # form to create profile
 
 
@@ -60,7 +83,10 @@ def create_profile(request):
                 if 'image' in request.FILES:
                     profile.image = request.FILES['image']
                 profile.user_id = computing_id
+                profile.computing_id = computing_id
                 profile.id = request.user.id
+                # profile.save()
+                # 'computing_id':computing_id}))
 
                 tags_to_add = set()
 
@@ -86,6 +112,7 @@ def create_profile(request):
 
         else:
             return render(request, 'app/profile.html', {'form': ProfileModel()})
+
 
 def endorse(request, pk):
     profile = Profile.objects.filter(id = pk).first()
@@ -161,79 +188,37 @@ def update_profile(request):
             return render(request, 'app/update_profile.html', {'form': ProfileModel(), 'profile': Profile.objects.get(user_id=request.user.username)})
 
 
-def search(request):
-    print("body", request.body)
-    if not request.user.is_authenticated:
-        return redirect('login')
-    else:
-        if request.POST['search_field'] == "":
-            return render(request, 'app/search_results.html', {'search_value': "", 'results': Profile.objects.all()})
-        search_value = request.POST['search_field']
-        search_value = str(search_value).lower().strip()
-        results = set()
-        for profile in Profile.objects.all():
-            profile_name = profile.name.lower().split(" ")
-            # or search_value == profile_name[1]:
-            found = False
-            for string in profile_name:
-                if search_value == string:
-                    found = True
-            if found:
-                results.add(profile)
-
-            for tags in profile.tags.all():
-                if search_value.lower().strip() == str(tags).lower().strip():
-                    results.add(profile)
-        return render(request, 'app/search_results.html', {'search_value': search_value, 'results': results})
-
-
 def login(request):
     context = {}
     return render(request, 'app/login_page.html', context)
 
 
-'''
 def messaging(request):
     return render(request, 'app/messaging.html')
+
 
 def notifications(request):
     return render(request, 'app/notifications.html')
 
+
 def friends(request):
    return render(request, 'app/friends.html')
 
+
 def settings(request):
     return render(request, 'app/settings.html')
-'''
 
 
 def logout_view(request):
     logout(request)
     return render(request, 'app/login_page.html')
-
-
-class Friend(generic.DetailView):
-    template_name = 'app/friends.html'
-
-    def get(self, request):
-        form = ProfileModel()
-        users = User.objects.exclude(id=request.user.id)
-        friend = Friend.objects.get(current_user=request.user)
-        friends = friend.users.all()
-
-        args = {'form': form, 'users': users, 'friends': friends}
-        return render(request, self.template_name, args)
 
 
 def change_friends(request, operation, pk):
     new_friend = User.objects.get(pk=pk)
     if operation == 'add':
-        Friend.make_friend(request.user, friend)
+        Friend.make_friend(request.user, new_friend)
     elif operation == 'remove':
-        Friend.lose_friend(request.user, friend)
+        Friend.lose_friend(request.user, new_friend)
     return redirect('app/friends.html')
 
-
-def logout_view(request):
-    logout(request)
-    return render(request, 'app/login_page.html')
