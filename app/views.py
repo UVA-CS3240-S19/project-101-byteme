@@ -130,7 +130,8 @@ def endorse(request, pk):
         profile.endorsements += (", "+str(computing_id))
         profile.endorse+=1
         profile.save()
-    return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': request.user.id}))
+        profile.objects.save()
+    return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': pk}))
 
 def update_profile(request):
     if not request.user.is_authenticated:
