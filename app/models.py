@@ -40,8 +40,7 @@ class Profile(models.Model):
     github_url = models.URLField(max_length=200, blank=True)
 
     def courses_as_list(self):
-        print(self.courses)
-        return [x.strip() for x in self.courses.split(',')]
+        return self.courses.split(',')
 
     def organizations_as_list(self):
         return self.organizations.split(',')

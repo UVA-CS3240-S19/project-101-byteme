@@ -8,8 +8,9 @@ body {
 
 #bottom {
   background: #F8F8F8;
-  padding-right: 64px;
+  padding-right: 32px;
   padding-top: 16px;
+  margin-bottom: 64px;
 }
 
 .tag-item {
@@ -22,20 +23,33 @@ i {
   margin-right: 5px;
 }
 
-h3 {
+.heading {
+  margin-bottom: 8px;
   display: inline;
 }
 
+h3 {
+  display: inline;
+  /* border-bottom: 1px dashed; */
+}
+
 .text {
-  height: 64px;
+  height: 180px;
+
   overflow: auto;
   margin-bottom: 16px;
   margin-top: 16px;
 }
 
-.heading {
-  margin-bottom: 8px;
+#bio {
+  height: 100%;
+
+  overflow: auto;
+  margin-bottom: 16px;
+  margin-top: 16px;
 }
+
+
 
 .pic-div {
   width: 325px;
