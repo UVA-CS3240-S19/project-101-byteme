@@ -43,29 +43,6 @@ class UpdateView(generic.DetailView):
     def get_queryset(self):
         return Profile.objects.all()
 
-
-def search(request):
-    print("body", request.body)
-    if not request.user.is_authenticated:
-        return redirect('login')
-    else:
-        if request.POST['search_field'] == "":
-            return render(request, 'app/search_results.html', {'search_value': "", 'results': Profile.objects.all()})
-        search_value = request.POST['search_field']
-        search_value = str(search_value).lower().strip()
-        results = set()
-        for profile in Profile.objects.all():
-            print(profile.name + " 1")
-
-            profile_name = profile.name.lower().split(" ")
-            if search_value == profile.name.lower() or search_value == profile_name[0] or search_value == profile_name[1]:
-                results.add(profile)
-
-            for tags in profile.tags.all():
-                if search_value == str(tags).lower():
-                    results.add(profile)
-        return render(request, 'app/search_results.html', {'search_value': search_value, 'results': results})
-
 # form to create profile
 
 
@@ -93,6 +70,10 @@ def create_profile(request):
 
                 interests_list = profile.interests.split(",")
                 for i in interests_list:
+                    tags_to_add.add(i.strip())
+
+                courses_list = profile.courses.split(",")
+                for i in courses_list:
                     tags_to_add.add(i.strip())
 
                 for i in tags_to_add:
@@ -143,6 +124,10 @@ def update_profile(request):
                 for i in skills_list:
                     tags_to_add.add(i.strip())
 
+                courses_list = profile.courses.split(",")
+                for i in courses_list:
+                    tags_to_add.add(i.strip())
+
                 interests_list = profile.interests.split(",")
                 for i in interests_list:
                     tags_to_add.add(i.strip())
@@ -170,7 +155,6 @@ def search(request):
         search_value = str(search_value).lower().strip()
         results = set()
         for profile in Profile.objects.all():
-
             profile_name = profile.name.lower().split(" ")
             # or search_value == profile_name[1]:
             found = False
@@ -179,6 +163,10 @@ def search(request):
                     found = True
             if found:
                 results.add(profile)
+
+            for tags in profile.tags.all():
+                if search_value.lower().strip() == str(tags).lower().strip():
+                    results.add(profile)
         return render(request, 'app/search_results.html', {'search_value': search_value, 'results': results})
 
 

@@ -21,37 +21,23 @@
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
-          <a class="navbar-brand mr-4">Skills Match</a>
+          <a class="navbar-brand mr-4" style="color:white;">SkiMatch</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" >News Feed</a>
-              <a class="nav-item nav-link" >Messaging</a>
-              <a class="nav-item nav-link" >Friends</a>
-              <a class="nav-item nav-link" >Notifications</a>
-             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  {{user.get_full_name}}
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href= "{% url 'app:published_profile' user.id %}" >Profile</a>
-                  <a class="dropdown-item" href= "{% url 'update_profile' %}" >Update Profile</a>
-                  <a class="dropdown-item" >Settings</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
-                </div>
-              </li>
+              <a class="nav-item nav-link" href= "{% url 'app:published_profile' user.id %}" >Profile</a>
+              <a class="nav-item nav-link" href= "{% url 'update_profile' %}" >Update Profile</a>
+              {% comment %} <a class="nav-item nav-link" >Friends</a> {% endcomment %}
+              <a class="nav-item nav-link" href="{% url 'logout' %}">Log Out</a>
             </div>
           </div>
           <div>
               <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" method="post">
                 {% csrf_token %}
-                <div class = "form-group">
-                  <input class="form-control" id="search_field" name="search_field" type="search" placeholder="Search" aria-label="Search">
-                </div>
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="background-color:#e7e7e7; border-color: #e7e7e7; color:black">Search</button>
+                <div class = "form-group"><input class="form-control" id="search_field" name="search_field" type="search" placeholder="Search" aria-label="Search"></div>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="background-color:#e7e7e7; border-color: #e7e7e7; color:black; margin-left:2px">Search</button>
               </form>
           </div>
         </div>

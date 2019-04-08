@@ -51,16 +51,79 @@ User Profile
                   </div>
                   <div class="col-xs-12 col-sm-8">
                      <ul class="list-group" style="position: absolute; left: 410px; width: 400px; top: 110px;">
-                        <li class="list-group-item"><strong>Year: </strong>{{profile.year}}</li>
-                        <li class="list-group-item"><strong>Major: </strong>{{profile.major}} </li>
-                        <li class="list-group-item"><i class="fa fa-envelope" style="margin-right: 5px;"></i><a href="mailto:{{profile.user_id}}@virginia.edu?Subject=Hello">{{profile.user_id}}@virginia.edu</a></li>
-                        <li class="list-group-item"><strong>Status:</strong> {{profile.status}} </li>
+                        <li class="list-group-item"><i class="fa fa-exclamation-circle" aria-hidden="true"></i><strong>Status: </strong>{{profile.status}} </li>
+                        <li class="list-group-item"><i class="fa fa-calendar" aria-hidden="true"></i><strong>Year: </strong>{{profile.year}}</li>
+                        <li class="list-group-item"><i class="fa fa-graduation-cap" aria-hidden="true"></i><strong>Major: </strong>{{profile.major}} </li>
+                        <li class="list-group-item"><i class="fa fa-envelope" aria-hidden="true"></i><strong>Email: </strong><a href="mailto:{{profile.user_id}}@virginia.edu?Subject=Hello">{{profile.user_id}}@virginia.edu</a></li>
                      </ul>
                   </div>
                </div>
             </div>
-            <div style="position: absolute; top: 500px; left: 50px; width:1000px">
-               <div id="accordion">
+            <div class="container" style="position: absolute; top: 500px; left: 50px; width:1000px" id="bottom">
+               <div class="row">
+                  <div class="col-sm">
+                     <div class="container">
+                        <div class="col-sm">
+                           <i class="fa fa-user fa-lg" aria-hidden="true"></i><h3 class="heading">Bio</h3>
+                        </div>
+                        <div class="col-sm">
+                           <div id="bio">
+                              {{profile.bio}}
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-sm">
+                     <div class="container">
+                        <div class="col-sm">
+                           <i class="fa fa-star" aria-hidden="true"></i><h3 class="heading">Skills</h3>
+                        </div>
+                        <div class="col-sm">
+                           <div class="text">
+                              {% for skill in profile.skills_as_list %}
+                                 <div class="tag-item">{{ skill }}</div>
+                              {% endfor %}
+                           </div>
+                        </div>
+                         <div class="col-sm">
+                           <i class="fa fa-book" aria-hidden="true"></i><h3 class="heading">Courses</h3>
+                        </div>
+                        <div class="col-sm">
+                           <div class="text">
+                              {% for course in profile.courses_as_list %}
+                                 <div class="tag-item">{{ course }}</div>
+                              {% endfor %}
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-sm">
+                     <div class="container">
+                        <div class="col-sm">
+                        <i class="fa fa-users fa-lg" aria-hidden="true"></i><h3 class="heading">Organizations</h3>
+                        </div>
+                        <div class="col-sm">
+                           <div class="text">
+                              {% for organization in profile.organizations_as_list %}
+                                 <div class="tag-item">{{ organization }}</div>
+                              {% endfor %}
+                           </div>
+                        </div>
+                        <div class="col-sm">
+                           <i class="fa fa-heart" aria-hidden="true"></i><h3 class="heading">Interests</h3>
+                        </div>
+                        <div class="col-sm">
+                           <div class="text">
+                              {% for interest in profile.interests_as_list %}
+                                 <div class="tag-item">{{ interest }}</div>
+                              {% endfor %}
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               {% comment %} <div id="accordion">
                   <div class="card">
                      <div class="card-header" id="headingOne">
                         <h5 class="mb-0">
@@ -132,7 +195,7 @@ User Profile
                      </div>
                   </div>
                </div>
-            </div>
+            </div> {% endcomment %}
          </div>
       </div>
    </div>
