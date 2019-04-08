@@ -100,18 +100,18 @@ class SignUpTest(TestCase):
         response = self.client.get('/profile')
         self.assertEqual(response.status_code, 301)
 
-    def test_existing_signin(self):
-        self.user.id = 10
-        response = self.client.post(('/profile/'), {
-            'name': "Test",
-            'year': "2020",
-            'major': "CS",
-            'bio': "Test data",
-            'skills': "Test data",
-            'courses': "Test data",
-            'organizations': "Test data",
-            'interests': "Test data"})
-        self.assertRedirects(response, 'app/published_profile/10')
+    # def test_existing_signin(self):
+    #     self.user.id = 10
+    #     response = self.client.post(('/profile/'), {
+    #         'name': "Test",
+    #         'year': "2020",
+    #         'major': "CS",
+    #         'bio': "Test data",
+    #         'skills': "Test data",
+    #         'courses': "Test data",
+    #         'organizations': "Test data",
+    #         'interests': "Test data"})
+    #     self.assertRedirects(response, 'app/published_profile/10')
 
 # c.logout()
 # User.objects.filter(username=admin.username).delete()
