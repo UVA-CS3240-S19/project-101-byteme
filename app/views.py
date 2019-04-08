@@ -199,8 +199,8 @@ def endorse(request, pk):
     if found == True and profile.user_id != computing_id:
         profile.endorsements += (", "+str(computing_id))
         profile.endorse+=1
-        profile.save()
-    return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': request.user.id}))
+        Profile.objects.save()
+    return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': pk}))
 
 def login(request):
     context = {}
