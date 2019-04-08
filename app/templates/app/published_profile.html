@@ -56,10 +56,12 @@ User Profile
                         <li class="list-group-item"><i class="fa fa-graduation-cap" aria-hidden="true"></i><strong>Major: </strong>{{profile.major}} </li>
                         <li class="list-group-item"><i class="fa fa-envelope" aria-hidden="true"></i><strong>Email: </strong><a href="mailto:{{profile.user_id}}@virginia.edu?Subject=Hello">{{profile.user_id}}@virginia.edu</a></li>
                         <strong>Endorsements: </strong>{{ profile.endorse}} 
-                        <form action="{% url 'app:endorse' profile.id%}" method="POST">
-                              <input type="submit" value="Endorse"/>
-                              {% csrf_token %}  
-                        </form>
+                        {% if request.user.id != profile.id %}
+                           <form action="{% url 'app:endorse' profile.id%}" method="POST">
+                                 <input type="submit" value="Endorse"/>
+                                 {% csrf_token %}  
+                           </form>
+                        {% endif %}
                      </ul>
                   </div>
                </div>
