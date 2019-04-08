@@ -55,6 +55,12 @@ User Profile
                         <li class="list-group-item"><strong>Major: </strong>{{profile.major}} </li>
                         <li class="list-group-item"><i class="fa fa-envelope" style="margin-right: 5px;"></i><a href="mailto:{{profile.user_id}}@virginia.edu?Subject=Hello">{{profile.user_id}}@virginia.edu</a></li>
                         <li class="list-group-item"><strong>Status:</strong> {{profile.status}} </li>
+                        <li class="list-group-item">
+                            <strong>Endorsements: </strong>{{ profile.endorse}} 
+                            <form action="{% url 'app:endorse' profile.id%}" method="POST">
+                                  <input type="submit" value="Endorse"/>
+                                  {% csrf_token %}  
+                            </form>
                      </ul>
                   </div>
                </div>
