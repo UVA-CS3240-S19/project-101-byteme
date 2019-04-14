@@ -271,5 +271,25 @@ class SearchTest(TestCase):
         for profile in Profile.objects.all():
             self.assertContains(response, profile.name)
 
+    def test_search_noresults(self):
+        self.client = Client()
+        self.user = User.objects.create(
+            username='xy2zab@virginia.edu', is_active=True, is_staff=True, is_superuser=True)
+        self.user.set_password('67899')
+        self.user.email = 'xy2zab@virginia.edu'
+        self.user.save()
+        login = self.client.login(username='xy2zab@virginia.edu', password='67899')
+        self.client.post(('/profile/'), {
+            'name': "Test2",
+            'year': "2020",
+            'major': "Bio",
+            'bio': "Test data",
+            'skills': "Test data",
+            'courses': "Test data",
+            'organizations': "Test data",
+            'interests': "Test data"})
+        response = self.client.post(('/search/'), {'search_field':"notpresent"})
+        self.assertContains(response, "There are no search results.")
+
 c.logout()
 User.objects.filter(username=admin.username).delete()
