@@ -5,7 +5,7 @@ from . import views
 
 app_name = 'app'
 urlpatterns = [
-    #path('profile/', views.create_profile, name='profile'),
+    path('profile/', views.create_profile, name='profile'),
     path('published_profile/<int:pk>',
          views.ProfileView.as_view(), name='published_profile'),
 
@@ -15,7 +15,7 @@ urlpatterns = [
     path('friends/', views.friends, name='friends'),
     path('notifications/', views.notifications, name='notifications'),
     path('settings/', views.settings, name='settings'),
-    path('endorse/<int:pk>', views.endorse, name='endorse')
+    path('endorse/<int:pk>/<str:skill_name>', views.endorse, name='endorse')
 ]
 
 if settings.DEBUG:
