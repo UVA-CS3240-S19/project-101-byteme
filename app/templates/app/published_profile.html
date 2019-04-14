@@ -19,30 +19,30 @@ User Profile
          <div class="panel-heading resume-heading" id = "top-header"></div>
          <div class="row">
             <div class="col-lg-12">
-               <div class="main-info" style="width: 1000px; height: 450px; margin: 30px 50px; padding: 30px 20px; position: absolute; background-color: #F8F8F8;">
+               <div class="main-info" style="width: 1000px; height: 475px; margin: 30px 50px; padding: 30px 30px; position: absolute; background-color: #F8F8F8;">
                   <div class="col-xs-12 col-sm-4" style="position: absolute;">
                     <div class="pic-div">
                     <!-- class="img-circle img-responsive" style="border-radius: 50%; position: absolute; left: 40px; width: 350px" -->
-                        <img id = "profile-pic" alt="" src="{{ profile.image.url }}">
+                        <img id = "profile-pic" alt="" src="{{ profile.image.url }}" style="width: 375px; height: 375px;">
                     </div>
-                     <div class="col-xs-12 col-sm-4" style="position: absolute; left: 400px; top: 30px; display:inline;">
+                     <div class="col-xs-12 col-sm-4" style="position: absolute; left: 470px; top: 30px; display:inline;">
                         <h1 style=" width: 500px;">{{ profile.name }}</h1>
                      </div>
                      <div class="row">
-                        <div class="col-xs-12 social-btns" style="display: inline-block; padding-left: 80px;">
-                           <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder" style="position: absolute; top: 340px;">
+                        <div class="col-xs-12 social-btns" style="display: inline-block; padding-left: 95px;">
+                           <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder" style="position: absolute; top: 390px;">
                               <a href="{{profile.facebook_url}}" class="btn btn-social btn-block btn-facebook" style="width: 40px; height: 40px">
                               <i class="fa fa-facebook"></i> </a>
                            </div>
-                           <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder" style="position: absolute; top: 340px;margin-left:45px;">
+                           <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder" style="position: absolute; top: 390px;margin-left:45px;">
                               <a href="{{profile.twitter_url}}" class="btn btn-social btn-block btn-twitter"style="width: 40px; height: 40px">
                               <i class="fa fa-twitter"></i> </a>
                            </div>
-                           <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder" style="position: absolute; top: 340px;margin-left:90px; ">
+                           <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder" style="position: absolute; top: 390px;margin-left:90px; ">
                               <a href="{{profile.linkedin_url}}" class="btn btn-social btn-block btn-linkedin"style="width: 40px; height: 40px">
                               <i class="fa fa-linkedin"></i> </a>
                            </div>
-                           <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder" style="position: absolute; top:340px; margin-left:135px;">
+                           <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder" style="position: absolute; top:390px; margin-left:135px;">
                               <a href="{{profile.github_url}}" class="btn btn-social btn-block btn-github"style="width: 40px; height: 40px">
                               <i class="fa fa-github"></i> </a>
                            </div>
@@ -50,7 +50,7 @@ User Profile
                      </div>
                   </div>
                   <div class="col-xs-12 col-sm-8">
-                     <ul class="list-group" style="position: absolute; left: 410px; width: 400px; top: 110px;">
+                     <ul class="list-group" style="position: absolute; left: 470px; width: 400px; top: 110px;">
                         <li class="list-group-item"><i class="fa fa-exclamation-circle" aria-hidden="true"></i><strong>Status: </strong>{{profile.status}} </li>
                         <li class="list-group-item"><i class="fa fa-calendar" aria-hidden="true"></i><strong>Year: </strong>{{profile.year}}</li>
                         <li class="list-group-item"><i class="fa fa-graduation-cap" aria-hidden="true"></i><strong>Major: </strong>{{profile.major}} </li>
@@ -68,12 +68,12 @@ User Profile
                   </div>
                </div>
             </div>
-            <div class="container" style="position: absolute; top: 500px; left: 50px; width:1000px" id="bottom">
+            <div class="container" style="position: absolute; top: 540px; left: 50px; width:1000px" id="bottom">
                <div class="row">
                   <div class="col-sm">
                      <div class="container">
                         <div class="col-sm">
-                           <i class="fa fa-user fa-lg" aria-hidden="true"></i><h3 class="heading">Bio</h3>
+                           <i class="fa fa-user fa-lg" aria-hidden="true"></i><h2 class="heading">Bio</h2>
                         </div>
                         <div class="col-sm">
                            <div id="bio">
@@ -84,24 +84,34 @@ User Profile
                   </div>
                   <div class="col-sm">
                      <div class="container">
-                        <div class="col-sm">
-                           <i class="fa fa-star" aria-hidden="true"></i><h3 class="heading">Skills</h3>
+                        <div class="col-sm" id="accordion">
+                           <i class="fa fa-star" aria-hidden="true"></i>
+                           <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#skills" aria-expanded="false" aria-controls="collapseOne">
+                              <h2 class="heading">Skills</h2>
+                           </button>
                         </div>
                         <div class="col-sm">
-                           <div class="text">
+                           <div id="skills" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                           <div class="text" style="font-size: large;">
                               {% for skill in profile.skills_as_list %}
                                  <div class="tag-item">{{ skill }}</div>
                               {% endfor %}
                            </div>
+                           </div>
                         </div>
                          <div class="col-sm">
-                           <i class="fa fa-book" aria-hidden="true"></i><h3 class="heading">Courses</h3>
+                           <i class="fa fa-book" aria-hidden="true"></i>
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#courses" aria-expanded="false" aria-controls="collapseTwo">
+                               <h2 class="heading">Courses</h2>
+                            </button>
                         </div>
                         <div class="col-sm">
-                           <div class="text">
+                           <div id="courses" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                           <div class="text" style="font-size: large;">
                               {% for course in profile.courses_as_list %}
                                  <div class="tag-item">{{ course }}</div>
                               {% endfor %}
+                           </div>
                            </div>
                         </div>
                      </div>
@@ -109,23 +119,33 @@ User Profile
                   <div class="col-sm">
                      <div class="container">
                         <div class="col-sm">
-                        <i class="fa fa-users fa-lg" aria-hidden="true"></i><h3 class="heading">Organizations</h3>
+                        <i class="fa fa-users fa-lg" aria-hidden="true" style="width: 16px;"></i>
+                           <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#organizations" aria-expanded="false" aria-controls="collapseThree">
+                              <h2 class="heading">Organizations</h2>
+                           </button>
                         </div>
                         <div class="col-sm">
-                           <div class="text">
+                           <div id="organizations" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                           <div class="text" style="font-size: large;">
                               {% for organization in profile.organizations_as_list %}
                                  <div class="tag-item">{{ organization }}</div>
                               {% endfor %}
                            </div>
+                           </div>
                         </div>
                         <div class="col-sm">
-                           <i class="fa fa-heart" aria-hidden="true"></i><h3 class="heading">Interests</h3>
+                           <i class="fa fa-heart" aria-hidden="true"></i>
+                           <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#interests" aria-expanded="false" aria-controls="collapseFour">
+                              <h2 class="heading">Interests</h2>
+                           </button>
                         </div>
                         <div class="col-sm">
-                           <div class="text">
+                           <div id="interests" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                           <div class="text" style="font-size: large;">
                               {% for interest in profile.interests_as_list %}
                                  <div class="tag-item">{{ interest }}</div>
                               {% endfor %}
+                           </div>
                            </div>
                         </div>
                      </div>
