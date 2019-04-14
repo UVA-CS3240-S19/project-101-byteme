@@ -7,6 +7,7 @@ from app.views import create_profile
 from app.models import Profile, ProfileModel
 import sys
 from django.http import HttpResponsePermanentRedirect
+from django.utils.encoding import force_text
 # Create your tests here.
 
 c = Client()
@@ -171,14 +172,14 @@ class SearchTest(TestCase):
             'year': "2020",
             'major': "CS",
             'bio': "Test data",
-            'skills': "Test data",
-            'courses': "Test data",
-            'organizations': "Test data",
+            'skills': "Java, Python",
+            'courses': "CS2150, CS3240",
+            'organizations': "UVA",
             'interests': "Test data"})
         self.assertEqual(response.status_code, 302)
         self.client.logout()
 
-    def test_search_user(self):
+    def test_search_username(self):
         self.client = Client()
         self.user = User.objects.create(
             username='xy2zab@virginia.edu', is_active=True, is_staff=True, is_superuser=True)
@@ -186,7 +187,7 @@ class SearchTest(TestCase):
         self.user.email = 'xy2zab@virginia.edu'
         self.user.save()
         login = self.client.login(username='xy2zab@virginia.edu', password='67899')
-        response = self.client.post(('/profile/'), {
+        self.client.post(('/profile/'), {
             'name': "Test2",
             'year': "2020",
             'major': "Bio",
@@ -195,10 +196,80 @@ class SearchTest(TestCase):
             'courses': "Test data",
             'organizations': "Test data",
             'interests': "Test data"})
-        self.assertEqual(response.status_code, 302)
+        response = self.client.post(('/search/'), {
+            'search_field': "Test"
+        })
+        self.assertContains(response, "Test")
+        self.assertContains(response, "CS")
         # response = self.client.post(('/search/'), {'Test'})
         # print(response)
 
+    def test_search_course(self):
+        self.client = Client()
+        self.user = User.objects.create(
+            username='xy2zab@virginia.edu', is_active=True, is_staff=True, is_superuser=True)
+        self.user.set_password('67899')
+        self.user.email = 'xy2zab@virginia.edu'
+        self.user.save()
+        login = self.client.login(username='xy2zab@virginia.edu', password='67899')
+        self.client.post(('/profile/'), {
+            'name': "Test2",
+            'year': "2020",
+            'major': "Bio",
+            'bio': "Test data",
+            'skills': "Test data",
+            'courses': "Test data",
+            'organizations': "Test data",
+            'interests': "Test data"})
+        response = self.client.post(('/search/'), {
+            'search_field': "CS2150"
+        })
+        self.assertContains(response, "Test")
+        self.assertContains(response, "CS")
+
+    def test_search_skill(self):
+        self.client = Client()
+        self.user = User.objects.create(
+            username='xy2zab@virginia.edu', is_active=True, is_staff=True, is_superuser=True)
+        self.user.set_password('67899')
+        self.user.email = 'xy2zab@virginia.edu'
+        self.user.save()
+        login = self.client.login(username='xy2zab@virginia.edu', password='67899')
+        self.client.post(('/profile/'), {
+            'name': "Test2",
+            'year': "2020",
+            'major': "Bio",
+            'bio': "Test data",
+            'skills': "Test data",
+            'courses': "Test data",
+            'organizations': "Test data",
+            'interests': "Test data"})
+        response = self.client.post(('/search/'), {
+            'search_field': "Java"
+        })
+        self.assertContains(response, "Test")
+        self.assertContains(response, "CS")
+
+    def test_search_empty(self):
+        self.client = Client()
+        self.user = User.objects.create(
+            username='xy2zab@virginia.edu', is_active=True, is_staff=True, is_superuser=True)
+        self.user.set_password('67899')
+        self.user.email = 'xy2zab@virginia.edu'
+        self.user.save()
+        login = self.client.login(username='xy2zab@virginia.edu', password='67899')
+        self.client.post(('/profile/'), {
+            'name': "Test2",
+            'year': "2020",
+            'major': "Bio",
+            'bio': "Test data",
+            'skills': "Test data",
+            'courses': "Test data",
+            'organizations': "Test data",
+            'interests': "Test data"})
+        response = self.client.post(('/search/'), {'search_field':""})
+        for profile in Profile.objects.all():
+            self.assertContains(response, profile.name)
 
 c.logout()
 User.objects.filter(username=admin.username).delete()
