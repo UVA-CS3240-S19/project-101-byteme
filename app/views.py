@@ -224,6 +224,9 @@ def friends(request):
 def settings(request):
     return render(request, 'app/settings.html')
 
+def learn_more(request):
+    return render(request, 'app/learn_more.html')
+
 
 def logout_view(request):
     logout(request)
