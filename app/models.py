@@ -60,8 +60,6 @@ class Profile(models.Model):
         return self.interests.split(',')
 
     tags = TaggableManager()
-    endorsements = JSONField(models.CharField(max_length=10), blank=True)
-    endorse = models.IntegerField(default=0)
     # picture = models.ImageField()
 
 
