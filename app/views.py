@@ -8,7 +8,7 @@ from django.views import generic
 from django.views.generic import TemplateView
 from django.urls import reverse
 from django.contrib.auth.models import User
-from .models import Profile, ProfileModel, Post, UpdateProfileForm, Friend
+from .models import Profile, ProfileModel, Post, UpdateProfileForm, Friend, Skill
 
 
 def home(request):
@@ -47,6 +47,7 @@ class UpdateView(generic.DetailView):
 
 
 def create_profile(request):
+    print("in create profile")
     if not request.user.is_authenticated:
         return redirect('login')
     else:
@@ -62,13 +63,18 @@ def create_profile(request):
                 profile.user_id = computing_id
                 profile.computing_id = computing_id
                 profile.id = request.user.id
-                # profile.save()
+                #profile.save()
                 # 'computing_id':computing_id}))
 
                 tags_to_add = set()
 
                 skills_list = profile.skills.split(",")
                 for i in skills_list:
+                    skill = Skill()
+                    name = str(i.strip())
+                    skill.name = name
+                    skill.user_id = str(request.user.id)
+                    skill.save()
                     tags_to_add.add(i.strip())
 
                 interests_list = profile.interests.split(",")
@@ -184,23 +190,31 @@ def search(request):
         # else:
         #     return render(request, 'app/profile.html', {'form': ProfileForm()})
 
-def endorse(request, pk):
-    profile = Profile.objects.filter(id = pk).first()
-    #if request.user.id not in profile.endorsements:
-    #exists = True if request.user.id in endorsements else False
+
+def endorse(request, pk, skill_name):
+    print("endorsing")
+    skill_name = skill_name.strip()
+    print("name: ", skill_name)
+    profile = Profile.objects.filter(id=pk).first()
+    skill = Skill.objects.filter(user_id = str(pk), name=skill_name).first()
+    print("skill: ", skill)
     computing_id = request.user.email
     ind = computing_id.index('@')
     computing_id = computing_id[0:ind]
-    ids = [x.strip() for x in profile.endorsements.split(',')]
-    found = False
-    for e in ids:
-        if e == computing_id:
-            found = True
-    if found == False:
-        profile.endorsements += (", "+str(computing_id))
-        profile.endorse+=1
-        profile.save()
-    return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': pk}))
+    if skill.endorsements != None:
+        ids = [x.strip() for x in skill.endorsements.split(',')]
+        found = False
+        for e in ids:
+            if e == computing_id:
+                found = True
+    else:
+        found = False
+    if found == False and profile.user_id != computing_id:
+        skill.endorsements += (", "+str(computing_id))
+        skill.endorse += 1
+        skill.save()
+    return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': request.user.id}))
+
 
 def login(request):
     context = {}
@@ -221,10 +235,14 @@ def friends(request):
 def settings(request):
     return render(request, 'app/settings.html')
 
+def learn_more(request):
+    return render(request, 'app/learn_more.html')
+
 
 def logout_view(request):
     logout(request)
     return render(request, 'app/login_page.html')
+
 
 def change_friends(request, operation, pk):
     new_friend = User.objects.get(pk=pk)

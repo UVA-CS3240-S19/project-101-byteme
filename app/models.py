@@ -18,6 +18,13 @@ YEARS = (
     ("Other", "Other")
 )
 
+class Skill(models.Model):
+    name = models.CharField(max_length=30, default = '')
+    user_id = models.IntegerField(default = 0)
+    endorsements = JSONField(models.CharField(max_length=10, default = ''), blank=True)
+    endorse = models.IntegerField(default=0)
+
+
 
 class Profile(models.Model):
     # model = User
@@ -47,14 +54,12 @@ class Profile(models.Model):
         return self.organizations.split(',')
 
     def skills_as_list(self):
-        return self.skills.split(',')
+        return  Skill.objects.filter(user_id = self.id)
 
     def interests_as_list(self):
         return self.interests.split(',')
 
     tags = TaggableManager()
-    endorsements = JSONField(models.CharField(max_length=10), blank=True)
-    endorse = models.IntegerField(default=0)
     # picture = models.ImageField()
     @classmethod
     def add_endorse(cls):
@@ -64,6 +69,11 @@ class Profile(models.Model):
     def add_endorsement(cls, string):
         cls.endorsements += ", " + str(string)
 
+
+class skillModel(ModelForm):
+    class Meta:
+        model = Skill
+        fields = ['name']
 
 class ProfileModel(ModelForm):
     class Meta:
