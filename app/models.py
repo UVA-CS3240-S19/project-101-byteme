@@ -6,6 +6,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import UserChangeForm
+from jsonfield import JSONField
 
 YEARS = (
     ("2019", "2019"),
@@ -39,7 +40,22 @@ class Profile(models.Model):
     linkedin_url = models.URLField(max_length=200, blank=True)
     github_url = models.URLField(max_length=200, blank=True)
 
+    def courses_as_list(self):
+        return self.courses.split(',')
+
+    def organizations_as_list(self):
+        return self.organizations.split(',')
+
+    def skills_as_list(self):
+        return self.skills.split(',')
+
+    def interests_as_list(self):
+        return self.interests.split(',')
+
     tags = TaggableManager()
+    endorsements = JSONField(models.CharField(max_length=10), blank=True)
+    endorse = models.IntegerField(default=0)
+    # picture = models.ImageField()
 
 
 class ProfileModel(ModelForm):

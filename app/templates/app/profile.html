@@ -1,27 +1,18 @@
-
 {% load static %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <link href="{% static 'style.css' %}" type="text/css" rel="stylesheet">
-        <title> Your Profile </title>
-    </head>
-    <header> </header>
-    <body class = "container">
-        <div class = "split_top">
-            <div top = 0>
-                <h1 class = "title" align = "center"> Profile </h1>
-            </div>
-        </div>pyt
-    </body>
-    <footer>
-    </footer>
-</html>
 
-{% extends "app/base.html" %}
+<head>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+</head>
+
 {% block title %}{% endblock %}
 {% block content2 %}
-    <h1>{{ "Create Your Profile:" }}</h1>
+<div style="margin-top:64px; margin-left: 32px; margin-right: 32px">
+    <h2>{{ "Create Your Profile:" }}</h2>
     <form action="{% url 'profile' %}" method="post" class="needs-validation">
         {% csrf_token %}
         <div class = "form-group">
@@ -39,7 +30,7 @@
                     <option value = "Graduate Student">Graduate Student</option>
                     <option value = "Faculty">Faculty</option>
                     <option value = "Other">Other</option>
-                  </select>
+            </select>
         </div>
         <div class = "form-group">
             <label name="major">Major:</label>
@@ -50,7 +41,12 @@
             <textarea class="form-control" type="text" id="bio" name="bio" rows="4"></textarea>
         </div>
 
-        <div> Please enter a comma separated list for the following. </div>
+        <div class = "form-group">
+            <label name="status">Status:</label>
+            <input class="form-control" type="text" id="status" name="status">
+        </div>
+
+        <h4> Please enter a comma separated list for the following. </h4>
 
         <div class = "form-group">
             <label name="skills">Skills:</label>
@@ -72,10 +68,6 @@
             <input class="form-control" type="text" id="interests" name="interests">
         </div>
         <div class = "form-group">
-            <label name="status">Status:</label>
-            <input class="form-control" type="text" id="status" name="status">
-        </div>
-        <div class = "form-group">
                 <label name="image">Upload Profile Picture:</label>
             <input id="image" class = "form-control" type="file" value="{{profile.image}}" name="image" accept="image/*" />
         </div>
@@ -95,10 +87,10 @@
             <label name="github_url">Github URL:</label>
             <input class="form-control" type="url" id="github_url" name="github_url">
         </div>
-        
+
         <div class = "form-group">
             <input class="form-control" type="submit" value="Publish">
         </div>
     </form>
+</div>
 {% endblock %}
-

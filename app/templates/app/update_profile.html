@@ -1,7 +1,8 @@
 {% extends "app/base.html" %}
 {% block title %}{% endblock %}
 {% block content2 %}
-    <h1>{{ "Update Your Profile:" }}</h1>
+<div style="margin-top:64px;">
+    <h2>{{ "Update Your Profile:" }}</h2>
     <form action="{% url 'update_profile' %}" method="post" class="needs-validation" enctype="multipart/form-data">
         {% csrf_token %}
         <div class = "form-group">
@@ -28,8 +29,12 @@
             <label name="bio">Bio:</label>
             <textarea class="form-control" type="text" id="bio" name="bio" rows="4" >{{profile.bio}}</textarea>
         </div>
+        <div class = "form-group">
+            <label name="status">Status:</label>
+            <input class="form-control" type="text" id="status" value="{{profile.status}}"name="status">
+        </div>
 
-        <div> Please enter a comma separated list for the following. </div>
+        <h4>Please enter a comma separated list for the following</h4>
 
         <div class = "form-group">
             <label name="skills">Skills:</label>
@@ -49,10 +54,6 @@
         <div class = "form-group">
             <label name="interests">Interests:</label>
             <input class="form-control" type="text" id="interests" name="interests" value="{{profile.interests}}">
-        </div>
-        <div class = "form-group">
-            <label name="status">Status:</label>
-            <input class="form-control" type="text" id="status" value="{{profile.status}}"name="status">
         </div>
         <div class = "form-group">
                 <label name="image">Upload Profile Picture:</label>
@@ -82,4 +83,5 @@
             <input class="form-control" type="submit" value="Publish">
         </div>
     </form>
+</div>
 {% endblock %}
