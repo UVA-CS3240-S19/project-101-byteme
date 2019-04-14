@@ -36,6 +36,7 @@ ul {
 
 .site-header .navbar-nav .nav-link {
   color: #f8f9fa;
+  z-index:2;
 }
 
 .site-header .navbar-nav .nav-link:hover {
