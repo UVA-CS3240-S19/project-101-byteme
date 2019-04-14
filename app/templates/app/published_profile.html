@@ -1,5 +1,6 @@
 {% extends "app/base.html" %}
 {% load static %}
+<meta charset="UTF-8">
 <head>
    <link rel="stylesheet" type="text/css" href="{% static 'profile.css' %}">
    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
@@ -89,8 +90,14 @@ User Profile
                         </div>
                         <div class="col-sm">
                            <div class="text">
-                              {% for skill in profile.skills_as_list %}
-                                 <div class="tag-item">{{ skill }}</div>
+                              {% for skill in profile.skills_as_list%}
+                                    <div class="tag-item">{{ skill.name }}
+                                       <strong> Endorsements: </strong> {{ skill.endorse}} 
+                                          <form action="{% url 'app:endorse' profile.id skill.name %}" method="POST" name = "{{skill}}">
+                                                <input type="submit" value="Endorse" name= = "{{skill}}"/>
+                                                {% csrf_token %}  
+                                          </form>
+                                    </div>
                               {% endfor %}
                            </div>
                         </div>
