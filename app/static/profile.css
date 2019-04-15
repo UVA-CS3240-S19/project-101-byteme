@@ -18,6 +18,10 @@ body {
   padding-bottom: 1px;
 }
 
+.col-sm{
+  padding-right:0px;
+}
+
 i {
   display: inline;
   margin-right: 5px;
