@@ -60,6 +60,16 @@ User Profile
                         <li class="list-group-item"><i class="fa fa-calendar" aria-hidden="true"></i><strong>Year: </strong>{{profile.year}}</li>
                         <li class="list-group-item"><i class="fa fa-graduation-cap" aria-hidden="true"></i><strong>Major: </strong>{{profile.major}} </li>
                         <li class="list-group-item"><i class="fa fa-envelope" aria-hidden="true"></i><strong>Email: </strong><a href="mailto:{{profile.user_id}}@virginia.edu?Subject=Hello">{{profile.user_id}}@virginia.edu</a></li>
+                        <li class="list-group-item"> 
+                           <i class="fa fa-thumbs-up" aria-hidden="true"> </i>
+                           <strong> Endorsements: </strong> {{ profile.endorse}} 
+                              {% if request.user.id != profile.id %}
+                              <form action="{% url 'app:endorse' profile.id %}" method="POST" name = "{{skill}}">
+                                    <input type="submit" value="Endorse" name= = "{{skill}}"/>
+                                    {% csrf_token %}  
+                              </form>
+                              {% endif %}
+                        </li>
                      </ul>
                   </div>
                </div>
@@ -92,14 +102,7 @@ User Profile
                            <div class="text" style="font-size: large">
                               {% for skill in profile.skills_as_list%}
                                     <div class="tag-item">
-                                       <i class="fa fa-thumbs-up" aria-hidden="true"></i><h5 style="font-family: 'Helvetica Neue'"> {{ skill.name }} </h5>
-                                       <strong> Endorsements: </strong> {{ skill.endorse}} 
-                                          {% if request.user.id != profile.id %}
-                                          <form action="{% url 'app:endorse' profile.id skill.name %}" method="POST" name = "{{skill}}">
-                                                <input type="submit" value="Endorse" name= "{{skill}}"/>
-                                                {% csrf_token %}  
-                                          </form>
-                                          {% endif %}
+                                       {{ skill}} 
                                     </div>
                               {% endfor %}
                               </div>

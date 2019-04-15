@@ -10,9 +10,9 @@ from django.http import HttpResponsePermanentRedirect
 from django.utils.encoding import force_text
 # Create your tests here.
 
-# c = Client()
-# c.login(username="test", password = "password")
-# admin = User.objects.create_superuser('myuser', 'ab1cde@virginia.edu', 'password')
+#c = Client()
+#c.login(username="test", password = "password")
+admin = User.objects.create_superuser('myuser', 'ab1cde@virginia.edu', 'password')
 
 
 class ProfileTest(TestCase):
@@ -270,7 +270,7 @@ class SearchTest(TestCase):
         response = self.client.post(('/search/'), {'search_field':""})
         for profile in Profile.objects.all():
             self.assertContains(response, profile.name)
-
+        
     def test_search_noresults(self):
         self.client = Client()
         self.user = User.objects.create(
@@ -291,5 +291,5 @@ class SearchTest(TestCase):
         response = self.client.post(('/search/'), {'search_field':"notpresent"})
         self.assertContains(response, "There are no search results.")
 
-# c.logout()
-# User.objects.filter(username=admin.username).delete()
+#c.logout()
+User.objects.filter(username=admin.username).delete()
