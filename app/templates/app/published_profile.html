@@ -68,7 +68,7 @@ User Profile
                                  <strong> Endorsements: </strong> {{ profile.endorse}} 
                               </div>
                               <div id = "endorse">
-                                 {% if request.user.id == profile.id %}
+                                 {% if request.user.id != profile.id %}
                                  <form action="{% url 'app:endorse' profile.id %}" method="POST" name = "{{skill}}">
                                        <input type="submit" value="Endorse" name= = "{{skill}}"  class = "button"/>
                                        {% csrf_token %}  
