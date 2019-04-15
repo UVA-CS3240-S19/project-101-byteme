@@ -18,12 +18,6 @@ YEARS = (
     ("Other", "Other")
 )
 
-class Skill(models.Model):
-    name = models.CharField(max_length=30, default = '')
-    user_id = models.IntegerField(default = 0)
-    endorsements = JSONField(models.CharField(max_length=10, default = ''), blank=True)
-    endorse = models.IntegerField(default=0)
-
 
 
 class Profile(models.Model):
@@ -47,6 +41,9 @@ class Profile(models.Model):
     linkedin_url = models.URLField(max_length=200, blank=True)
     github_url = models.URLField(max_length=200, blank=True)
 
+    endorsements = JSONField(models.CharField(max_length=10, default = ''), blank=True)
+    endorse = models.IntegerField(default=0)
+
     def courses_as_list(self):
         return self.courses.split(',')
 
@@ -54,7 +51,7 @@ class Profile(models.Model):
         return self.organizations.split(',')
 
     def skills_as_list(self):
-        return  Skill.objects.filter(user_id = self.id)
+        return  self.skills.split(',')
 
     def interests_as_list(self):
         return self.interests.split(',')
@@ -70,10 +67,6 @@ class Profile(models.Model):
         cls.endorsements += ", " + str(string)
 
 
-class skillModel(ModelForm):
-    class Meta:
-        model = Skill
-        fields = ['name']
 
 class ProfileModel(ModelForm):
     class Meta:

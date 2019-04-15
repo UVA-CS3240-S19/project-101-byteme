@@ -15,7 +15,7 @@ urlpatterns = [
     path('friends/', views.friends, name='friends'),
     path('notifications/', views.notifications, name='notifications'),
     path('settings/', views.settings, name='settings'),
-    path('endorse/<int:pk>/<str:skill_name>', views.endorse, name='endorse')
+    path('endorse/<int:pk>', views.endorse, name='endorse')
 ]
 
 if settings.DEBUG:
