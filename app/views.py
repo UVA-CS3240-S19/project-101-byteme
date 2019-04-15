@@ -203,7 +203,7 @@ def endorse(request, pk):
         profile.endorsements += (", "+str(computing_id))
         profile.endorse += 1
         profile.save()
-    return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': request.user.id}))
+    return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': pk}))
 
 
 def login(request):
