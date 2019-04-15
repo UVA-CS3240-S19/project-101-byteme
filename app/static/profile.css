@@ -270,3 +270,23 @@ form .form-group {
 .progress-meter>.meter.meter-right>.meter-text {
   text-align: right;
 }
+
+#thumbs-label {
+  float: left;
+}
+#endorse {
+  float: right;
+}
+
+.button {     
+  float: right;   
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;  
+  width: 90px;
+  height: 30px;
+  background: #79BDBF;
+  border-radius: 100px / 50px;   
+}
