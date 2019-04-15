@@ -13,7 +13,7 @@
 {% block content2 %}
 <div style="margin-top:64px; margin-left: 32px; margin-right: 32px">
     <h2>{{ "Create Your Profile:" }}</h2>
-    <form action="{% url 'profile' %}" method="post" class="needs-validation">
+    <form action="{% url 'profile' %}" method="post" class="needs-validation" enctype="multipart/form-data">
         {% csrf_token %}
         <div class = "form-group">
             <label name="name">Name:</label>
