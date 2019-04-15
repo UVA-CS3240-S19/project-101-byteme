@@ -10,8 +10,8 @@ from django.http import HttpResponsePermanentRedirect
 from django.utils.encoding import force_text
 # Create your tests here.
 
-c = Client()
-c.login(username="test", password = "password")
+#c = Client()
+#c.login(username="test", password = "password")
 admin = User.objects.create_superuser('myuser', 'ab1cde@virginia.edu', 'password')
 
 
@@ -271,5 +271,5 @@ class SearchTest(TestCase):
         for profile in Profile.objects.all():
             self.assertContains(response, profile.name)
 
-c.logout()
+#c.logout()
 User.objects.filter(username=admin.username).delete()
