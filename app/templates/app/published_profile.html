@@ -100,14 +100,7 @@ User Profile
                            <div class="text" style="font-size: large">
                               {% for skill in profile.skills_as_list%}
                                     <div class="tag-item">
-                                       <i class="fa fa-thumbs-up" aria-hidden="true"></i><h5 style="font-family: 'Helvetica Neue'"> {{ skill.name }} </h5>
-                                       <strong> Endorsements: </strong> {{ skill.endorse}} 
-                                          {% if request.user.id != profile.id %}
-                                          <form action="{% url 'app:endorse' profile.id skill.name %}" method="POST" name = "{{skill}}">
-                                                <input type="submit" value="Endorse" name= "{{skill}}"/>
-                                                {% csrf_token %}  
-                                          </form>
-                                          {% endif %}
+                                       {{ skill}} 
                                     </div>
                               {% endfor %}
                               </div>
