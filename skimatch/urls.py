@@ -20,6 +20,8 @@ from django.contrib.auth import views as auth_views
 from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import handler404, handler500
+
 
 urlpatterns = [
     path('app/', include('app.urls', namespace='app')),
@@ -37,3 +39,6 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path('learn_more/', views.learn_more, name='learn_more')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = views.error404
+handler500 = views.error500

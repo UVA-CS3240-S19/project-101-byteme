@@ -2,6 +2,8 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
+from django.conf.urls import handler404, handler500
+
 
 app_name = 'app'
 urlpatterns = [
@@ -17,6 +19,8 @@ urlpatterns = [
     path('settings/', views.settings, name='settings'),
     path('endorse/<int:pk>', views.endorse, name='endorse')
 ]
+handler404 = views.error404
+handler500 = views.error500
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
