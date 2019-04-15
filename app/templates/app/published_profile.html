@@ -59,14 +59,27 @@ User Profile
                         <li class="list-group-item"><i class="fa fa-graduation-cap" aria-hidden="true"></i><strong>Major: </strong>{{profile.major}} </li>
                         <li class="list-group-item"><i class="fa fa-envelope" aria-hidden="true"></i><strong>Email: </strong><a href="mailto:{{profile.user_id}}@virginia.edu?Subject=Hello">{{profile.user_id}}@virginia.edu</a></li>
                         <li class="list-group-item"> 
-                           <i class="fa fa-thumbs-up" aria-hidden="true"> </i>
-                           <strong> Endorsements: </strong> {{ profile.endorse}} 
-                              {% if request.user.id != profile.id %}
-                              <form action="{% url 'app:endorse' profile.id %}" method="POST" name = "{{skill}}">
-                                    <input type="submit" value="Endorse" name= = "{{skill}}"/>
-                                    {% csrf_token %}  
-                              </form>
-                              {% endif %}
+
+
+                        <div class =”container”>
+                           <div class="box">
+                              <div id = "thumbs-label">
+                                 <i class="fa fa-thumbs-up" aria-hidden="true"> </i>
+                                 <strong> Endorsements: </strong> {{ profile.endorse}} 
+                              </div>
+                              <div id = "endorse">
+                                 {% if request.user.id != profile.id %}
+                                 <form action="{% url 'app:endorse' profile.id %}" method="POST" name = "{{skill}}">
+                                       <input type="submit" value="Endorse" name= = "{{skill}}"  class = "button"/>
+                                       {% csrf_token %}  
+                                 </form>
+                                 {% endif %}
+                              </div>
+                           </div>
+                        </div>
+
+
+
                         </li>
                      </ul>
                   </div>
