@@ -21,12 +21,12 @@ User Profile
          <div class="row">
             <div class="col-lg-12">
 
-               <div class="main-info" style="width: 1000px; height: 475px; margin: 30px 50px; padding: 30px 20px; position: absolute; background-color: #F8F8F8;">
+               <div class="container main-info" style="width: 1000px; height: 475px; margin: 30px 50px; padding: 30px 20px; position: absolute; background-color: #F8F8F8;">
 
                   <div class="col-xs-12 col-sm-4" style="position: absolute;">
                     <div class="pic-div">
                     <!-- class="img-circle img-responsive" style="border-radius: 50%; position: absolute; left: 40px; width: 350px" -->
-                        <img id = "profile-pic" alt="" src="{{ profile.image.url }}" style="width: 375px; height: 375px;">
+                        <img id = "profile-pic" alt="" src="{{ profile.image.url }}">
                     </div>
                      <div class="col-xs-12 col-sm-4" style="position: absolute; left: 470px; top: 30px; display:inline;">
                         <h1 style=" width: 500px;">{{ profile.name }}</h1>
@@ -59,21 +59,34 @@ User Profile
                         <li class="list-group-item"><i class="fa fa-graduation-cap" aria-hidden="true"></i><strong>Major: </strong>{{profile.major}} </li>
                         <li class="list-group-item"><i class="fa fa-envelope" aria-hidden="true"></i><strong>Email: </strong><a href="mailto:{{profile.user_id}}@virginia.edu?Subject=Hello">{{profile.user_id}}@virginia.edu</a></li>
                         <li class="list-group-item"> 
-                           <i class="fa fa-thumbs-up" aria-hidden="true"> </i>
-                           <strong> Endorsements: </strong> {{ profile.endorse}} 
-                              {% if request.user.id != profile.id %}
-                              <form action="{% url 'app:endorse' profile.id %}" method="POST" name = "{{skill}}">
-                                    <input type="submit" value="Endorse" name= = "{{skill}}"/>
-                                    {% csrf_token %}  
-                              </form>
-                              {% endif %}
+
+
+                        <div class =”container”>
+                           <div class="box">
+                              <div id = "thumbs-label">
+                                 <i class="fa fa-thumbs-up" aria-hidden="true"> </i>
+                                 <strong> Endorsements: </strong> {{ profile.endorse}} 
+                              </div>
+                              <div id = "endorse">
+                                 {% if request.user.id != profile.id %}
+                                 <form action="{% url 'app:endorse' profile.id %}" method="POST" name = "{{skill}}">
+                                       <input type="submit" value="Endorse" name= = "{{skill}}"  class = "button"/>
+                                       {% csrf_token %}  
+                                 </form>
+                                 {% endif %}
+                              </div>
+                           </div>
+                        </div>
+
+
+
                         </li>
                      </ul>
                   </div>
                </div>
             </div>
 
-            <div class="container" style="position: absolute; top: 540px; left: 50px; width:1000px" id="bottom">
+            <div class = "container" style="position: absolute; top: 540px; left: 50px; width:1000px" id="bottom">
                <div class="row">
                   <div class="col-sm">
                      <div class="container">
