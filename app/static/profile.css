@@ -2,24 +2,20 @@ body {
   background: #eeee;
 }
 
-#top-header {
-  margin: 0px 0px 0px 50px;
-}
-
 #bottom {
   background: #F8F8F8;
-  padding-right: 32px;
+  padding-right: 0px;
   padding-top: 16px;
   margin-bottom: 64px;
+}
+
+#organizations{
+  padding-right: 0px;
 }
 
 .tag-item {
   padding-top: 1px;
   padding-bottom: 1px;
-}
-
-.col-sm{
-  padding-right:0px;
 }
 
 i {

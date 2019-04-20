@@ -1,5 +1,5 @@
-from taggit.managers import TaggableManager
 from django.db import models
+from taggit.managers import TaggableManager
 from django import forms
 from django.forms import ModelForm
 from django.utils import timezone
@@ -27,13 +27,13 @@ class Profile(models.Model):
     name = models.CharField(max_length=200)
     year = models.CharField(max_length=16, choices=YEARS)
     major = models.CharField(max_length=200)
-    bio = models.TextField(max_length=600, blank=True)
+    bio = models.TextField(max_length=1000, blank=True)
     skills = models.CharField(max_length=100, blank=True)
     # eventually drop down menu? hashtags?
     courses = models.CharField(max_length=200, blank=True)
     organizations = models.CharField(max_length=200, blank=True)
     interests = models.CharField(max_length=100, blank=True)
-    status = models.CharField(max_length=100, blank=True)
+    status = models.CharField(max_length=500, blank=True)
     image = models.ImageField(
         default='default-avatar.jpg', upload_to='profile_pics')
     facebook_url = models.URLField(max_length=200, blank=True)
@@ -56,7 +56,6 @@ class Profile(models.Model):
     def interests_as_list(self):
         return self.interests.split(',')
 
-    tags = TaggableManager()
     # picture = models.ImageField()
     @classmethod
     def add_endorse(cls):
@@ -66,6 +65,7 @@ class Profile(models.Model):
     def add_endorsement(cls, string):
         cls.endorsements += ", " + str(string)
 
+    tags = TaggableManager()
 
 
 class ProfileModel(ModelForm):

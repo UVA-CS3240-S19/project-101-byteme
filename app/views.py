@@ -165,6 +165,8 @@ def search(request):
             for string in profile_name:
                 if search_value == string:
                     found = True
+            if search_value == profile.name.lower():
+                found = True
             if found:
                 results.add(profile)
 
