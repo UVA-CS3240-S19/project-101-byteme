@@ -2,24 +2,20 @@ body {
   background: #eeee;
 }
 
-#top-header {
-  margin: 0px 0px 0px 50px;
-}
-
 #bottom {
   background: #F8F8F8;
-  padding-right: 32px;
+  padding-right: 0px;
   padding-top: 16px;
   margin-bottom: 64px;
+}
+
+#organizations{
+  padding-right: 0px;
 }
 
 .tag-item {
   padding-top: 1px;
   padding-bottom: 1px;
-}
-
-.col-sm{
-  padding-right:0px;
 }
 
 i {
@@ -56,8 +52,8 @@ h3 {
 
 
 .pic-div {
-  width: 325px;
-  height: 325px;
+  width: 350px;
+  height: 350px;
   position: relative;
   overflow: hidden;
   border-radius: 50%;
@@ -65,8 +61,8 @@ h3 {
 
 #profile-pic {
   margin: 0 auto;
-  height: 325px;
-  width: 325px;
+  height: 350px;
+  width: 350px;
   object-fit: cover;
 }
 

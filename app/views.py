@@ -11,6 +11,16 @@ from django.contrib.auth.models import User
 from .models import Profile, ProfileModel, Post, UpdateProfileForm, Friend
 
 
+def error404(request):
+    context = {}
+    return render(request, 'app/404error.html', context)
+
+
+def error500(request):
+    context = {}
+    return render(request, 'app/500error.html', context)
+
+
 def home(request):
     context = {}
     if not request.user.is_authenticated:
@@ -63,7 +73,7 @@ def create_profile(request):
                 profile.user_id = computing_id
                 profile.computing_id = computing_id
                 profile.id = request.user.id
-                #profile.save()
+                # profile.save()
                 # 'computing_id':computing_id}))
 
                 tags_to_add = set()
@@ -165,6 +175,8 @@ def search(request):
             for string in profile_name:
                 if search_value == string:
                     found = True
+            if search_value == profile.name.lower():
+                found = True
             if found:
                 results.add(profile)
 
@@ -210,6 +222,7 @@ def login(request):
     context = {}
     return render(request, 'app/login_page.html', context)
 
+
 def messaging(request):
     return render(request, 'app/messaging.html')
 
@@ -224,6 +237,7 @@ def friends(request):
 
 def settings(request):
     return render(request, 'app/settings.html')
+
 
 def learn_more(request):
     return render(request, 'app/learn_more.html')
