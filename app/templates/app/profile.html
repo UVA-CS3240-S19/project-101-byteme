@@ -11,7 +11,7 @@
 
 {% block title %}{% endblock %}
 {% block content2 %}
-<div style="margin-top:64px; margin-left: 32px; margin-right: 32px">
+<div style="margin-top:15px; margin-left: 32px; margin-right: 32px">
     <h2>{{ "Create Your Profile:" }}</h2>
     <form action="{% url 'profile' %}" method="post" class="needs-validation" enctype="multipart/form-data">
         {% csrf_token %}
