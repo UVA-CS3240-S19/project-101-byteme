@@ -11,7 +11,7 @@ from django.contrib.auth.models import User
 from .models import Profile, ProfileModel, Post, UpdateProfileForm, Friend
 
 
-def error404(request):
+def error404(request, exception):
     context = {}
     return render(request, 'app/404error.html', context)
 
