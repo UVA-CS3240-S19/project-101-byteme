@@ -68,8 +68,8 @@ h3 {
 }
 
 .pic-div {
-  width: 350px;
-  height: 350px;
+  width: 340px;
+  height: 340px;
   position: relative;
   overflow: hidden;
   border-radius: 50%;
@@ -77,8 +77,8 @@ h3 {
 
 #profile-pic {
   margin: 0 auto;
-  height: 350px;
-  width: 350px;
+  height: 340px;
+  width: 340px;
   object-fit: cover;
 }
 
