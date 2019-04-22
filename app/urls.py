@@ -18,10 +18,6 @@ urlpatterns = [
     path('notifications/', views.notifications, name='notifications'),
     path('settings/', views.settings, name='settings'),
     path('endorse/<int:pk>', views.endorse, name='endorse')
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 handler404 = views.error404
 handler500 = views.error500
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
