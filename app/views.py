@@ -205,6 +205,9 @@ def search(request):
             if found:
                 results.add(profile)
 
+            if search_value == profile.year:
+                results.add(profile)
+
             for tags in profile.tags.all():
                 if search_value.lower().strip() == str(tags).lower().strip():
                     results.add(profile)
