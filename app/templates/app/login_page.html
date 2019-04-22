@@ -21,8 +21,9 @@
                 <p> SkiMatch lets you connect with people who have taken or are taking similar classes as well as people who share other interests. </p>
                 <a class="btn btn-primary btn-lg" href= "{% url 'learn_more' %}" role="button">Learn more</a>
                 <div class="google-button">
+                        <p class = "label"> Sign in with UVA email </p>
                         <a href="{% url 'social:begin' 'google-oauth2' %}?next=/">
-                            <img id="signInButton" src= '/app/media/btn_google_signin_light_normal_web.png' onclick="document.getElementById('signInButton').src='/app/media/btn_google_signin_light_normal_web.png'">
+                        <img id="signInButton" src= '/app/media/btn_google_signin_light_normal_web.png' onclick="document.getElementById('signInButton').src='/app/media/btn_google_signin_light_normal_web.png'">
                         </a>
                     </div>
         </div>
