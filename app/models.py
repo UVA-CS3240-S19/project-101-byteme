@@ -24,15 +24,15 @@ class Profile(models.Model):
     # model = User
     # user = models.OneToOneField(User, on_delete=models.CASCADE, default="10")
     user_id = models.CharField(max_length=10)
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=100)
     year = models.CharField(max_length=16, choices=YEARS)
-    major = models.CharField(max_length=200)
+    major = models.CharField(max_length=50)
     bio = models.TextField(max_length=1000, blank=True)
-    skills = models.CharField(max_length=100, blank=True)
+    skills = models.CharField(max_length=300, blank=True)
     # eventually drop down menu? hashtags?
-    courses = models.CharField(max_length=200, blank=True)
-    organizations = models.CharField(max_length=200, blank=True)
-    interests = models.CharField(max_length=100, blank=True)
+    courses = models.CharField(max_length=300, blank=True)
+    organizations = models.CharField(max_length=300, blank=True)
+    interests = models.CharField(max_length=200, blank=True)
     status = models.CharField(max_length=500, blank=True)
     image = models.ImageField(
         default='default-avatar.jpg', upload_to='profile_pics')

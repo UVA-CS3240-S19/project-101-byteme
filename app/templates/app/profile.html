@@ -16,7 +16,7 @@
     <form action="{% url 'profile' %}" method="post" class="needs-validation" enctype="multipart/form-data">
         {% csrf_token %}
         <div class = "form-group">
-            <label name="name">Name:</label>
+            <label name="name" maxlength="100">Name:</label>
             <input class="form-control" type="text" id="name" name="name" required placeholder="Required">
         </div>
         <div class = "form-group">
@@ -34,38 +34,38 @@
         </div>
         <div class = "form-group">
             <label name="major">Major:</label>
-            <input class="form-control" type="text" id="major" name="major" required placeholder="Required">
+            <input class="form-control" type="text" id="major" name="major" required placeholder="Required" maxlength = "50">
         </div>
         <div class = "form-group">
             <label name="bio">Bio:</label>
-            <textarea class="form-control" type="text" id="bio" name="bio" rows="4" placeholder="Optional"></textarea>
+            <textarea class="form-control" type="text" id="bio" name="bio" rows="4" placeholder="Optional" maxlength = "1000"></textarea>
         </div>
 
         <div class = "form-group">
             <label name="status">Status:</label>
-            <input class="form-control" type="text" id="status" name="status" placeholder="Optional">
+            <input class="form-control" type="text" id="status" name="status" placeholder="Optional" maxlength = "500">
         </div>
 
         <h4> Please enter a comma separated list for the following. </h4>
 
         <div class = "form-group">
             <label name="skills">Skills:</label>
-            <input class="form-control" type="text" id="skills" name="skills" placeholder="Optional">
+            <input class="form-control" type="text" id="skills" name="skills" placeholder="Optional" maxlength = "100">
         </div>
 
         <div> Please enter a course code (ex. CS2150, CS4102) </div>
 
         <div class = "form-group">
             <label name="courses">Courses:</label>
-            <input class="form-control" type="text" id="courses" name="courses" placeholder="Optional">
+            <input class="form-control" type="text" id="courses" name="courses" placeholder="Optional" maxlength = "300">
         </div>
         <div class = "form-group">
             <label name="organizations">Organizations:</label>
-            <input class="form-control" type="text" id="organizations" name="organizations" placeholder="Optional">
+            <input class="form-control" type="text" id="organizations" name="organizations" placeholder="Optional" maxlength = "300">
         </div>
         <div class = "form-group">
             <label name="interests">Interests:</label>
-            <input class="form-control" type="text" id="interests" name="interests" placeholder="Optional">
+            <input class="form-control" type="text" id="interests" name="interests" placeholder="Optional" maxlength = "200">
         </div>
         <div class = "form-group">
                 <label name="image">Upload Profile Picture:</label>
