@@ -156,7 +156,7 @@ def update_profile(request):
         computing_id = request.user.username
         profile = Profile.objects.get(user_id=request.user.username)
         ProfileModel = modelform_factory(Profile, fields=(
-            'name', 'year', 'major', 'bio', 'skills', 'courses', 'organizations', 'interests', 'status'))
+            'name', 'year', 'major', 'bio', 'courses', 'organizations', 'interests', 'status'))
         if request.method == "POST":
             form = ProfileModel(request.POST, request.FILES)
             if (form.is_valid()):
@@ -165,7 +165,6 @@ def update_profile(request):
                 profile.year = request.POST['year']
                 profile.major = request.POST['major']
                 profile.bio = request.POST['bio']
-                profile.skills = request.POST['skills']
                 profile.courses = request.POST['courses']
                 profile.organizations = request.POST['organizations']
                 profile.interests = request.POST['interests']
@@ -180,10 +179,6 @@ def update_profile(request):
                     profile.image = request.FILES['image']
 
                 tags_to_add = set()
-
-                skills_list = profile.skills.split(",")
-                for i in skills_list:
-                    tags_to_add.add(i.strip())
 
                 courses_list = profile.courses.split(",")
                 for i in courses_list:

@@ -34,7 +34,6 @@ class Profile(models.Model):
     year = models.CharField(max_length=16, choices=YEARS)
     major = models.CharField(max_length=50)
     bio = models.TextField(max_length=1000, blank=True)
-    skills = models.CharField(max_length=300, blank=True)
     # eventually drop down menu? hashtags?
     courses = models.CharField(max_length=300, blank=True)
     organizations = models.CharField(max_length=300, blank=True)
@@ -112,7 +111,7 @@ class SkillsModel(ModelForm):
 class UpdateProfileForm(ModelForm):
     class Meta:
         model = Profile
-        fields = ['name', 'year', 'major', 'bio', 'skills',
+        fields = ['name', 'year', 'major', 'bio',
                   'courses', 'organizations', 'interests', 'status', 'image']
         # waiting to add picture for now
 
