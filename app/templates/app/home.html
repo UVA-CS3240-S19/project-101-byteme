@@ -1,0 +1,38 @@
+
+{% extends "app/base.html" %}
+{% load static %}
+<meta charset="UTF-8">
+<head>
+   <link rel="stylesheet" type="text/css" href="{% static 'profile.css' %}">
+   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+</head>
+
+{% block title %}{% endblock %}
+{% block content2 %}
+
+<link href="{% static 'home.css' %}" type="text/css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <div class="container">
+        <div class="col-sm" style="margin-top: 50px; text-align: center;">
+        <h1 id="title"><strong>SkiMatch</strong>
+            <img src='/app/media/image.png' alt="logo" style="max-width:400px; max-height:200px;width: 250; height: 150;box-shadow: 0 0 0px rgba(33,33,33,.2);"></h1>
+        </div>
+        <div class="col-sm" style="">
+            <p> SkiMatch is a web application created at the University of Virginia and designed for use by members of the UVA community.
+                Our platform allows students and faculty to connect over shared skills, interests, experiences and expertise.
+                Users can share a personal bio on their past experiences, list courses they have taken and add in their relevant skills.
+                Search for members of the UVA community with similar interests or common organizations to form study groups, offer tutoring, find a professor
+                conducting research in your area of interest or develop a new hobby.
+            </p>
+        </div>
+        <div class="col-sm" style="margin-top: 30px;">
+            <p> Let other users know how you intend to use Skimatch by updating your status with what you are looking for -- whether that's tutoring in calculus
+                or a group of students to compete with in a hackathon. If you know another user is great at software development or at playing softball, you can endorse that skill
+                on their profile to let others know they're a good resource for gaining more experience with that topic. There's no limit to the kinds of connections you can make using
+                SkiMatch, so get searching today!
+            </p>
+        </div>
+    </div>
+{% endblock %}

@@ -8,7 +8,12 @@ from django.views import generic
 from django.views.generic import TemplateView
 from django.urls import reverse
 from django.contrib.auth.models import User
+<<<<<<< HEAD
 from .models import Profile, ProfileModel, Post, UpdateProfileForm, Friend, Skill, SkillsModel
+=======
+from .models import Profile, ProfileModel, Post, UpdateProfileForm, Friend
+from django.contrib import messages
+>>>>>>> 3016aa9fe239401dc48d2b98dd79b39f0af16591
 
 
 def error404(request, exception):
@@ -73,8 +78,6 @@ def create_profile(request):
                 profile.user_id = computing_id
                 profile.computing_id = computing_id
                 profile.id = request.user.id
-                # profile.save()
-                # 'computing_id':computing_id}))
 
                 tags_to_add = set()
 
@@ -82,9 +85,35 @@ def create_profile(request):
                 for i in interests_list:
                     tags_to_add.add(i.strip())
 
+                # profile.save()
+
                 courses_list = profile.courses.split(",")
-                for i in courses_list:
-                    tags_to_add.add(i.strip())
+                tags_to_add.add(i)
+
+                # for i in courses_list:
+                #     i = i.strip()
+                #     for c in range(0, len(i)):
+                #         if (i[c] == " "):
+                #             messages.warning(request, 'Please follow the correct format for listing courses.')
+                #             return render(request, 'app/invalid_input_profile.html', {'form': ProfileModel(), 'profile': profile})
+                #
+                #     if (len(i) > 8 or len(i) < 6):
+                #         messages.warning(request, 'Please follow the correct format for listing courses.')
+                #         return render(request, 'app/profile.html', {'form': ProfileModel()})
+                #     elif (i[0].isalpha() == False or i[1].isalpha() == False):
+                #         messages.warning(request, 'Please follow the correct format for listing courses.')
+                #     elif ((len(i) == 6 and i[2].isdigit() == False) or (len(i) == 6 and i[3].isdigit() == False) or (len(i) == 6 and i[4].isdigit() == False)
+                #           or (len(i) == 6 and i[5].isdigit() == False)):
+                #         messages.warning(request, 'Please follow the correct format for listing courses.')
+                #     elif ((len(i) == 7 and i[2].isalpha() == False) or (len(i) == 7 and i[3].isdigit() == False) or (len(i) == 7 and i[4].isdigit() == False)
+                #           or (len(i) == 7 and i[5].isdigit() == False) or (len(i) == 7 and i[6].isdigit() == False)):
+                #         messages.warning(request, 'Please follow the correct format for listing courses.')
+                #     elif ((len(i) == 8 and i[2].isalpha() == False) or (len(i) == 8 and i[3].isalpha() == False) or (len(i) == 8 and i[4].isdigit() == False)
+                #           or (len(i) == 8 and i[5].isdigit() == False) or (len(i) == 8 and i[6].isdigit() == False) or (len(i) == 8 and i[7].isdigit() == False)):
+                #         messages.warning(request, 'Please follow the correct format for listing courses.')
+                #
+                #     else:
+                #         tags_to_add.add(i)
 
                 for i in tags_to_add:
                     profile.tags.add(i)
@@ -202,6 +231,9 @@ def search(request):
             if found:
                 results.add(profile)
 
+            if search_value == profile.year:
+                results.add(profile)
+
             for tags in profile.tags.all():
                 if search_value.lower().strip() == str(tags).lower().strip():
                     results.add(profile)
@@ -246,6 +278,9 @@ def login(request):
     context = {}
     return render(request, 'app/login_page.html', context)
 
+
+def homepage(request):
+    return render(request, 'app/home.html')
 
 def messaging(request):
     return render(request, 'app/messaging.html')

@@ -16,7 +16,7 @@
     <form action="{% url 'profile' %}" method="post" class="needs-validation" enctype="multipart/form-data">
         {% csrf_token %}
         <div class = "form-group">
-            <label name="name">Name:</label>
+            <label name="name" maxlength="100">Name:</label>
             <input class="form-control" type="text" id="name" name="name" required placeholder="Required">
         </div>
         <div class = "form-group">
@@ -34,16 +34,18 @@
         </div>
         <div class = "form-group">
             <label name="major">Major:</label>
-            <input class="form-control" type="text" id="major" name="major" required placeholder="Required">
+            <input class="form-control" type="text" id="major" name="major" required placeholder="Required" maxlength = "50">
         </div>
         <div class = "form-group">
             <label name="bio">Bio:</label>
-            <textarea class="form-control" type="text" id="bio" name="bio" rows="4" placeholder="Optional"></textarea>
+            <textarea class="form-control" type="text" id="bio" name="bio" rows="4" placeholder="Optional" maxlength = "1000"></textarea>
         </div>
+
+        <div> Post a status to find a study group, offer tutoring, or explain what you're looking for on the site. </div>
 
         <div class = "form-group">
             <label name="status">Status:</label>
-            <input class="form-control" type="text" id="status" name="status" placeholder="Optional">
+            <input class="form-control" type="text" id="status" name="status" placeholder="Optional" maxlength = "500">
         </div>
 
         <h4> Please enter a comma separated list for the following. </h4>
@@ -52,15 +54,15 @@
 
         <div class = "form-group">
             <label name="courses">Courses:</label>
-            <input class="form-control" type="text" id="courses" name="courses" placeholder="Optional">
+            <input class="form-control" type="text" id="courses" name="courses" placeholder="Optional" pattern="^([a-zA-Z]{1,4}[0-9]{3,5}(, ){0,1})+$" maxlength="300">
         </div>
         <div class = "form-group">
             <label name="organizations">Organizations:</label>
-            <input class="form-control" type="text" id="organizations" name="organizations" placeholder="Optional">
+            <input class="form-control" type="text" id="organizations" name="organizations" placeholder="Optional" maxlength = "300">
         </div>
         <div class = "form-group">
             <label name="interests">Interests:</label>
-            <input class="form-control" type="text" id="interests" name="interests" placeholder="Optional">
+            <input class="form-control" type="text" id="interests" name="interests" placeholder="Optional" maxlength = "200">
         </div>
         <div class = "form-group">
                 <label name="image">Upload Profile Picture:</label>
@@ -68,19 +70,19 @@
         </div>
         <div class = "form-group">
             <label name="facebook_url">Facebook URL: (example: https://www.facebook.com/ )</label>
-            <input class="form-control" type="url" id="facebook_url" name="facebook_url" placeholder="Optional">
+            <input class="form-control" type="url" id="facebook_url" name="facebook_url" placeholder="Optional" pattern="^https:\/\/www.facebook.com.*$">
         </div>
         <div class = "form-group">
             <label name="twitter_url">Twitter URL: (example: https//twitter.com/ )</label>
-            <input class="form-control" type="url" id="twitter_url" name="twitter_url" placeholder="Optional">
+            <input class="form-control" type="url" id="twitter_url" name="twitter_url" placeholder="Optional" pattern="^https:\/\/twitter.com.*$>
         </div>
         <div class = "form-group">
             <label name="linkedin_url">LinkedIn URL: (example: hhtps://www.linkedin.com/ )</label>
-            <input class="form-control" type="url" id="linkedin_url" name="linkedin_url" placeholder="Optional">
+            <input class="form-control" type="url" id="linkedin_url" name="linkedin_url" placeholder="Optional" pattern="^https:\/\/www.linkedin.com.*$">
         </div>
         <div class = "form-group">
             <label name="github_url">Github URL: (example: https://github.com/ )</label>
-            <input class="form-control" type="url" id="github_url" name="github_url" placeholder="Optional">
+            <input class="form-control" type="url" id="github_url" name="github_url" placeholder="Optional" pattern="^https:\/\/github.com.*$">
         </div>
 
         <div  class = "form-group">

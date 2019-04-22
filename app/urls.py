@@ -12,6 +12,7 @@ urlpatterns = [
     path('published_profile/<int:pk>',
          views.ProfileView.as_view(), name='published_profile'),
     path('delete_skill/<str:name>', views.delete_skill, name='delete_skill'),
+    path('home/', views.homepage, name='home'),
     path('update_profile/<int:pk>', views.update_profile, name='update_profile'),
     path('news_feed/', views.news_feed, name='news_feed'),
     path('messaging/', views.messaging, name='messaging'),
