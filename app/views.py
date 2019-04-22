@@ -12,7 +12,7 @@ from .models import Profile, ProfileModel, Post, UpdateProfileForm, Friend
 from django.contrib import messages
 
 
-def error404(request):
+def error404(request, exception):
     context = {}
     return render(request, 'app/404error.html', context)
 
