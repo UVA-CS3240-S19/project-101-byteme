@@ -41,6 +41,8 @@
             <textarea class="form-control" type="text" id="bio" name="bio" rows="4"></textarea>
         </div>
 
+        <div> Post a status to find a study group, offer tutoring, or explain what you're looking for on the site. </div>
+
         <div class = "form-group">
             <label name="status">Status:</label>
             <input class="form-control" type="text" id="status" name="status">
@@ -52,6 +54,14 @@
             <label name="skills">Skills:</label>
             <input class="form-control" type="text" id="skills" name="skills">
         </div>
+
+        {% if messages %}
+            <div class="messages">
+            {% for message in messages %}
+            <h5 class="{{ message.tags }}">{{ message }}</h5>
+            {% endfor %}
+            </div>
+        {% endif %}
 
         <div> Please enter a course code (ex. CS2150, CS4102) </div>
 

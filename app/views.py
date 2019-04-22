@@ -9,6 +9,7 @@ from django.views.generic import TemplateView
 from django.urls import reverse
 from django.contrib.auth.models import User
 from .models import Profile, ProfileModel, Post, UpdateProfileForm, Friend
+from django.contrib import messages
 
 
 def error404(request):
@@ -73,6 +74,20 @@ def create_profile(request):
                 profile.user_id = computing_id
                 profile.computing_id = computing_id
                 profile.id = request.user.id
+
+                # profile.year = request.POST['year']
+                # profile.major = request.POST['major']
+                # profile.bio = request.POST['bio']
+                # profile.skills = request.POST['skills']
+                # profile.courses = request.POST['courses']
+                # profile.organizations = request.POST['organizations']
+                # profile.interests = request.POST['interests']
+                # profile.status = request.POST['status']
+                #
+                # profile.facebook_url = request.POST['facebook_url']
+                # profile.twitter_url = request.POST['twitter_url']
+                # profile.linkedin_url = request.POST['linkedin_url']
+                # profile.github_url = request.POST['github_url']
                 # profile.save()
                 # 'computing_id':computing_id}))
 
@@ -86,9 +101,27 @@ def create_profile(request):
                 for i in interests_list:
                     tags_to_add.add(i.strip())
 
+                # profile.save()
+
                 courses_list = profile.courses.split(",")
                 for i in courses_list:
-                    tags_to_add.add(i.strip())
+                    i = i.strip()
+                    if (len(i) > 8 or len(i) < 6):
+                        messages.warning(request, 'Please follow the correct format for listing courses.')
+                        return render(request, 'app/profile.html', {'form': ProfileModel()})
+                    elif (i[0].isalpha() == False or i[1].isalpha() == False):
+                        messages.warning(request, 'Please follow the correct format for listing courses.')
+                    elif ((len(i) == 6 and i[2].isdigit() == False) or (len(i) == 6 and i[3].isdigit() == False) or (len(i) == 6 and i[4].isdigit() == False)
+                          or (len(i) == 6 and i[5].isdigit() == False)):
+                        messages.warning(request, 'Please follow the correct format for listing courses.')
+                    elif ((len(i) == 7 and i[2].isalpha() == False) or (len(i) == 7 and i[3].isdigit() == False) or (len(i) == 7 and i[4].isdigit() == False)
+                          or (len(i) == 7 and i[5].isdigit() == False) or (len(i) == 7 and i[6].isdigit() == False)):
+                        messages.warning(request, 'Please follow the correct format for listing courses.')
+                    elif ((len(i) == 8 and i[2].isalpha() == False) or (len(i) == 8 and i[3].isalpha() == False) or (len(i) == 8 and i[4].isdigit() == False)
+                          or (len(i) == 8 and i[5].isdigit() == False) or (len(i) == 8 and i[6].isdigit() == False) or (len(i) == 8 and i[7].isdigit() == False)):
+                        messages.warning(request, 'Please follow the correct format for listing courses.')
+                    else:
+                        tags_to_add.add(i)
 
                 for i in tags_to_add:
                     profile.tags.add(i)

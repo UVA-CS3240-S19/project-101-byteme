@@ -18,13 +18,13 @@ User Profile
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
       <div class="panel panel-default">
          <div class="panel-heading resume-heading" id = "top-header"></div>
-         </div>
+      </div>
          <div class="row container main-info" style="width: 1000px; margin-top: 30px; background-color: #F8F8F8;">
                   <div class="col-sm" style = "margin: 10px 10px 10px 0px;">
-                    <div class="pic-div">
+                     <div class="pic-div">
                     <!-- class="img-circle img-responsive" style="border-radius: 50%; position: absolute; left: 40px; width: 350px" -->
                         <img id = "profile-pic" alt="" src="{{ profile.image.url }}">
-                    </div>
+                     </div>
                      <div class="row">
                         <div class="col-xs-12 social-btns" style="display: inline-block; padding-left: 95px; margin-top: 10px;">
                            <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder" style="position: absolute;">
@@ -44,13 +44,13 @@ User Profile
                               <i class="fa fa-github"></i> </a>
                            </div>
                         </div>
-                    </div>
+                     </div>
                   </div>
-                  <div class="col-sm" style = "margin-top:10px">
+                  <div class="col-sm" style = "margin-top:20px">
                       <div class="col-xs-12 col-sm-4">
                           <h1 style=" width: 500px;">{{ profile.name }}</h1>
                        </div>
-                     <ul class="list-group">
+                     <ul class="list-group" style="margin-top:20px;">
                         <li class="list-group-item"><i class="fa fa-exclamation-circle" aria-hidden="true"></i><strong>Status: </strong>{{profile.status}} </li>
                         <li class="list-group-item"><i class="fa fa-calendar" aria-hidden="true"></i><strong>Year: </strong>{{profile.year}}</li>
                         <li class="list-group-item"><i class="fa fa-graduation-cap" aria-hidden="true"></i><strong>Major: </strong>{{profile.major}} </li>
@@ -66,13 +66,13 @@ User Profile
                               <div id = "endorse">
                                  {% if request.user.id != profile.id %}
                                  <form action="{% url 'app:endorse' profile.id %}" method="POST" name = "{{skill}}">
-                                       <input type="submit" value="Endorse" name= = "{{skill}}"  class = "button"/>
+                                       <input type="submit" value="Endorse" name= "{{skill}}"  class = "button"/>
                                        {% csrf_token %}  
                                  </form>
                                  {% endif %}
                               </div>
                             </div>
-
+                        </div>
                         </li>
                      </ul>
                   </div>
@@ -82,7 +82,7 @@ User Profile
                   <div class="col-sm">
                      <div class="container">
                         <div class="col-sm">
-                           <i class="fa fa-user fa-lg" aria-hidden="true"></i><h2 class="heading">Bio</h2>
+                           <i class="fa fa-user fa-lg" aria-hidden="true" style="right: 5px;"></i><h2 class="heading">Bio</h2>
                         </div>
                         <div class="col-sm">
                            <div id="bio" style="font-size: large">
@@ -94,7 +94,7 @@ User Profile
                   <div class="col-sm">
                      <div class="container">
                         <div class="col-sm" id="accordion">
-                           <i class="fa fa-star" aria-hidden="true"></i>
+                           <i class="fa fa-star" aria-hidden="true" style="width: 2px;"></i>
                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#skills" aria-expanded="false" aria-controls="collapseOne">
                               <h2 class="heading">Skills</h2>
                            </button>
@@ -111,26 +111,26 @@ User Profile
                            </div>
                         </div>
                          <div class="col-sm">
-                           <i class="fa fa-book" aria-hidden="true"></i>
+                           <i class="fa fa-book" aria-hidden="true" style="width: 2px;"></i>
                             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#courses" aria-expanded="false" aria-controls="collapseTwo">
                                <h2 class="heading">Courses</h2>
                             </button>
-                        </div>
+                         </div>
                         <div class="col-sm">
                            <div id="courses" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                           <div class="text" style="font-size: large;">
-                              {% for course in profile.courses_as_list %}
-                                 <div class="tag-item">{{ course }}</div>
-                              {% endfor %}
-                           </div>
+                              <div class="text" style="font-size: large;">
+                                 {% for course in profile.courses_as_list %}
+                                    <div class="tag-item">{{ course }}</div>
+                                 {% endfor %}
+                              </div>
                            </div>
                         </div>
                      </div>
                   </div>
                   <div class="col-sm">
                      <div class="container">
-                        <div class="col-sm" id = "organizations">
-                        <i class="fa fa-users fa-lg" aria-hidden="true" style="width: 16px;"></i>
+                        <div class="col-sm">
+                        <i class="fa fa-users fa-lg" aria-hidden="true" style="width:5px;"></i>
                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#organizations" aria-expanded="false" aria-controls="collapseThree">
                               <h2 class="heading">Organizations</h2>
                            </button>
@@ -145,7 +145,7 @@ User Profile
                            </div>
                         </div>
                         <div class="col-sm">
-                           <i class="fa fa-heart" aria-hidden="true"></i>
+                           <i class="fa fa-heart" aria-hidden="true" style="width: 2px;"></i>
                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#interests" aria-expanded="false" aria-controls="collapseFour">
                               <h2 class="heading">Interests</h2>
                            </button>
