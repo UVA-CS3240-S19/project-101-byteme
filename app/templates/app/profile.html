@@ -48,11 +48,6 @@
 
         <h4> Please enter a comma separated list for the following. </h4>
 
-        <div class = "form-group">
-            <label name="skills">Skills:</label>
-            <input class="form-control" type="text" id="skills" name="skills" placeholder="Optional">
-        </div>
-
         <div> Please enter a course code (ex. CS2150, CS4102) </div>
 
         <div class = "form-group">
@@ -88,9 +83,15 @@
             <input class="form-control" type="url" id="github_url" name="github_url" placeholder="Optional">
         </div>
 
-        <div class = "form-group">
-            <input class="form-control" type="submit" value="Publish"> 
-        </div>
+        <div  class = "form-group">
+                <div style="display: inline-block;">
+                    <a class="form-control" href= "{% url 'app:published_profile' user.id %}" > Go to Profile </a>
+                </div>
+                <div style="display: inline-block;">
+                        <input class="form-control" type="submit" value="Add Skills"> 
+                </div>
+            </div>
+
     </form>
 </div>
 {% endblock %}

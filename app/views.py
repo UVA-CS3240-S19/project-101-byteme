@@ -8,7 +8,7 @@ from django.views import generic
 from django.views.generic import TemplateView
 from django.urls import reverse
 from django.contrib.auth.models import User
-from .models import Profile, ProfileModel, Post, UpdateProfileForm, Friend
+from .models import Profile, ProfileModel, Post, UpdateProfileForm, Friend, Skill, SkillsModel
 
 
 def error404(request, exception):
@@ -78,10 +78,6 @@ def create_profile(request):
 
                 tags_to_add = set()
 
-                skills_list = profile.skills.split(",")
-                for i in skills_list:
-                    tags_to_add.add(i.strip())
-
                 interests_list = profile.interests.split(",")
                 for i in interests_list:
                     tags_to_add.add(i.strip())
@@ -94,13 +90,39 @@ def create_profile(request):
                     profile.tags.add(i)
 
                 profile.save()
-                return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': profile.id}))
+                return HttpResponseRedirect(reverse('app:skills'))
             else:
                 return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': request.user.id}))
 
         else:
             return render(request, 'app/profile.html', {'form': ProfileModel()})
 
+def add_skill(request):
+    print("adding skill")
+    if not request.user.is_authenticated:
+        return redirect('login')
+    else:
+        computing_id = request.user.username
+        SkillModel = modelform_factory(Skill, fields=(
+            'name',))
+        if request.method == "POST":
+            form = SkillsModel(request.POST, request.FILES)
+            skill = form.save(commit=False)
+            skill.user_id = computing_id
+            skill.computing_id = computing_id
+            skill.pk_id = request.user.id  
+            count = Skill.objects.filter(name=skill.name, pk_id = request.user.id).first()
+            if count == None:   
+                skill.save()
+            return HttpResponseRedirect(reverse('app:skills'), {'Skills': Skill.objects.all()})
+        else:
+            return render(request, 'app/skills.html', {'form': SkillsModel(), 'Skills': Skill.objects.all()})
+
+def delete_skill(request, name):
+    obj = Skill.objects.filter(name=name, pk_id = request.user.id).first()
+    if obj != None:
+        obj.delete()
+    return HttpResponseRedirect(reverse('app:skills'))
 
 def update_profile(request):
     if not request.user.is_authenticated:
@@ -198,24 +220,26 @@ def search(request):
         #     return render(request, 'app/profile.html', {'form': ProfileForm()})
 
 
-def endorse(request, pk):
-    profile = Profile.objects.filter(id=pk).first()
+def endorse(request, pk, pid):
+    skill = Skill.objects.filter(id=pk).first()
     computing_id = request.user.email
     ind = computing_id.index('@')
     computing_id = computing_id[0:ind]
-    if profile.endorsements != None:
-        ids = [x.strip() for x in profile.endorsements.split(',')]
+    if skill.endorsements != None:
+        ids = [x.strip() for x in skill.endorsements.split(',')]
         found = False
         for e in ids:
             if e == computing_id:
                 found = True
     else:
         found = False
-    if found == False and profile.user_id != computing_id:
-        profile.endorsements += (", "+str(computing_id))
-        profile.endorse += 1
-        profile.save()
-    return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': pk}))
+
+   # if found == False and skill.user_id == computing_id:
+    if found == False:
+        skill.endorsements += (", "+str(computing_id))
+        skill.endorse += 1
+        skill.save()
+    return HttpResponseRedirect(reverse('app:published_profile', kwargs={'pk': pid}))
 
 
 def login(request):

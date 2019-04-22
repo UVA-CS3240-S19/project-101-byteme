@@ -53,24 +53,6 @@ User Profile
                         <li class="list-group-item"><i class="fa fa-calendar" aria-hidden="true"></i><strong>Year: </strong>{{profile.year}}</li>
                         <li class="list-group-item"><i class="fa fa-graduation-cap" aria-hidden="true"></i><strong>Major: </strong>{{profile.major}} </li>
                         <li class="list-group-item"><i class="fa fa-envelope" aria-hidden="true"></i><strong>Email: </strong><a href="mailto:{{profile.user_id}}@virginia.edu?Subject=Hello">{{profile.user_id}}@virginia.edu</a></li>
-                        <li class="list-group-item"> 
-                            <div class =”container”>
-                                <div class="box">
-                                    <div id = "thumbs-label">
-                                        <i class="fa fa-thumbs-up" aria-hidden="true"> </i>
-                                        <strong> Endorsements: </strong> {{ profile.endorse}} 
-                                    </div>
-                                    <div id = "endorse">
-                                        {% if request.user.id != profile.id %}
-                                        <form action="{% url 'app:endorse' profile.id %}" method="POST" name = "{{skill}}">
-                                            <input type="submit" value="Endorse" name= = "{{skill}}"  class = "button"/>
-                                            {% csrf_token %}  
-                                        </form>
-                                        {% endif %}
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -102,7 +84,19 @@ User Profile
                             <div class="text" style="font-size: large">
                                 {% for skill in profile.skills_as_list%}
                                     <div class="tag-item">
-                                       {{ skill}} 
+                                        <div id = "endorse" class = "box">
+                                            {{ skill.name }} 
+                                            {% if request.user.id != profile.id %}
+                                                <form action="{% url 'app:endorse' skill.id profile.id%}" method="POST" name = "{{skill.name}}">
+                                                    <input type="submit" value="Endorse" name= = "{{skill.name}}"  class = "button"/>
+                                                    {% csrf_token %}  
+                                                </form>
+                                            {% endif %}
+                                            <div class = "thumbs-label"
+                                                <i class="fa fa-thumbs-up" aria-hidden="true"> </i>
+                                                <strong> Endorsements: </strong> {{ skill.endorse}} 
+                                            </div>
+                                        </div>
                                     </div>
                                 {% endfor %}
                             </div>
@@ -128,8 +122,8 @@ User Profile
             <div class="col-sm">
                 <div class="container">
                     <div class="col-sm">
-                        <i class="fa fa-users fa-lg" aria-hidden="true" ></i>
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#organizations" aria-expanded="false" aria-controls="collapseThree" style="width: 6px;">
+                        <i class="fa fa-users fa-lg" aria-hidden="true" style="width: 16px;"></i>
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#organizations" aria-expanded="false" aria-controls="collapseThree">
                                 <h2 class="heading">Organizations</h2>
                             </button>
                     </div>

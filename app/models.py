@@ -18,6 +18,12 @@ YEARS = (
     ("Other", "Other")
 )
 
+class Skill(models.Model):
+    name = models.CharField(max_length=200)
+    endorsements = JSONField(models.CharField(max_length=10, default = ''), blank=True)
+    endorse = models.IntegerField(default=0)
+    user_id = models.CharField(max_length=10)
+    pk_id = models.IntegerField(default=0)
 
 
 class Profile(models.Model):
@@ -41,9 +47,6 @@ class Profile(models.Model):
     linkedin_url = models.URLField(max_length=200, blank=True)
     github_url = models.URLField(max_length=200, blank=True)
 
-    endorsements = JSONField(models.CharField(max_length=10, default = ''), blank=True)
-    endorse = models.IntegerField(default=0)
-
     def courses_as_list(self):
         return self.courses.split(',')
 
@@ -51,7 +54,7 @@ class Profile(models.Model):
         return self.organizations.split(',')
 
     def skills_as_list(self):
-        return  self.skills.split(',')
+        return Skill.objects.filter(pk_id = self.id).all()
 
     def interests_as_list(self):
         return self.interests.split(',')
@@ -71,7 +74,7 @@ class Profile(models.Model):
 class ProfileModel(ModelForm):
     class Meta:
         model = Profile
-        fields = ['name', 'year', 'major', 'bio', 'skills',
+        fields = ['name', 'year', 'major', 'bio',
                   'courses', 'organizations', 'interests', 'status', 'image']
         # waiting to add picture for now
 
@@ -83,6 +86,10 @@ class ProfileModel(ModelForm):
         #
         #     return user
 
+class SkillsModel(ModelForm):
+    class Meta:
+        model = Skill
+        fields = ['name']
 
 class UpdateProfileForm(ModelForm):
     class Meta:

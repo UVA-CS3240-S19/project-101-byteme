@@ -1,0 +1,61 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+<head>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'profile.css' %}">
+</head>
+
+{% block title %}{% endblock %}
+{% block content2 %}
+<div style="margin-top:15px; margin-left: 32px; margin-right: 32px">
+    <h2>{{ "Add your skills:" }}</h2>
+    <form action="{% url 'app:skills' %}" method="post" class="needs-validation" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class = "form-group">
+            <label name="skill">Skill:</label>
+            <input class="form-control" type="text" id="name" name="name" required placeholder="Required">
+
+        <div class = "form-group">
+            <input class="form-control" type="submit" value="Add Skill"> 
+        </div>
+    </form>
+</div>
+
+{% if Skills %}
+<h1> Skills: </h1>
+<div>
+    {% for skill in Skills %}
+        {% if skill.pk_id == request.user.id %}
+            <div class = "block">
+                <td>
+                    <label style="display: inline-block; margin-top: 10px"> {{ skill.name }} </label>
+                    <div class = "thumbs-label"
+                        <i class="fa fa-thumbs-up" aria-hidden="true"> </i>
+                        <strong> Endorsements: </strong> {{ skill.endorse}} 
+                    </div>
+                    <div>
+                        <i class="fa fa-trash"></i>
+                        <form action="{% url 'app:delete_skill' skill.name %}" method="POST" name = "{{skill}}">
+                            <input type="submit" value="Delete" name= = "{{skill.name}}"  class = "button"/>
+                            {% csrf_token %}  
+                        </form>
+                    </div>
+                </td>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+
+{% endif %}
+
+<div style="display: inline-block; margin-top: 30px">
+    <a class="form-control" href= "{% url 'app:published_profile' user.id %}"  margin=30px> Go to Profile </a>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,30 @@
+.row {
+    margin-bottom: 50px;
+  
+  }
+
+  #thumbs-label {
+    float: left;
+  }
+  #endorse {
+    float: left;
+  }
+
+  .button {     
+    float: left;   
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;  
+    width: 90px;
+    height: 30px;
+    background: #79BDBF;
+    border-radius: 100px / 50px;   
+  }
+
+label {
+    display: inline-block;
+    width: 140px;
+    text-align: right;
+}
