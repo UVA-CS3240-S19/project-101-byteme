@@ -248,6 +248,9 @@ def login(request):
     return render(request, 'app/login_page.html', context)
 
 
+def homepage(request):
+    return render(request, 'app/home.html')
+
 def messaging(request):
     return render(request, 'app/messaging.html')
 

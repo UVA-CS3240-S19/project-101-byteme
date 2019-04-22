@@ -11,7 +11,7 @@ urlpatterns = [
     # path('invalid_input_profile/', views.create_profile, name='profile_redirect'),
     path('published_profile/<int:pk>',
          views.ProfileView.as_view(), name='published_profile'),
-
+    path('home/', views.homepage, name='home'),
     path('update_profile/<int:pk>', views.update_profile, name='update_profile'),
     path('news_feed/', views.news_feed, name='news_feed'),
     path('messaging/', views.messaging, name='messaging'),

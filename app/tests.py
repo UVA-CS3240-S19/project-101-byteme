@@ -318,20 +318,21 @@ class ErrorPageTest(TestCase):
         self.assertEqual(response.status_code, 302)
         # self.client.logout()
 
-    def invalid_profile_pk(self):
-        response = self.client.post(('/published_profile/200'))
-        self.assertTrue(isinstance(response, HttpResponsePermanentRedirect))
-        self.assertEqual(response.status_code, 301)
-
-    def invalid_update_profile_pk(self):
-        response = self.client.post(('/update_profile/200'))
-        self.assertTrue(isinstance(response, HttpResponsePermanentRedirect))
-        self.assertEqual(response.status_code, 301)
-
-    def invalid_app_url(self):
-        response = self.client.post(('/beans'))
-        self.assertTrue(isinstance(response, HttpResponsePermanentRedirect))
-        self.assertEqual(response.status_code, 301)
+    # def test_invalid_profile_pk(self):
+    #     response = self.client.post(('app/published_profile/200'))
+    #     print(response)
+    #     # self.assertTrue(isinstance(response, HttpResponsePermanentRedirect))
+    #     self.assertEqual(response.status_code, 301)
+    #
+    # def test_invalid_update_profile_pk(self):
+    #     response = self.client.post(('app/update_profile/200'))
+    #     # self.assertTrue(isinstance(response, HttpResponsePermanentRedirect))
+    #     self.assertEqual(response.status_code, 301)
+    #
+    # def test_invalid_app_url(self):
+    #     response = self.client.post(('/beans'))
+    #     # self.assertTrue(isinstance(response, HttpResponsePermanentRedirect))
+    #     self.assertEqual(response.status_code, 301)
 
 #c.logout()
 User.objects.filter(username=admin.username).delete()
