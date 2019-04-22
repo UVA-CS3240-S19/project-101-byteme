@@ -17,8 +17,8 @@ User Profile
     <div class="panel panel-default">
          <div class="panel-heading resume-heading" id = "top-header"></div>
     </div>
-        <div class="row container main-info" style="margin-top: 75px; margin-bottom:15px; background-color: #F8F8F8;">
-            <div class="col-sm" style = "margin: 10px 0px 10px 0px;">
+        <div class="row container main-info" style="margin-top: 15px; margin-bottom:10px; padding-bottom:15px; min-width: 375px; background-color: #F8F8F8;">
+            <div class="col-sm" style = "margin: 10px 0px 10px 0px; padding-left: 0px;">
                 <div class="pic-div">
                     <!-- class="img-circle img-responsive" style="border-radius: 50%; position: absolute; left: 40px; width: 350px" -->
                     <img id = "profile-pic" alt="" src="{{ profile.image.url }}">
@@ -46,7 +46,7 @@ User Profile
             </div>
             <div class="col-sm" style = "margin-top:10px">
                 <div class="col-xs-12 col-sm-4">
-                    <h1 style=" max-width: 500px;">{{ profile.name }}</h1>
+                    <h1 style=" max-width: 375px;">{{ profile.name }}</h1>
                 </div>
                     <ul class="list-group">
                         <li class="list-group-item"><i class="fa fa-exclamation-circle" aria-hidden="true"></i><strong>Status: </strong>{{profile.status}} </li>
@@ -76,7 +76,7 @@ User Profile
             </div>
         </div>
 
-        <div class = "container row" id="bottom">
+        <div class = "container row" id="bottom" style = "min-width: 375px;">
             <div class="col-sm">
                 <div class="container">
                     <div class="col-sm">
