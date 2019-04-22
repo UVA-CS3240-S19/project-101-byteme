@@ -8,12 +8,8 @@ from django.views import generic
 from django.views.generic import TemplateView
 from django.urls import reverse
 from django.contrib.auth.models import User
-<<<<<<< HEAD
 from .models import Profile, ProfileModel, Post, UpdateProfileForm, Friend, Skill, SkillsModel
-=======
-from .models import Profile, ProfileModel, Post, UpdateProfileForm, Friend
 from django.contrib import messages
->>>>>>> 3016aa9fe239401dc48d2b98dd79b39f0af16591
 
 
 def error404(request, exception):
