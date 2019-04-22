@@ -64,20 +64,20 @@
         <div> Please enter http:// or https:// before your URL </div>
 
         <div class = "form-group">
-            <label name="facebook_url">Facebook URL: (example: https://www.facebook.com/ )</label>
-            <input class="form-control" type="url" id="facebook_url" name="facebook_url" value="{{profile.facebook_url}}" placeholder="Optional">
+            <label name="facebook_url">Facebook URL:</label>
+            <input class="form-control" type="url" id="facebook_url" name="facebook_url" value="{{profile.facebook_url}}" pattern="^https:\/\/www.facebook.com.*$">
         </div>
         <div class = "form-group">
-            <label name="twitter_url">Twitter URL: (example: https//twitter.com/ )</label>
-            <input class="form-control" type="url" id="twitter_url" name="twitter_url"value="{{profile.twitter_url}}" placeholder="Optional">
+            <label name="twitter_url">Twitter URL:</label>
+            <input class="form-control" type="url" id="twitter_url" name="twitter_url"value="{{profile.twitter_url}}" pattern="^https:\/\/twitter.com.*$">
         </div>
         <div class = "form-group">
-            <label name="linkedin_url">LinkedIn URL: (example: https://www.linkedin.com/ )</label>
-            <input class="form-control" type="url" id="linkedin_url" name="linkedin_url"value="{{profile.linkedin_url}}" placeholder="Optional">
+            <label name="linkedin_url">LinkedIn URL:</label>
+            <input class="form-control" type="url" id="linkedin_url" name="linkedin_url"value="{{profile.linkedin_url}}" pattern="^https:\/\/www.linkedin.com.*$">
         </div>
         <div class = "form-group">
-            <label name="github_url">Github URL: (example: https://github.com/ )</label>
-            <input class="form-control" type="url" id="github_url" name="github_url"value="{{profile.github_url}}" placeholder="Optional">
+            <label name="github_url">Github URL:</label>
+            <input class="form-control" type="url" id="github_url" name="github_url"value="{{profile.github_url}}" pattern="^https:\/\/github.com.*$">
         </div>
 
         <div class = "form-group">

@@ -23,6 +23,11 @@ body {
     text-align: center;
     padding-top: 28px;
 }
+
+.label{
+    text-align: center;
+    padding-top: 28px;
+}
 img {
     max-width:200px;
     max-height:90px;
