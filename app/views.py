@@ -64,7 +64,7 @@ def create_profile(request):
     else:
         computing_id = request.user.username
         ProfileModel = modelform_factory(Profile, fields=(
-            'name', 'year', 'major', 'bio', 'skills', 'courses', 'organizations', 'interests', 'status', 'facebook_url', 'twitter_url', 'linkedin_url', 'github_url', 'image'))
+            'name', 'year', 'major', 'bio', 'courses', 'organizations', 'interests', 'status', 'facebook_url', 'twitter_url', 'linkedin_url', 'github_url', 'image'))
         if request.method == "POST" or Profile.objects.filter(user_id=computing_id):
             form = ProfileModel(request.POST, request.FILES)
             if (form.is_valid()):
