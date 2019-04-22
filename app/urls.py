@@ -8,6 +8,7 @@ from django.conf.urls import handler404, handler500
 app_name = 'app'
 urlpatterns = [
     path('profile/', views.create_profile, name='profile'),
+    # path('invalid_input_profile/', views.create_profile, name='profile_redirect'),
     path('published_profile/<int:pk>',
          views.ProfileView.as_view(), name='published_profile'),
 
@@ -18,10 +19,6 @@ urlpatterns = [
     path('notifications/', views.notifications, name='notifications'),
     path('settings/', views.settings, name='settings'),
     path('endorse/<int:pk>', views.endorse, name='endorse')
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 handler404 = views.error404
 handler500 = views.error500
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)

@@ -27,12 +27,6 @@ body{
     right: 0px;
 }
 
-.container{
-    display: row;
-    left: 20px;
-    text-align: center;
-}
-
 .top_links{
     height: 30px;
     width: 100%;
