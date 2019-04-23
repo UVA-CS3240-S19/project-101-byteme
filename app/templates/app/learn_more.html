@@ -19,6 +19,7 @@
              <hr class="my-4">
             <p> SkiMatch is a UVA restricted web application modeled after LinkedIn that allows students and faculty to create a profile page and post information about themselves, including what skills/expertise they have. Users can share the classes they have taken and the interests they have as well as the organizations of which they are a part. SkiMatch enables students and faculty to easily search for one another to find others that share similar hobbies and experiences. </p>
             <div class="google-button">
+                 <p class = "label"> Sign in with UVA email </p>
                 <a href="{% url 'social:begin' 'google-oauth2' %}?next=/">
                     <img id="signInButton" src= '/app/media/btn_google_signin_light_normal_web.png' onclick="document.getElementById('signInButton').src='/app/media/btn_google_signin_light_normal_web.png'">
                 </a>
