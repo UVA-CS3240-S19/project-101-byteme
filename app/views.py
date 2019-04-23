@@ -230,15 +230,15 @@ def search(request):
                 if search_value.lower().strip() == str(tags).lower().strip():
                     results.add(profile)
 
-            for skill in Skill.objects.all():
-                skill_name = skill.name.lower()
-                found = False
-                if search_value == skill_name:
-                    found = True
-                pk_id = skill.pk_id
-                profile = Profile.objects.filter(id = pk_id).first()
-                if found:
-                    results.add(profile)
+        for skill in Skill.objects.all():
+            skill_name = skill.name.lower()
+            found = False
+            if search_value == skill_name:
+                found = True
+            pk_id = skill.pk_id
+            profile = Profile.objects.filter(id = pk_id).first()
+            if found:
+                results.add(profile)
         return render(request, 'app/search_results.html', {'search_value': search_value, 'results': results})
 
         # if request.method == "POST":
