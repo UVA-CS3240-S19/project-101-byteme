@@ -19,13 +19,16 @@
 <body>
     {% if user.is_authenticated %}
       <nav class="navbar navbar-expand-md navbar-dark bg-steel">
-          <a class="navbar-brand mr-4" style="color:white;">SkiMatch</a>
+          <a class="navbar-brand mr-4" style="color:white;" href= "{% url 'app:home' %}">SkiMatch</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <ul class="navbar-nav mr-auto">
+                <a class="nav-item nav-link" href= "{% url 'app:all_profiles' %}" > All Profiles </a>
               <a class="nav-item nav-link" href= "{% url 'app:published_profile' user.id %}" >Profile</a>
+              <a class="nav-item nav-link" href= "{% url 'app:skills' %}" > Skills </a>
+
               <a class="nav-item nav-link" href= "{% url 'update_profile' %}" >Update Profile</a>
               {% comment %} 
               <a class="nav-item nav-link" >Friends</a> 

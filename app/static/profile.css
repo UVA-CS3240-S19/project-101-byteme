@@ -285,9 +285,13 @@ form .form-group {
 
 #thumbs-label {
   float: left;
+  display: flex;
+  flex-direction: row;
 }
 #endorse {
-  float: right;
+  float: left;
+  display: flex;
+  flex-direction: column;
 }
 
 .button {     

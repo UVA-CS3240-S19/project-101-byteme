@@ -1,3 +1,5 @@
+<!--Based on template: https://bootsnipp.com/snippets/MRgWB-->
+
 {% extends "app/base.html" %}
 {% load static %}
 <meta charset="UTF-8">
@@ -16,6 +18,7 @@ User Profile
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <div class="panel panel-default">
          <div class="panel-heading resume-heading" id = "top-header"></div>
+
     </div>
         <div class="row container main-info">
             <div class="col-sm picture">
@@ -41,6 +44,7 @@ User Profile
                             <a href="{{profile.github_url}}" class="btn btn-social btn-block btn-github"style="width: 40px; height: 40px">
                             <i class="fa fa-github"></i> </a>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -49,32 +53,16 @@ User Profile
                     <h1 style=" min-width: 350px; padding-bottom:20px;">{{ profile.name }}</h1>
                 </div>
                     <ul class="list-group">
+
                         <li class="list-group-item"><i class="fa fa-exclamation-circle" aria-hidden="true"></i><strong>Status: </strong>{{profile.status}} </li>
                         <li class="list-group-item"><i class="fa fa-calendar" aria-hidden="true"></i><strong>Year: </strong>{{profile.year}}</li>
                         <li class="list-group-item"><i class="fa fa-graduation-cap" aria-hidden="true"></i><strong>Major: </strong>{{profile.major}} </li>
                         <li class="list-group-item"><i class="fa fa-envelope" aria-hidden="true"></i><strong>Email: </strong><a href="mailto:{{profile.user_id}}@virginia.edu?Subject=Hello">{{profile.user_id}}@virginia.edu</a></li>
-                        <li class="list-group-item"> 
-                            <div class =”container”>
-                                <div class="box">
-                                    <div id = "thumbs-label">
-                                        <i class="fa fa-thumbs-up" aria-hidden="true"> </i>
-                                        <strong> Endorsements: </strong> {{ profile.endorse}} 
-                                    </div>
-                                    <div id = "endorse">
-                                        {% if request.user.id != profile.id %}
-                                        <form action="{% url 'app:endorse' profile.id %}" method="POST" name = "{{skill}}">
-                                            <input type="submit" value="Endorse" name= = "{{skill}}"  class = "button"/>
-                                            {% csrf_token %}  
-                                        </form>
-                                        {% endif %}
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
                     </ul>
                 </div>
             </div>
         </div>
+
 
         <div class = "container row" id="bottom">
             <div class="col-sm">
@@ -102,11 +90,24 @@ User Profile
                             <div class="text" style="font-size: large">
                                 {% for skill in profile.skills_as_list%}
                                     <div class="tag-item">
-                                       {{ skill}} 
+                                        <div id = "endorse" class = "box">
+                                            {{ skill.name }} 
+                                            {% if request.user.id != profile.id %}
+                                                <form action="{% url 'app:endorse' skill.id profile.id%}" method="POST" name = "{{skill.name}}">
+                                                    <input type="submit" value="Endorse" name= = "{{skill.name}}"  class = "button"/>
+                                                    {% csrf_token %}  
+                                                </form>
+                                            {% endif %}
+                                            <div class = "thumbs-label"
+                                                <i class="fa fa-thumbs-up" aria-hidden="true"> </i>
+                                                <strong> Endorsements: </strong> {{ skill.endorse}} 
+                                            </div>
+                                        </div>
                                     </div>
                                 {% endfor %}
                             </div>
                         </div>
+
                     </div>
                     <div class="col-sm">
                         <i class="fa fa-book" aria-hidden="true"></i>

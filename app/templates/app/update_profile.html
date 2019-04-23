@@ -30,23 +30,20 @@
             <label name="bio">Bio:</label>
             <textarea class="form-control" type="text" id="bio" name="bio" rows="4"  placeholder="Optional" maxlength = "1000">{{profile.bio}}</textarea>
         </div>
+
+         <div> Post a status to find a study group, offer tutoring, or explain what you're looking for on the site. </div>
+
         <div class = "form-group">
             <label name="status">Status:</label>
             <input class="form-control" type="text" id="status" value="{{profile.status}}"name="status" placeholder="Optional" maxlength = "500">
         </div>
 
         <h4>Please enter a comma separated list for the following</h4>
-
-        <div class = "form-group">
-            <label name="skills">Skills:</label>
-            <input class="form-control" type="text" id="skills" name="skills" value="{{profile.skills}}" placeholder="Optional" maxlength = "300">
-        </div>
-
         <div> Please enter a course code (ex. CS2150, CS4102) </div>
 
         <div class = "form-group">
             <label name="courses">Courses:</label>
-            <input class="form-control" type="text" id="courses" name="courses" value="{{profile.courses}}" placeholder="Optional" pattern="^([a-zA-Z]{1,4}[0-9]{3,5}[, ]*)+$" maxlength = "300">
+            <input class="form-control" type="text" id="courses" name="courses" value="{{profile.courses}}" placeholder="Optional" pattern="^([a-zA-Z]{1,4}[0-9]{3,5}(, ){0,1})+$" maxlength = "300">
         </div>
         <div class = "form-group">
             <label name="organizations">Organizations:</label>
@@ -61,23 +58,23 @@
             <input id="image" class = "form-control" type="file" value="{{profile.image}}" name="image" accept="image/*" />
         </div>
 
-        <div> Please enter http:// or https:// before your URL </div>
+        <div> Please enter http:// or https:// before your URL. </div>
 
         <div class = "form-group">
             <label name="facebook_url">Facebook URL:</label>
-            <input class="form-control" type="url" id="facebook_url" name="facebook_url" value="{{profile.facebook_url}}" pattern="^https:\/\/www.facebook.com.*$">
+            <input class="form-control" type="url" id="facebook_url" name="facebook_url" value="{{profile.facebook_url}}" pattern="^https:\/\/www.facebook.com.*$" placeholder="Optional">
         </div>
         <div class = "form-group">
             <label name="twitter_url">Twitter URL:</label>
-            <input class="form-control" type="url" id="twitter_url" name="twitter_url"value="{{profile.twitter_url}}" pattern="^https:\/\/twitter.com.*$">
+            <input class="form-control" type="url" id="twitter_url" name="twitter_url"value="{{profile.twitter_url}}" pattern="^https:\/\/twitter.com.*$" placeholder="Optional">
         </div>
         <div class = "form-group">
             <label name="linkedin_url">LinkedIn URL:</label>
-            <input class="form-control" type="url" id="linkedin_url" name="linkedin_url"value="{{profile.linkedin_url}}" pattern="^https:\/\/www.linkedin.com.*$">
+            <input class="form-control" type="url" id="linkedin_url" name="linkedin_url"value="{{profile.linkedin_url}}" pattern="^https:\/\/www.linkedin.com.*$" placeholder="Optional">
         </div>
         <div class = "form-group">
             <label name="github_url">Github URL:</label>
-            <input class="form-control" type="url" id="github_url" name="github_url"value="{{profile.github_url}}" pattern="^https:\/\/github.com.*$">
+            <input class="form-control" type="url" id="github_url" name="github_url"value="{{profile.github_url}}" pattern="^https:\/\/github.com.*$" placeholder="Optional">
         </div>
 
         <div class = "form-group">

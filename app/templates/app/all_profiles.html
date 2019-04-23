@@ -1,0 +1,30 @@
+{% extends "app/base.html" %}
+
+{% load static %}
+
+{% block content1 %}
+    All Profiles
+{% endblock content1 %}
+{% block content2 %}
+<link href="{% static 'search_results.css' %}" type="text/css" rel="stylesheet">
+
+ <div class="result-container">
+        {% for profile in results %}
+        <div class="search-item">
+            <div class="search-item-image">
+                <img src="{{ profile.image.url }}" height="42" width="42">
+            </div>
+            <div class="search-item-text">
+                <div class="item-name">
+                    <a href="{% url 'app:published_profile' profile.id%}">{{ profile.name }}</a>
+                </div>
+                <div class="item-details">
+                    <div> {{profile.major}} Major, Class of {{profile.year}}</div>
+                </div>
+            </div>
+            <div class="separator"> </div>
+        </div>
+        {% endfor %}
+ </div>
+
+{% endblock content2 %}

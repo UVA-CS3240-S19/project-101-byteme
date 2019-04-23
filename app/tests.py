@@ -9,6 +9,7 @@ import sys
 from django.http import HttpResponsePermanentRedirect
 from django.utils.encoding import force_text
 from django.test.utils import override_settings
+from django.conf import settings
 # Create your tests here.
 
 #c = Client()
@@ -69,7 +70,6 @@ class ProfileComponentsTest(TestCase):
             'year': "2020",
             'major': "CS",
             'bio': "Test data",
-            'skills': "Test data",
             'courses': "Test data",
             'organizations': "Test data",
             'interests': "Test data",
@@ -99,7 +99,6 @@ class SignUpTest(TestCase):
             'year': "2020",
             'major': "CS",
             'bio': "Test data",
-            'skills': "Test data",
             'courses': "Test data",
             'organizations': "Test data",
             'interests': "Test data"})
@@ -109,6 +108,7 @@ class SignUpTest(TestCase):
         self.assertEqual(response.status_code, 200)
         response = self.client.get('/profile/')
         self.assertRedirects(response, '/app/published_profile/' + str(self.user.id))
+
 
 class UpdateProfileTest(TestCase):
     def setUp(self):
@@ -125,7 +125,6 @@ class UpdateProfileTest(TestCase):
             'year': "2020",
             'major': "CS",
             'bio': "Test data",
-            'skills': "Test data",
             'courses': "Test data",
             'organizations': "Test data",
             'interests': "Test data"})
@@ -173,10 +172,12 @@ class SearchTest(TestCase):
             'year': "2020",
             'major': "CS",
             'bio': "Test data",
-            'skills': "Java, Python",
             'courses': "CS2150, CS3240",
             'organizations': "UVA",
             'interests': "Test data"})
+        res2 = self.client.post(('/app/skills/'), {
+            'name': "Java"
+        })
         self.assertEqual(response.status_code, 302)
         self.client.logout()
 
@@ -193,7 +194,6 @@ class SearchTest(TestCase):
             'year': "2020",
             'major': "Bio",
             'bio': "Test data",
-            'skills': "Test data",
             'courses': "Test data",
             'organizations': "Test data",
             'interests': "Test data"})
@@ -218,7 +218,6 @@ class SearchTest(TestCase):
             'year': "2020",
             'major': "Bio",
             'bio': "Test data",
-            'skills': "Test data",
             'courses': "Test data",
             'organizations': "Test data",
             'interests': "Test data"})
@@ -241,7 +240,6 @@ class SearchTest(TestCase):
             'year': "2020",
             'major': "Bio",
             'bio': "Test data",
-            'skills': "Test data",
             'courses': "Test data",
             'organizations': "Test data",
             'interests': "Test data"})
@@ -264,7 +262,6 @@ class SearchTest(TestCase):
             'year': "2020",
             'major': "Bio",
             'bio': "Test data",
-            'skills': "Test data",
             'courses': "Test data",
             'organizations': "Test data",
             'interests': "Test data"})
@@ -285,7 +282,6 @@ class SearchTest(TestCase):
             'year': "2020",
             'major': "Bio",
             'bio': "Test data",
-            'skills': "Test data",
             'courses': "Test data",
             'organizations': "Test data",
             'interests': "Test data"})
@@ -297,39 +293,38 @@ class ErrorPageTest(TestCase):
     def setUp(self):
         self.client = Client()
         self.user = User.objects.create(
-            username='ab1cde@virginia.edu', is_active=True, is_staff=True, is_superuser=True)
+                username='ab1cde@virginia.edu', is_active=True, is_staff=True, is_superuser=True)
         self.user.set_password('12345')
         self.user.email = 'ab1cde@virginia.edu'
         self.user.save()
         # set up initial user profile
         login = self.client.login(username='ab1cde@virginia.edu', password='12345')
         response = self.client.post(('/profile/'), {
-           'name': "Test",
-           'year': "2020",
-           'major': "CS",
-           'bio': "Test data",
-           'skills': "Java, Python",
-           'courses': "S2150, CS3240",
-           'organizations': "UVA",
-           'interests': "Test data"})
+            'name': "Test",
+            'year': "2020",
+            'major': "CS",
+            'bio': "Test data",
+            'courses': "CS2150, CS3240",
+            'organizations': "UVA",
+            'interests': "Test data"})
         self.assertEqual(response.status_code, 302)
-       # self.client.logout()
+        # self.client.logout()
 
-    def test_invalid_profile_pk(self):
-        response = self.client.post(('/published_profile/200'))
-        print(response)
-        #self.assertTrue(isinstance(response, HttpResponsePermanentRedirect))
-        self.assertEqual(response.status_code, 200)
-
-    def test_invalid_update_profile_pk(self):
-        response = self.client.post(('/update_profile/200'))
-        #self.assertTrue(isinstance(response, HttpResponsePermanentRedirect))
-        self.assertEqual(response.status_code, 200)
-
-    def test_invalid_app_url(self):
-        response = self.client.post(('/beans'))
-        #self.assertTrue(isinstance(response, HttpResponsePermanentRedirect))
-        self.assertEqual(response.status_code, 200)
+    # def test_invalid_profile_pk(self):
+    #     response = self.client.post(('app/published_profile/200'))
+    #     print(response)
+    #     # self.assertTrue(isinstance(response, HttpResponsePermanentRedirect))
+    #     self.assertEqual(response.status_code, 301)
+    #
+    # def test_invalid_update_profile_pk(self):
+    #     response = self.client.post(('app/update_profile/200'))
+    #     # self.assertTrue(isinstance(response, HttpResponsePermanentRedirect))
+    #     self.assertEqual(response.status_code, 301)
+    #
+    # def test_invalid_app_url(self):
+    #     response = self.client.post(('/beans'))
+    #     # self.assertTrue(isinstance(response, HttpResponsePermanentRedirect))
+    #     self.assertEqual(response.status_code, 301)
 
 #c.logout()
 User.objects.filter(username=admin.username).delete()
