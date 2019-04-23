@@ -8,11 +8,12 @@ from app.models import Profile, ProfileModel
 import sys
 from django.http import HttpResponsePermanentRedirect
 from django.utils.encoding import force_text
+from django.test.utils import override_settings
 # Create your tests here.
 
 #c = Client()
 #c.login(username="test", password = "password")
-admin = User.objects.create_superuser('myuser', 'ab1cde@virginia.edu', 'password')
+admin = User.objects.create_superuser('admin2', 'cd4fds@virginia.edu', 'password')
 
 
 class ProfileTest(TestCase):
@@ -80,9 +81,9 @@ class SignUpTest(TestCase):
     def setUp(self):
         self.client = Client()
         self.user = User.objects.create(
-            username='ab1cde@virginia.edu', is_active=True, is_staff=True, is_superuser=True)
+            username='as1fsd@virginia.edu', is_active=True, is_staff=True, is_superuser=True)
         self.user.set_password('12345')
-        self.user.email = 'ab1cde@virginia.edu'
+        self.user.email = 'as1fsd@virginia.edu'
         self.user.save()
 
     def test_first_time_login(self):
@@ -90,7 +91,7 @@ class SignUpTest(TestCase):
         self.assertEqual(response.status_code, 301)
 
     def test_existing_signin(self):
-        login = self.client.login(username='ab1cde@virginia.edu', password='12345')
+        login = self.client.login(username='as1fsd@virginia.edu', password='12345')
         # print(self.user.id)
         # self.user.id = 10
         response = self.client.post(('/profile/'), {
@@ -113,12 +114,12 @@ class UpdateProfileTest(TestCase):
     def setUp(self):
         self.client = Client()
         self.user = User.objects.create(
-                username='ab1cde@virginia.edu', is_active=True, is_staff=True, is_superuser=True)
+                username='as1cdf@virginia.edu', is_active=True, is_staff=True, is_superuser=True)
         self.user.set_password('12345')
-        self.user.email = 'ab1cde@virginia.edu'
+        self.user.email = 'as1cdf@virginia.edu'
         self.user.save()
         # set up initial user profile
-        login = self.client.login(username='ab1cde@virginia.edu', password='12345')
+        login = self.client.login(username='as1cdf@virginia.edu', password='12345')
         response = self.client.post(('/profile/'), {
             'name': "Test",
             'year': "2020",
@@ -161,12 +162,12 @@ class SearchTest(TestCase):
     def setUp(self):
         self.client = Client()
         self.user = User.objects.create(
-                username='ab1cde@virginia.edu', is_active=True, is_staff=True, is_superuser=True)
+                username='ab1cdg@virginia.edu', is_active=True, is_staff=True, is_superuser=True)
         self.user.set_password('12345')
-        self.user.email = 'ab1cde@virginia.edu'
+        self.user.email = 'ab1cdg@virginia.edu'
         self.user.save()
         # set up initial user profile
-        login = self.client.login(username='ab1cde@virginia.edu', password='12345')
+        login = self.client.login(username='ab1cdg@virginia.edu', password='12345')
         response = self.client.post(('/profile/'), {
             'name': "Test",
             'year': "2020",
@@ -290,6 +291,45 @@ class SearchTest(TestCase):
             'interests': "Test data"})
         response = self.client.post(('/search/'), {'search_field':"notpresent"})
         self.assertContains(response, "There are no search results.")
+
+class ErrorPageTest(TestCase):
+    @override_settings(DEBUG=False)
+    def setUp(self):
+        self.client = Client()
+        self.user = User.objects.create(
+            username='ab1cde@virginia.edu', is_active=True, is_staff=True, is_superuser=True)
+        self.user.set_password('12345')
+        self.user.email = 'ab1cde@virginia.edu'
+        self.user.save()
+        # set up initial user profile
+        login = self.client.login(username='ab1cde@virginia.edu', password='12345')
+        response = self.client.post(('/profile/'), {
+           'name': "Test",
+           'year': "2020",
+           'major': "CS",
+           'bio': "Test data",
+           'skills': "Java, Python",
+           'courses': "S2150, CS3240",
+           'organizations': "UVA",
+           'interests': "Test data"})
+        self.assertEqual(response.status_code, 302)
+       # self.client.logout()
+
+    def test_invalid_profile_pk(self):
+        response = self.client.post(('/published_profile/200'))
+        print(response)
+        #self.assertTrue(isinstance(response, HttpResponsePermanentRedirect))
+        self.assertEqual(response.status_code, 200)
+
+    def test_invalid_update_profile_pk(self):
+        response = self.client.post(('/update_profile/200'))
+        #self.assertTrue(isinstance(response, HttpResponsePermanentRedirect))
+        self.assertEqual(response.status_code, 200)
+
+    def test_invalid_app_url(self):
+        response = self.client.post(('/beans'))
+        #self.assertTrue(isinstance(response, HttpResponsePermanentRedirect))
+        self.assertEqual(response.status_code, 200)
 
 #c.logout()
 User.objects.filter(username=admin.username).delete()
