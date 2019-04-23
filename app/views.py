@@ -280,6 +280,13 @@ def messaging(request):
 def notifications(request):
     return render(request, 'app/notifications.html')
 
+def all_profiles(request):
+    print("body", request.body)
+    if not request.user.is_authenticated:
+        return redirect('login')
+    results = set()
+    return render(request, 'app/all_profiles.html', {'results': Profile.objects.all()})
+
 
 def friends(request):
     return render(request, 'app/friends.html')
