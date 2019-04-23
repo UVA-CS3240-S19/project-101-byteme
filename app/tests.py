@@ -14,7 +14,7 @@ from django.conf import settings
 
 #c = Client()
 #c.login(username="test", password = "password")
-admin = User.objects.create_superuser('myuser', 'ab1cde@virginia.edu', 'password')
+admin = User.objects.create_superuser('admin2', 'cd4fds@virginia.edu', 'password')
 
 
 class ProfileTest(TestCase):
@@ -70,7 +70,6 @@ class ProfileComponentsTest(TestCase):
             'year': "2020",
             'major': "CS",
             'bio': "Test data",
-            'skills': "Test data",
             'courses': "Test data",
             'organizations': "Test data",
             'interests': "Test data",
@@ -82,9 +81,9 @@ class SignUpTest(TestCase):
     def setUp(self):
         self.client = Client()
         self.user = User.objects.create(
-            username='ab1cde@virginia.edu', is_active=True, is_staff=True, is_superuser=True)
+            username='as1fsd@virginia.edu', is_active=True, is_staff=True, is_superuser=True)
         self.user.set_password('12345')
-        self.user.email = 'ab1cde@virginia.edu'
+        self.user.email = 'as1fsd@virginia.edu'
         self.user.save()
 
     def test_first_time_login(self):
@@ -92,7 +91,7 @@ class SignUpTest(TestCase):
         self.assertEqual(response.status_code, 301)
 
     def test_existing_signin(self):
-        login = self.client.login(username='ab1cde@virginia.edu', password='12345')
+        login = self.client.login(username='as1fsd@virginia.edu', password='12345')
         # print(self.user.id)
         # self.user.id = 10
         response = self.client.post(('/profile/'), {
@@ -100,7 +99,6 @@ class SignUpTest(TestCase):
             'year': "2020",
             'major': "CS",
             'bio': "Test data",
-            'skills': "Test data",
             'courses': "Test data",
             'organizations': "Test data",
             'interests': "Test data"})
@@ -116,18 +114,17 @@ class UpdateProfileTest(TestCase):
     def setUp(self):
         self.client = Client()
         self.user = User.objects.create(
-                username='ab1cde@virginia.edu', is_active=True, is_staff=True, is_superuser=True)
+                username='as1cdf@virginia.edu', is_active=True, is_staff=True, is_superuser=True)
         self.user.set_password('12345')
-        self.user.email = 'ab1cde@virginia.edu'
+        self.user.email = 'as1cdf@virginia.edu'
         self.user.save()
         # set up initial user profile
-        login = self.client.login(username='ab1cde@virginia.edu', password='12345')
+        login = self.client.login(username='as1cdf@virginia.edu', password='12345')
         response = self.client.post(('/profile/'), {
             'name': "Test",
             'year': "2020",
             'major': "CS",
             'bio': "Test data",
-            'skills': "Test data",
             'courses': "Test data",
             'organizations': "Test data",
             'interests': "Test data"})
@@ -164,21 +161,23 @@ class SearchTest(TestCase):
     def setUp(self):
         self.client = Client()
         self.user = User.objects.create(
-                username='ab1cde@virginia.edu', is_active=True, is_staff=True, is_superuser=True)
+                username='ab1cdg@virginia.edu', is_active=True, is_staff=True, is_superuser=True)
         self.user.set_password('12345')
-        self.user.email = 'ab1cde@virginia.edu'
+        self.user.email = 'ab1cdg@virginia.edu'
         self.user.save()
         # set up initial user profile
-        login = self.client.login(username='ab1cde@virginia.edu', password='12345')
+        login = self.client.login(username='ab1cdg@virginia.edu', password='12345')
         response = self.client.post(('/profile/'), {
             'name': "Test",
             'year': "2020",
             'major': "CS",
             'bio': "Test data",
-            'skills': "Java, Python",
             'courses': "CS2150, CS3240",
             'organizations': "UVA",
             'interests': "Test data"})
+        res2 = self.client.post(('/app/skills/'), {
+            'name': "Java"
+        })
         self.assertEqual(response.status_code, 302)
         self.client.logout()
 
@@ -195,7 +194,6 @@ class SearchTest(TestCase):
             'year': "2020",
             'major': "Bio",
             'bio': "Test data",
-            'skills': "Test data",
             'courses': "Test data",
             'organizations': "Test data",
             'interests': "Test data"})
@@ -220,7 +218,6 @@ class SearchTest(TestCase):
             'year': "2020",
             'major': "Bio",
             'bio': "Test data",
-            'skills': "Test data",
             'courses': "Test data",
             'organizations': "Test data",
             'interests': "Test data"})
@@ -243,7 +240,6 @@ class SearchTest(TestCase):
             'year': "2020",
             'major': "Bio",
             'bio': "Test data",
-            'skills': "Test data",
             'courses': "Test data",
             'organizations': "Test data",
             'interests': "Test data"})
@@ -266,7 +262,6 @@ class SearchTest(TestCase):
             'year': "2020",
             'major': "Bio",
             'bio': "Test data",
-            'skills': "Test data",
             'courses': "Test data",
             'organizations': "Test data",
             'interests': "Test data"})
@@ -287,13 +282,11 @@ class SearchTest(TestCase):
             'year': "2020",
             'major': "Bio",
             'bio': "Test data",
-            'skills': "Test data",
             'courses': "Test data",
             'organizations': "Test data",
             'interests': "Test data"})
         response = self.client.post(('/search/'), {'search_field':"notpresent"})
         self.assertContains(response, "There are no search results.")
-
 
 class ErrorPageTest(TestCase):
     @override_settings(DEBUG=False)
@@ -311,7 +304,6 @@ class ErrorPageTest(TestCase):
             'year': "2020",
             'major': "CS",
             'bio': "Test data",
-            'skills': "Java, Python",
             'courses': "CS2150, CS3240",
             'organizations': "UVA",
             'interests': "Test data"})

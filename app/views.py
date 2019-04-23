@@ -84,7 +84,8 @@ def create_profile(request):
                 # profile.save()
 
                 courses_list = profile.courses.split(",")
-                tags_to_add.add(i)
+                for i in courses_list:
+                    tags_to_add.add(i.strip())
 
                 # for i in courses_list:
                 #     i = i.strip()
