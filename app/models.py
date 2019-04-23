@@ -22,8 +22,8 @@ class Skill(models.Model):
     name = models.CharField(max_length=200)
     endorsements = JSONField(models.CharField(max_length=10, default = ''), blank=True)
     endorse = models.IntegerField(default=0)
-    user_id = models.CharField(max_length=10)
-    pk_id = models.IntegerField(default=0)
+    user_id = models.CharField(max_length=10) #ex: mdt2gb
+    pk_id = models.IntegerField(default=0) #ex 1, 2, 3, etc..
 
 
 class Profile(models.Model):
