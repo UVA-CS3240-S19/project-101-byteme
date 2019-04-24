@@ -34,14 +34,14 @@
             <div class = "block">
                 <td>
                     <label style="display: inline-block; margin-top: 10px"> {{ skill.name }} </label>
-                    <div class = "thumbs-label"
-                        <i class="fa fa-thumbs-up" aria-hidden="true"> </i>
+                    <div class = "thumbs-label">
+
                         <strong> Endorsements: </strong> {{ skill.endorse}} 
                     </div>
                     <div>
                         <i class="fa fa-trash"></i>
                         <form action="{% url 'app:delete_skill' skill.name %}" method="POST" name = "{{skill}}">
-                            <input type="submit" value="Delete" name= = "{{skill.name}}"  class = "button"/>
+                            <input type="submit" value="Delete" name= "{{skill.name}}"  class = "button"/>
                             {% csrf_token %}  
                         </form>
                     </div>

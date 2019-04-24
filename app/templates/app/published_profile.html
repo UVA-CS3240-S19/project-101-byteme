@@ -68,7 +68,7 @@ User Profile
             <div class="col-sm">
                 <div class="container">
                     <div class="col-sm">
-                        <i class="fa fa-user fa-lg" aria-hidden="true"></i><h2 class="heading">Bio</h2>
+                        <i class="fa fa-user fa-lg" aria-hidden="true"></i><h4 class="heading" style = "position: relative; padding-left: 15px; top:5px">Bio</h4>
                     </div>
                     <div class="col-sm">
                         <div id="bio" style="font-size: large">
@@ -82,7 +82,7 @@ User Profile
                     <div class="col-sm" id="accordion">
                         <i class="fa fa-star" aria-hidden="true"></i>
                             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#skills" aria-expanded="false" aria-controls="collapseOne">
-                                <h2 class="heading">Skills</h2>
+                                <h4 class="heading">Skills</h4>
                             </button>
                     </div>
                     <div class="col-sm">
@@ -94,13 +94,13 @@ User Profile
                                             {{ skill.name }} 
                                             {% if request.user.id != profile.id %}
                                                 <form action="{% url 'app:endorse' skill.id profile.id%}" method="POST" name = "{{skill.name}}">
-                                                    <input type="submit" value="Endorse" name= = "{{skill.name}}"  class = "button"/>
-                                                    {% csrf_token %}  
+                                                    <input type="submit" value="Endorse" name= "{{skill.name}}"  class = "button"/>
+                                                    {% csrf_token %}
                                                 </form>
                                             {% endif %}
-                                            <div class = "thumbs-label"
-                                                <i class="fa fa-thumbs-up" aria-hidden="true"> </i>
-                                                <strong> Endorsements: </strong> {{ skill.endorse}} 
+                                            <div class = "thumbs-label">
+
+                                                <strong> Endorsements: </strong> {{ skill.endorse}}
                                             </div>
                                         </div>
                                     </div>
@@ -112,7 +112,7 @@ User Profile
                     <div class="col-sm">
                         <i class="fa fa-book" aria-hidden="true"></i>
                             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#courses" aria-expanded="false" aria-controls="collapseTwo">
-                               <h2 class="heading">Courses</h2>
+                               <h4 class="heading">Courses</h4>
                             </button>
                     </div>
                     <div class="col-sm">
@@ -131,7 +131,7 @@ User Profile
                     <div class="col-sm" style = "padding-right: 0px;">
                         <i class="fa fa-users fa-lg" aria-hidden="true" style="width: 16px;"></i>
                             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#organizations" aria-expanded="false" aria-controls="collapseThree" style = "padding-right:0px;">
-                                <h2 class="heading">Organizations</h2>
+                                <h4 class="heading">Organizations</h4>
                             </button>
                     </div>
                     <div class="col-sm">
@@ -146,7 +146,7 @@ User Profile
                     <div class="col-sm">
                            <i class="fa fa-heart" aria-hidden="true"></i>
                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#interests" aria-expanded="false" aria-controls="collapseFour">
-                              <h2 class="heading">Interests</h2>
+                              <h4 class="heading">Interests</h4>
                            </button>
                     </div>
                     <div class="col-sm">
