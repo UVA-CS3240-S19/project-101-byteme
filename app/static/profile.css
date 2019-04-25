@@ -42,8 +42,6 @@ h3 {
   height: 180px;
 
   overflow: auto;
-  margin-bottom: 16px;
-  margin-top: 16px;
 }
 
 #bio {
@@ -305,4 +303,17 @@ form .form-group {
   height: 30px;
   background: #79BDBF;
   border-radius: 100px / 50px;   
+}
+
+.fa:hover{
+  color:black;
+}
+
+.fa{
+  color:black;
+}
+
+
+.bio-div{
+  color:black;
 }

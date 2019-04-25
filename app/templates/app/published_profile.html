@@ -68,9 +68,8 @@ User Profile
             <div class="col-sm">
                 <div class="container">
                     <div class="col-sm">
-                        <i class="fa fa-user fa-lg" aria-hidden="true"></i><h3 class="heading" style = "position: relative; padding-left: 15px; top:5px">Bio</h3>
-                    </div>
-                    <div class="col-sm">
+                        <i class="fa fa-user fa-lg" aria-hidden="true"></i>
+                        <h3 class="heading" style = "position: relative; padding-left: 15px; top:5px">Bio</h3>
                         <div id="bio" style="font-size: large">
                             {{profile.bio}}
                         </div>
@@ -79,9 +78,9 @@ User Profile
             </div>
             <div class="col-sm">
                 <div class="container">
-                    <div class="col-sm" id="accordion">
-                        <i class="fa fa-star fa-lg" aria-hidden="true"></i>
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#skills" aria-expanded="false" aria-controls="collapseOne">
+                    <div class="row" id = "accordion" style = "margin-bottom:10px;">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#skills" aria-expanded="false" aria-controls="collapseOne" style = "text-align:left;">
+                                <i class="fa fa-star fa-lg" aria-hidden="true" style="width: 0px; margin-bottom:10px; margin-right:30px;"></i>
                                 <h3 class="heading">Skills</h3>
                             </button>
                     </div>
@@ -107,12 +106,11 @@ User Profile
                                 {% endfor %}
                             </div>
                         </div>
-
                     </div>
-                    <div class="col-sm">
-                        <i class="fa fa-book fa-lg" aria-hidden="true"></i>
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#courses" aria-expanded="false" aria-controls="collapseTwo">
-                               <h3 class="heading">Courses</h3>
+                    <div class="row" style = "margin-bottom:10px;">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#courses" aria-expanded="false" aria-controls="collapseTwo" style = "text-align:left;">
+                                <i class="fa fa-book fa-lg" aria-hidden="true" style="width: 0px; margin-bottom:10px; margin-right:30px;"></i>
+                                <h3 class="heading">Courses</h3>
                             </button>
                     </div>
                     <div class="col-sm">
@@ -129,11 +127,11 @@ User Profile
 
             <div class="col-sm">
                 <div class="container">
-                    <div class="col-sm" style = "padding-right: 0px;">
-                        <i class="fa fa-users fa-lg" aria-hidden="true" style="width: 16px;"></i>
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#organizations" aria-expanded="false" aria-controls="collapseThree" style = "padding-right:0px;">
-                                <h3 class="heading">Organizations</h3>
-                            </button>
+                    <div class="row" style = "margin-bottom:10px;">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#organizations" aria-expanded="false" aria-controls="collapseThree" style = "text-align:left;">
+                            <i class="fa fa-users fa-lg" aria-hidden="true" style="width: 0px; margin-bottom:10px; margin-right:30px;"></i>
+                            <h3 class = "organizations">Organizations</h3>
+                        </button>
                     </div>
                     <div class="col-sm">
                         <div id="organizations" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
@@ -144,10 +142,10 @@ User Profile
                            </div>
                         </div>
                     </div>
-                    <div class="col-sm">
-                           <i class="fa fa-heart fa-lg" aria-hidden="true"></i>
-                           <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#interests" aria-expanded="false" aria-controls="collapseFour">
-                              <h3 class="heading">Interests</h3>
+                    <div class="row" style = "margin-bottom:10px;">
+                           <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#interests" aria-expanded="false" aria-controls="collapseFour" style = "text-align:left;">
+                                <i class="fa fa-heart fa-lg" aria-hidden="true" style="width: 0px; margin-bottom:10px; margin-right:30px;"></i>
+                                <h3 class="heading">Interests</h3>
                            </button>
                     </div>
                     <div class="col-sm">
@@ -161,81 +159,81 @@ User Profile
                     </div>
                 </div>
             </div>
-        </div>
 
-        {% comment %} 
-        <div id="accordion">
-            <div class="card">
-                <div class="card-header" id="headingOne">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link" data-toggle="collapse" data-target="#bio" aria-expanded="false" aria-controls="collapseOne">
-                           Bio
-                        </button>
-                    </h5>
-                </div>
-                <div id="bio" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                    <div class="card-body"> 
-                        {{profile.bio}}
+            {% comment %} 
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#bio" aria-expanded="false" aria-controls="collapseOne">
+                            Bio
+                            </button>
+                        </h5>
                     </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header" id="headingTwo">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#skills" aria-expanded="false" aria-controls="collapseTwo">
-                           Skills
-                        </button>
-                    </h5>
-                </div>
-                <div id="skills" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                    <div class="card-body">
-                        {{profile.skills}}
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header" id="headingThree">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#courses" aria-expanded="false" aria-controls="collapseThree">
-                           Courses
-                        </button>
-                    </h5>
-                </div>
-                <div id="courses" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                        <div class="card-body">
-                           {{profile.courses}}
+                    <div id="bio" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body"> 
+                            {{profile.bio}}
                         </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header" id="headingFour">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link" data-toggle="collapse" data-target="#organizations" aria-expanded="false" aria-controls="collapseOne">
-                           Organizations
-                        </button>
-                    </h5>
-                </div>
-                <div id="organizations" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-                    <div class="card-body"> 
-                       {{profile.organizations}}
                     </div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-header" id="headingFive">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link" data-toggle="collapse" data-target="#interests" aria-expanded="false" aria-controls="collapseOne">
-                           Interests
-                        </button>
-                    </h5>
-                </div>
-                <div id="interests" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
-                    <div class="card-body"> 
-                        {{profile.interests}}
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#skills" aria-expanded="false" aria-controls="collapseTwo">
+                            Skills
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="skills" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                            {{profile.skills}}
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div> {% endcomment %}
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#courses" aria-expanded="false" aria-controls="collapseThree">
+                            Courses
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="courses" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                            <div class="card-body">
+                            {{profile.courses}}
+                            </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingFour">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#organizations" aria-expanded="false" aria-controls="collapseOne">
+                            Organizations
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="organizations" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                        <div class="card-body"> 
+                        {{profile.organizations}}
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingFive">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#interests" aria-expanded="false" aria-controls="collapseOne">
+                            Interests
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="interests" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                        <div class="card-body"> 
+                            {{profile.interests}}
+                        </div>
+                    </div>
+                </div>
+            </div> {% endcomment %}
+        </div>
 {% else %}
 <p>There is currently no user data.</p>
 {% endif %}
