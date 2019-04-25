@@ -12,37 +12,35 @@
 
 {% block title %}{% endblock %}
 {% block content2 %}
-<div style="margin-top:15px; margin-left: 32px; margin-right: 32px">
+<div style="margin-top:15px; margin-left: 32px; margin-right: 32px";>
     <h2>{{ "Add your skills:" }}</h2>
     <form action="{% url 'app:skills' %}" method="post" class="needs-validation" enctype="multipart/form-data">
         {% csrf_token %}
         <div class = "form-group">
-            <label name="skill">Skill:</label>
+            <label name="skill" style="margin-top:15px; margin-bottom:10px">Skill:</label>
             <input class="form-control" type="text" id="name" name="name" required placeholder="ex: python">
 
-        <div class = "form-group">
+        <div class = "form-group" style="margin-top:10px">
             <input class="form-control" type="submit" value="Add Skill"> 
         </div>
     </form>
 </div>
 
 {% if Skills %}
-<h1> Skills: </h1>
+<h2 style="margin-top:25px"> Skills: </h2>
 <div>
     {% for skill in Skills %}
         {% if skill.pk_id == request.user.id %}
             <div class = "block">
                 <td>
-                    <label style="display: inline-block; margin-top: 10px"> {{ skill.name }} </label>
-                    <div class = "thumbs-label">
-
-                        <strong> Endorsements: </strong> {{ skill.endorse}} 
+                    <label style="display: inline-block; margin-top: 10px; margin-bottom:5px"> {{ skill.name }} </label>
+                    <div class = "thumbs-label" style="margin-bottom:10px">
+                        <strong> Endorsements: </strong> {{ skill.endorse}}
                     </div>
                     <div>
-                        <i class="fa fa-trash"></i>
-                        <form action="{% url 'app:delete_skill' skill.name %}" method="POST" name = "{{skill}}">
+                        <form action="{% url 'app:delete_skill' skill.name %}" method="POST" name = "{{skill}}" style="margin-bottom:20px">
                             <input type="submit" value="Delete" name= "{{skill.name}}"  class = "button"/>
-                            {% csrf_token %}  
+                            {% csrf_token %}
                         </form>
                     </div>
                 </td>
