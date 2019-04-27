@@ -90,19 +90,24 @@ User Profile
                             <div class="text" style="font-size: large">
                                 {% for skill in profile.skills_as_list%}
                                     <div class="tag-item">
-                                        <div id = "endorse" class = "box">
-                                            {{ skill.name }} 
+                                        <div id = "endorse row" class = "box row" style= "margin-bottom:0px;">
+                                            <div class = "col-sm my-auto" style= "padding-right:0px;">
+                                            <p style = "vertical-align: middle; margin-bottom:0px;">{{ skill.name }} </p>
+                                            </div>
                                             {% if request.user.id != profile.id %}
+                                            <div class = "col-sm"  style = "padding-left:0px; padding-right:0px; ">
                                                 <form action="{% url 'app:endorse' skill.id profile.id%}" method="POST" name = "{{skill.name}}">
-                                                    <input type="submit" value="Endorse" name= "{{skill.name}}"  class = "button"/>
+                                                    <button class = "btn btn-link" type="submit" name= "{{skill.name}}">
+                                                        <i class="fa fa-thumbs-o-up fa-lg" id = "thumb" name= "{{skill.name}}"></i>
+                                                        </button>
                                                     {% csrf_token %}
                                                 </form>
+                                            </div>
                                             {% endif %}
-                                            <div class = "thumbs-label">
-
+                                        </div>
+                                            <div class = "thumbs-label row" style = "margin-bottom: 0px; margin-left:0px;">
                                                 <strong> Endorsements: </strong> {{ skill.endorse }}
                                             </div>
-                                        </div>
                                     </div>
                                 {% endfor %}
                             </div>

@@ -277,6 +277,11 @@ form .form-group {
   text-align: left;
 }
 
+#thumb:hover{
+  color:green;
+  font-size:1.5em;
+}
+
 .progress-meter>.meter.meter-right>.meter-text {
   text-align: right;
 }
