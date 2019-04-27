@@ -134,6 +134,7 @@ def add_skill(request):
         if request.method == "POST":
             form = SkillsModel(request.POST, request.FILES)
             skill = form.save(commit=False)
+            skill.name = skill.name.capitalize()
             skill.user_id = computing_id
             skill.computing_id = computing_id
             skill.pk_id = request.user.id  
