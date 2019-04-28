@@ -1,3 +1,9 @@
+/*
+sources:
+https://stackoverflow.com/questions/39926555/i-want-to-use-aria-expanded-true-to-change-a-css-property
+https://www.w3schools.com/cssref/css3_pr_transform.asp
+https://stackoverflow.com/questions/15167545/how-to-crop-a-rectangular-image-into-a-square-with-css
+*/
 body {
   background: #eeee;
 }
@@ -8,6 +14,29 @@ body {
   padding-top: 16px;
   margin-bottom: 64px;
   min-width: 375px;
+}
+
+.toggled{
+  transform-origin: 50% 50%;
+  color:black;
+}
+
+.toggled:hover{
+  text-decoration:none;
+  color:black;
+}
+
+.toggled[aria-expanded="false"]:hover{
+  text-decoration:underline;
+}
+
+.toggled[aria-expanded="true"]:hover{
+  text-decoration:overline;
+}
+
+.toggled[aria-expanded="true"]{
+  transform: rotate(-180deg);
+  transform-origin: 50% 50%;
 }
 
 .container{
@@ -42,8 +71,6 @@ h3 {
   height: 180px;
 
   overflow: auto;
-  margin-bottom: 16px;
-  margin-top: 16px;
 }
 
 #bio {
@@ -279,6 +306,11 @@ form .form-group {
   text-align: left;
 }
 
+#thumb:hover{
+  color:green;
+  font-size:1.5em;
+}
+
 .progress-meter>.meter.meter-right>.meter-text {
   text-align: right;
 }
@@ -305,4 +337,9 @@ form .form-group {
   height: 30px;
   background: #79BDBF;
   border-radius: 100px / 50px;   
+}
+
+
+.bio-div{
+  color:black;
 }

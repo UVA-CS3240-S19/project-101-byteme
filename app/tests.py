@@ -310,21 +310,22 @@ class ErrorPageTest(TestCase):
         self.assertEqual(response.status_code, 302)
         # self.client.logout()
 
-    # def test_invalid_profile_pk(self):
-    #     response = self.client.post(('app/published_profile/200'))
-    #     print(response)
-    #     # self.assertTrue(isinstance(response, HttpResponsePermanentRedirect))
-    #     self.assertEqual(response.status_code, 301)
-    #
-    # def test_invalid_update_profile_pk(self):
-    #     response = self.client.post(('app/update_profile/200'))
-    #     # self.assertTrue(isinstance(response, HttpResponsePermanentRedirect))
-    #     self.assertEqual(response.status_code, 301)
-    #
-    # def test_invalid_app_url(self):
-    #     response = self.client.post(('/beans'))
-    #     # self.assertTrue(isinstance(response, HttpResponsePermanentRedirect))
-    #     self.assertEqual(response.status_code, 301)
+    def test_invalid_profile_pk(self):
+        response = self.client.get('app/published_profile/200', follow = True)
+        print(response)
+        # self.assertTrue(isinstance(response, HttpResponsePermanentRedirect))
+        #self.assertEqual(response.status_code, 301)
+        self.assertContains(response, "Oops! This Page Could Not Be Found", status_code=200)
+    
+    def test_invalid_update_profile_pk(self):
+        response = self.client.get('app/update_profile/200', follow = True)
+        # self.assertTrue(isinstance(response, HttpResponsePermanentRedirect))
+        self.assertContains(response, "Oops! This Page Could Not Be Found", status_code=200)
+    
+    def test_invalid_app_url(self):
+        response = self.client.get('/beans', follow = True)
+        # self.assertTrue(isinstance(response, HttpResponsePermanentRedirect))
+        self.assertContains(response, "Oops! This Page Could Not Be Found", status_code=200)
 
 #c.logout()
 User.objects.filter(username=admin.username).delete()

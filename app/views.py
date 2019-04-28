@@ -69,6 +69,7 @@ def create_profile(request):
             form = ProfileModel(request.POST, request.FILES)
             if (form.is_valid()):
                 profile = form.save(commit=False)
+                profile.name = profile.name.capitalize()
                 if 'image' in request.FILES:
                     profile.image = request.FILES['image']
                 profile.user_id = computing_id
@@ -135,6 +136,7 @@ def add_skill(request):
         if request.method == "POST":
             form = SkillsModel(request.POST, request.FILES)
             skill = form.save(commit=False)
+            skill.name = skill.name.capitalize()
             skill.user_id = computing_id
             skill.computing_id = computing_id
             skill.pk_id = request.user.id  
@@ -162,6 +164,7 @@ def update_profile(request):
         if request.method == "POST":
             form = ProfileModel(request.POST, request.FILES)
             if (form.is_valid()):
+                profile.name = request.POST['name'].capitalize()
                 profile.user_id = computing_id
                 profile.id = request.user.id
                 profile.year = request.POST['year']
