@@ -1,3 +1,9 @@
+/*
+sources:
+https://stackoverflow.com/questions/39926555/i-want-to-use-aria-expanded-true-to-change-a-css-property
+https://www.w3schools.com/cssref/css3_pr_transform.asp
+https://stackoverflow.com/questions/15167545/how-to-crop-a-rectangular-image-into-a-square-with-css
+*/
 body {
   background: #eeee;
 }
@@ -8,6 +14,14 @@ body {
   padding-top: 16px;
   margin-bottom: 64px;
   min-width: 375px;
+}
+
+.toggled{
+  transform-origin: 50% 50%;
+}
+.toggled[aria-expanded="true"]{
+  transform: rotate(-180deg);
+  transform-origin: 50% 50%;
 }
 
 .container{

@@ -1,6 +1,6 @@
 <!--Based on template: https://bootsnipp.com/snippets/MRgWB-->
 <!-- formating from : https://getbootstrap.com/docs/4.3/layout/grid/-->
-<!--font-awesome icons: https://www.w3schools.com/icons/fontawesome_icons_webapp.asp-->
+<!--font-awesome icons: https://fontawesome.com/icons-->
 
 {% extends "app/base.html" %}
 {% load static %}
@@ -69,9 +69,9 @@ User Profile
         <div class = "container row" id="bottom">
             <div class="col-sm">
                 <div class="container">
-                    <div class="col-sm">
-                        <i class="fa fa-user fa-lg" aria-hidden="true"></i>
-                        <h3 class="heading" style = "position: relative; padding-left: 15px; top:5px">Bio</h3>
+                    <div class="col-sm my-auto">
+                        <i class="fa fa-user fa-lg" aria-hidden="true" style= "width:0px; margin-right:30px;"></i>
+                        <h3 class="heading" style = "position: relative; vertical-align: middle;">Bio</h3>
                         <div id="bio" style="font-size: large">
                             {{profile.bio}}
                         </div>
@@ -81,10 +81,14 @@ User Profile
             <div class="col-sm">
                 <div class="container">
                     <div class="row" id = "accordion" style = "margin-bottom:10px;">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#skills" aria-expanded="false" aria-controls="collapseOne" style = "text-align:left;">
+                            <div class="col-sm my-auto" style = "text-align:left;">
                                 <i class="fa fa-star fa-lg" aria-hidden="true" style="width: 0px; margin-bottom:10px; margin-right:30px;"></i>
-                                <h3 class="heading">Skills</h3>
-                            </button>
+                                <h3 class="heading" style = "vertical-align: middle">Skills</h3>
+                            </div>
+                            <!--i class = "fa fa-sort-down fa-lg col-sm btn btn-link collapsed" data-toggle="collapse" data-target="#skills" aria-expanded="false" aria-controls="collapseOne"></i--> 
+                            <div class = "col-sm" style = "text-align:right;">                                    
+                                <i class = "fa fa-sort-down fa-lg btn btn-link collapsed toggled" data-toggle="collapse" data-target="#skills" aria-expanded="false" aria-controls="collapseOne" style = "width:1.33em; height:1.33em; padding-top:0px; padding-bottom:0px; padding-left:0px;padding-right:0px;"></i> 
+                            </div>  
                     </div>
                     <div class="col-sm">
                         <div id="skills" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
@@ -115,11 +119,15 @@ User Profile
                         </div>
                     </div>
                     <div class="row" style = "margin-bottom:10px;">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#courses" aria-expanded="false" aria-controls="collapseTwo" style = "text-align:left;">
-                                <i class="fa fa-book fa-lg" aria-hidden="true" style="width: 0px; margin-bottom:10px; margin-right:30px;"></i>
-                                <h3 class="heading">Courses</h3>
-                            </button>
-                    </div>
+                            <div class="col-8 my-auto" style = "text-align:left;">
+                                    <i class="fa fa-book fa-lg" aria-hidden="true" style="width: 0px; margin-bottom:10px; margin-right:30px;"></i>
+                                    <h3 class="heading" style = "vertical-align: middle;">Courses</h3>
+                                </div>
+                                <!--i class = "fa fa-sort-down fa-lg col-sm btn btn-link collapsed" data-toggle="collapse" data-target="#skills" aria-expanded="false" aria-controls="collapseOne"></i--> 
+                                <div class = "col-4" style = "text-align:right;">                                    
+                                    <i class = "fa fa-sort-down fa-lg btn btn-link collapsed toggled" data-toggle="collapse" data-target="#courses" aria-expanded="false" aria-controls="collapseTwo" style = "width:1.33em; height:1.33em; padding-top:0px; padding-bottom:0px; padding-left:0px;padding-right:0px;"></i> 
+                                </div>
+                            </div>
                     <div class="col-sm">
                         <div id="courses" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                             <div class="text" style="font-size: large;">
@@ -133,13 +141,16 @@ User Profile
             </div>
 
             <div class="col-sm">
-                <div class="container">
                     <div class="row" style = "margin-bottom:10px;">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#organizations" aria-expanded="false" aria-controls="collapseThree" style = "text-align:left;">
-                            <i class="fa fa-users fa-lg" aria-hidden="true" style="width: 0px; margin-bottom:10px; margin-right:30px;"></i>
-                            <h3 class = "organizations">Organizations</h3>
-                        </button>
-                    </div>
+                        <div class="col-9 my-auto" style = "text-align:left; padding-right:0px;">
+                                <i class="fa fa-users fa-lg" aria-hidden="true" style="width: 0px; margin-bottom:10px; margin-right:30px;"></i>
+                                <h3 class = "organizations" style = "vertical-align: middle;">Organizations</h3>
+                            </div>
+                            <!--i class = "fa fa-sort-down fa-lg col-sm btn btn-link collapsed" data-toggle="collapse" data-target="#skills" aria-expanded="false" aria-controls="collapseOne"></i--> 
+                            <div class = "col-3" style = "text-align:right; padding-left:0px;">                                    
+                                <i class = "fa fa-sort-down fa-lg btn btn-link collapsed toggled" data-toggle="collapse" data-target="#organizations" aria-expanded="false" aria-controls="collapseThree" style = "width:1.33em; height:1.33em; padding-top:0px; padding-bottom:0px; padding-left:0px;padding-right:0px;"></i> 
+                            </div>
+                        </div>
                     <div class="col-sm">
                         <div id="organizations" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                             <div class="text" style="font-size: large;">
@@ -150,10 +161,14 @@ User Profile
                         </div>
                     </div>
                     <div class="row" style = "margin-bottom:10px;">
-                           <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#interests" aria-expanded="false" aria-controls="collapseFour" style = "text-align:left;">
+                           <div class="col-8 my-auto" style = "text-align:left;">
                                 <i class="fa fa-heart fa-lg" aria-hidden="true" style="width: 0px; margin-bottom:10px; margin-right:30px;"></i>
-                                <h3 class="heading">Interests</h3>
-                           </button>
+                                <h3 class="heading" style = "vertical-align: middle">Interests</h3>
+                            </div>
+                            <!--i class = "fa fa-sort-down fa-lg col-sm btn btn-link collapsed" data-toggle="collapse" data-target="#skills" aria-expanded="false" aria-controls="collapseOne"></i--> 
+                            <div class = "col-4" style = "text-align:right;">                                    
+                                <i class = "fa fa-sort-down fa-lg btn btn-link collapsed toggled" data-toggle="collapse" data-target="#interests" aria-expanded="false" aria-controls="collapseFour" style = "width:1.33em; height:1.33em; padding-top:0px; padding-bottom:0px; padding-left:0px;padding-right:0px;"></i> 
+                            </div>
                     </div>
                     <div class="col-sm">
                         <div id="interests" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
