@@ -18,7 +18,22 @@ body {
 
 .toggled{
   transform-origin: 50% 50%;
+  color:black;
 }
+
+.toggled:hover{
+  text-decoration:none;
+  color:black;
+}
+
+.toggled[aria-expanded="false"]:hover{
+  text-decoration:underline;
+}
+
+.toggled[aria-expanded="true"]:hover{
+  text-decoration:overline;
+}
+
 .toggled[aria-expanded="true"]{
   transform: rotate(-180deg);
   transform-origin: 50% 50%;
@@ -322,14 +337,6 @@ form .form-group {
   height: 30px;
   background: #79BDBF;
   border-radius: 100px / 50px;   
-}
-
-.fa:hover{
-  color:black;
-}
-
-.fa{
-  color:black;
 }
 
 
