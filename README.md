@@ -30,7 +30,7 @@ When viewing another user's profile, you can endorse one or more of their skills
 
 *To return to your own profile, click the "Profile" tab on the navigation bar at the top of the screen.* 
 
-## Updating Your Profile
+### Updating Your Profile
 
 If you wish to make additions or changes to your profile page, click the "Update Profile" tab on the navigation bar. This will redirect you to a form for adding to or editing the fields you initially filled out when creating your profile. Once you have finished making edits, click the "Publish" button to save your changes.
 
