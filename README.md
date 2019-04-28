@@ -34,7 +34,7 @@ When viewing another user's profile, you can endorse one or more of their skills
 
 If you wish to make additions or changes to your profile page, click the "Update Profile" tab on the navigation bar. This will redirect you to a form for adding to or editing the fields you initially filled out when creating your profile. Once you have finished making edits, click the "Publish" button to save your changes.
 
-### Logout
+### Logging Out
 
 Click the "Log Out" button on the navigation bar to leave the site. If you wish to log in again later, return to https://skillbuilder.herokuapp.com and use the Google login with your UVA email to visit your existing profile.
 
