@@ -1,3 +1,8 @@
+#sources: https://wsvincent.com/django-image-uploads/
+# https://github.com/maxg203/Django-Tutorials
+# https://django-taggit.readthedocs.io/en/latest/custom_tagging.html
+# https://docs.djangoproject.com/en/2.2/intro/tutorial01/
+
 from django.db import models
 from taggit.managers import TaggableManager
 from django import forms
@@ -59,25 +64,6 @@ class Profile(models.Model):
     def interests_as_list(self):
         return self.interests.split(',')
 
-    # def clean_courses(self):
-    #     courses = self.cleaned_data['courses']
-    #     course_list = self.courses.split(',')
-    #     for c in course_list:
-    #         c = c.strip()
-    #         if (len(c) > 8 or len(c) < 6):
-    #             raise ValidationError('Invalid course')
-    #         elif(c[0].isalpha() == False or c[1].isalpha() == False):
-    #             raise ValidationError('Invalid course')
-    #         elif ((len(c) == 6 and c[2].isalpha()) or (len(c) == 6 and c[3].isalpha()) or (len(c) == 6 and c[4].isalpha()) or (len(c) == 6 and c[5].isalpha())):
-    #             raise ValidationError('Invalid course')
-    #         elif ((len(c) == 7 and c[2].isalpha() == False) or (len(c) == 7 and c[3].isalpha()) or (len(c) == 7 and c[4].isalpha()) or (len(c) == 7 and c[5].isalpha()) or (len(c) == 7 and c[6].isalpha())):
-    #             raise ValidationError('Invalid course')
-    #         elif ((len(c) == 8 and c[2].isalpha() == False) or (len(c) == 8 and c[3].isalpha() == False) or c[4].isalpha() or c[5].isalpha() or c[6].isalpha()):
-    #             raise ValidationError('Invalid course')
-    #     return True
-
-
-    # picture = models.ImageField()
     @classmethod
     def add_endorse(cls):
         cls.endorse += 1

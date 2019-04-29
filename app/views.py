@@ -1,3 +1,9 @@
+#sources: https://wsvincent.com/django-image-uploads/
+# https://github.com/maxg203/Django-Tutorials
+# https://docs.djangoproject.com/en/2.2/topics/forms/modelforms/
+# https://django-taggit.readthedocs.io/en/latest/custom_tagging.html
+# https://docs.djangoproject.com/en/2.2/intro/tutorial01/
+
 from django.contrib.auth import logout
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse

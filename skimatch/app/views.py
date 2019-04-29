@@ -1,3 +1,5 @@
+#sources: https://docs.djangoproject.com/en/2.2/intro/tutorial01/
+
 from django.shortcuts import render
 from django.shortcuts import render_to_response
 # Create your views here.
