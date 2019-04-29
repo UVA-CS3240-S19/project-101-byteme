@@ -69,7 +69,7 @@ def create_profile(request):
             form = ProfileModel(request.POST, request.FILES)
             if (form.is_valid()):
                 profile = form.save(commit=False)
-                profile.name = profile.name.capitalize()
+                profile.name = profile.name.title()
                 if 'image' in request.FILES:
                     profile.image = request.FILES['image']
                 profile.user_id = computing_id
@@ -164,7 +164,7 @@ def update_profile(request):
         if request.method == "POST":
             form = ProfileModel(request.POST, request.FILES)
             if (form.is_valid()):
-                profile.name = request.POST['name'].capitalize()
+                profile.name = request.POST['name'].title()
                 profile.user_id = computing_id
                 profile.id = request.user.id
                 profile.year = request.POST['year']
