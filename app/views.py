@@ -79,7 +79,7 @@ def create_profile(request):
                 if request.user == "Sherriff":
                     profile.email = "sherriff@gmail.com"
                 else:
-                    profile.email = request.user.email
+                    profile.email = request.user.id + "@virginia.edu"
 
                 tags_to_add = set()
 
