@@ -55,3 +55,6 @@ Click the "Log Out" button on the navigation bar to leave the site. If you wish 
 
 * Basic profile layout adapted from: https://bootsnipp.com/snippets/MRgWB
 * Additional sources:
+* https://getbootstrap.com/docs/4.0/components/
+* https://fontawesome.com/icons
+
