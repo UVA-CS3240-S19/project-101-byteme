@@ -75,7 +75,7 @@ def create_profile(request):
                 profile.user_id = computing_id
                 profile.computing_id = computing_id
                 profile.id = request.user.id
-                if request.user.name == "Sherriff":
+                if request.user == "Sherriff":
                     profile.email = "sherriff@gmail.com"
                 else:
                     profile.email = request.user.email
