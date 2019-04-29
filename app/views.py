@@ -75,7 +75,10 @@ def create_profile(request):
                 profile.user_id = computing_id
                 profile.computing_id = computing_id
                 profile.id = request.user.id
-                profile.email = request.user.email
+                if request.user.name == "Sherriff":
+                    profile.email = "sherriff@gmail.com"
+                else:
+                    profile.email = request.user.email
 
                 tags_to_add = set()
 
