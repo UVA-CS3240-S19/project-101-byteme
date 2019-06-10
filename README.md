@@ -40,8 +40,10 @@ Click the "Log Out" button on the navigation bar to leave the site. If you wish 
 
 ## Built With
 
-* [Djano](https://www.djangoproject.com/) - The web framework used
-* [Heroku](https://www.heroku.com/) - Cloud platform
+* [Django](https://www.djangoproject.com/) - Python Web Framework
+* [Heroku](https://www.heroku.com/) - Cloud Platform for Hosting
+* [Travis CI](https://travis-ci.org/) - Continuous Integration Service
+
 
 ## Authors
 
